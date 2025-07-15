@@ -1,0 +1,103 @@
+---
+import aviorLogo from '../assets/aviorstudio-logo.png';
+---
+
+<div class="landing-container">
+  <div class="content">
+    <img src={aviorLogo.src} alt="Avior Studio" class="logo" />
+    <h1 class="title">Avior Studio</h1>
+    <p class="subtitle">Coming Soon</p>
+  </div>
+</div>
+
+<style>
+  .landing-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    padding: 20px;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .logo {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+    animation: float 6s ease-in-out infinite;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    color: #888888;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      width: 180px;
+      height: 180px;
+      padding: 15px;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      width: 140px;
+      height: 140px;
+      padding: 10px;
+    }
+
+    .title {
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+    }
+  }
+</style>
