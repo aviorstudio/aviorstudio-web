@@ -1,52 +1,103 @@
-# Astro Starter Kit: Basics
+# Avior Studio web
+
+The public [aviorstudio.com](https://aviorstudio.com) site. Three static Astro
+pages: an index, `/devtools`, and `/games`.
+
+There is no authentication, no application state, no backend and no runtime
+environment configuration. The pages ship no JavaScript, which is why there are
+no integrations in `astro.config.mjs` and why CI fails on a `<script src>` in
+any build output.
+
+## Commands
+
+| Command | Action |
+| --- | --- |
+| `bun install` | Install dependencies |
+| `bun dev` | Start the Astro development server |
+| `bun run build` | Generate the static site in `dist/` |
+| `bun preview` | Preview the static build |
+
+## Pages
+
+- **`/`** — what the studio is, the two doors, and how the tools and games
+  relate. The door lists name their contents rather than saying "and more", so
+  the index cannot promise a page something that is not on it.
+- **`/devtools`** — GDAM and gdlint, with install commands and links.
+- **`/games`** — termcade, Castle Drop, Prizm and Fields of Revik.
+
+`src/components/Entry.astro` is the shared product block used by both inner
+pages: a fixed-width head column (name, tagline, status, meta) beside a body
+that flows.
+
+## Status and links
+
+Every product on the site is either linkable or explicitly not, and the page
+says which. Three of the six repositories are private, and a link to a
+repository a reader cannot open is worse than no link:
+
+| Product | Repository | Public link on the site |
+| --- | --- | --- |
+| GDAM | public | `gdam.dev` and GitHub |
+| gdlint | public | `gdlint.dev` and GitHub |
+| termcade | public | GitHub (`termcade.com` is still a placeholder, so it is not linked) |
+| Castle Drop | private | none — labelled Prototype |
+| Prizm | private | none — labelled Prototype |
+| Fields of Revik | private | `fieldsofrevik.com`, which is live |
+
+The status dot is hollow by default and filled only for something a reader can
+run today — a difference told by fill rather than by colour, so it survives
+greyscale and colour blindness both. Only termcade, GDAM and gdlint are filled.
+
+## Copy
+
+Every blurb comes from the product's own repository — the READMEs, the design
+docs, and the config that decides defaults — not from a positioning exercise.
+The claims worth re-checking when a product changes:
+
+- **GDAM**: the separate `gdam.link.json`, and that publishing is authenticated
+  with an owner-scoped secret key while the CLI itself carries none.
+- **gdlint**: four rules enabled by default out of sixteen, and that it is
+  deliberately not an architecture checker.
+- **termcade**: games are sandboxed wasm under wazero with no filesystem and no
+  network, a broken one shows up dimmed rather than taking the arcade down, and
+  the arcade binary is also the dev kit.
+- **Castle Drop**: progression is castle upgrades only; waves, enemies, towers
+  and tuning are Inspector-authored resources.
+- **Prizm**: no avatar, combat, health, timer or fail state in the MVP.
+- **Fields of Revik**: one deterministic core shared by the client and a
+  headless Godot server; online play is fully server-authoritative.
+
+## Colour and the mark
+
+The background is `#252424`, sampled out of `src/assets/aviorstudio-logo.png` —
+the mark ships with that colour baked in behind it, and matching it is what lets
+the ibis sit on the page instead of inside a visible square. The remaining few
+shades of difference are handled by fading the image's edges out with a radial
+mask rather than by repainting the asset.
+
+Everything else is greyscale on purpose. Each product has a colour of its own —
+gdlint wears the Godot editor blue, gdam.dev its slate, Fields of Revik its
+parchment — and a studio that invented a seventh would be competing with the six
+things it exists to point at.
+
+`public/logo.png`, `public/logo-mark.png` and `public/favicon.png` are generated
+from `src/assets/aviorstudio-logo.png`, which is the source of record:
 
 ```sh
-pnpm create astro@latest -- --template basics
+magick src/assets/aviorstudio-logo.png -resize 512x512 -strip public/logo.png
+magick src/assets/aviorstudio-logo.png -crop 810x810+120+112 +repage -resize 96x96  -strip public/logo-mark.png
+magick src/assets/aviorstudio-logo.png -crop 810x810+120+112 +repage -resize 256x256 -strip public/favicon.png
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+The crop is tighter for the small sizes: at 30px the uncropped mark is a smudge,
+because the artwork's own margin eats most of the space.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Fonts are the platform's own. No font is fetched, so no visitor's IP reaches a
+font CDN and no CSP exception is needed to render the pages.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Domain
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`src/layouts/Full.astro`, `public/robots.txt` and `public/sitemap.xml` assume
+`https://aviorstudio.com`. The domain resolves but serves nothing yet; the site
+currently deploys to `avior-web.vercel.app`. Those three files are the only
+places the host appears.

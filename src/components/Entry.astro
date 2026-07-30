@@ -1,0 +1,101 @@
+---
+import octicons from '@primer/octicons';
+
+interface Props {
+	name: string;
+	tagline: string;
+	meta: string;
+	status: string;
+	/** true only for something a reader can run or play today. */
+	available?: boolean;
+	command?: string;
+	commandNote?: string;
+	links?: { href: string; label: string }[];
+}
+
+const { name, tagline, meta, status, available = false, command, commandNote, links = [] } = Astro.props;
+const icon = (n: keyof typeof octicons, size = 16) => octicons[n].toSVG({ width: size, height: size });
+
+// An external link is anything that leaves this site. It gets the outward
+// arrow; internal navigation gets the plain one, so the two never look alike.
+const isExternal = (href: string) => href.startsWith('http');
+---
+
+<article class="entry">
+	<div class="entry-head">
+		<h2>{name}</h2>
+		<p class="tagline">{tagline}</p>
+		<p class="status" data-available={available ? 'yes' : undefined}><span></span> {status}</p>
+		<p class="meta">{meta}</p>
+	</div>
+
+	<div class="entry-body">
+		<slot />
+
+		{
+			command && (
+				<div class="command">
+					<code>{command}</code>
+					{commandNote && <p>{commandNote}</p>}
+				</div>
+			)
+		}
+
+		{
+			links.length > 0 && (
+				<div class="links">
+					{links.map((link) => (
+						<a href={link.href}>
+							{link.label}
+							<span class="icon" set:html={icon(isExternal(link.href) ? 'arrow-up-right' : 'arrow-right', 13)} />
+						</a>
+					))}
+				</div>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	/* The head column is fixed rather than fractional. It holds four short lines
+	   whatever the width, so giving it a share of the row would only buy it
+	   blank space next to a body that could have used it. */
+	.entry { display: grid; grid-template-columns: 300px minmax(0, 1fr); align-items: start; border-bottom: 1px solid var(--line-soft); padding: 44px 0; gap: 64px; }
+	.entry:first-of-type { border-top: 1px solid var(--line-soft); }
+
+	.entry-head h2 { margin: 0 0 8px; color: var(--bone); font-size: 30px; font-weight: 580; letter-spacing: -.045em; }
+	.tagline { margin: 0 0 20px; color: var(--paper); font-size: 14px; font-weight: 500; }
+	.status { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; color: var(--faint); font: 600 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+	/* Hollow by default, filled only for something you can actually run today.
+	   Two states, told apart by fill rather than by colour, so the difference
+	   survives greyscale and colour blindness both. */
+	.status span { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--faint); }
+	.status[data-available] { color: var(--bone); }
+	.status[data-available] span { border-color: var(--bone); background: var(--bone); box-shadow: 0 0 0 4px rgba(247, 242, 233, .1); }
+	.meta { margin: 0; color: var(--faint); font: 500 10px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+
+	.entry-body :global(p) { max-width: 700px; margin: 0 0 14px; color: var(--quiet); font-size: 14.5px; line-height: 1.72; }
+	.entry-body :global(p:last-of-type) { margin-bottom: 0; }
+	.entry-body :global(code) { border-radius: 3px; background: #333131; padding: 1px 5px; color: #d6d1cb; font: 12.5px var(--mono); }
+
+	.command { margin-top: 24px; }
+	/* Sized to the command, not to the column: a one-line install stretched the
+	   full width of a wide screen reads as an empty box with text in the corner. */
+	.command code { display: block; width: max-content; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 5px; background: var(--ink-deep); padding: 13px 16px; color: var(--paper); font: 500 12.5px/1 var(--mono); white-space: nowrap; }
+	.command p { margin: 10px 0 0; color: var(--faint); font: 500 10px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+
+	.links { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 26px; }
+	.links a { display: inline-flex; align-items: center; gap: 7px; color: var(--paper); border-bottom: 1px solid var(--line); padding: 6px 0; font-size: 13px; font-weight: 650; text-decoration: none; transition: border-color .15s ease; }
+	.links a:hover { border-bottom-color: var(--paper); }
+	.links .icon { color: var(--quiet); }
+
+	@media (max-width: 980px) {
+		.entry { grid-template-columns: 1fr; gap: 22px; padding: 36px 0; }
+	}
+	@media (max-width: 600px) {
+		.entry-head h2 { font-size: 25px; }
+		.entry-body :global(p) { font-size: 13.5px; }
+		.command code { font-size: 10.5px; padding: 11px 13px; }
+		.links { gap: 16px; }
+	}
+</style>

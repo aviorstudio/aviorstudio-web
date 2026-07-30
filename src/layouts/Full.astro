@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import octicons from '@primer/octicons';
+
+interface Props {
+	title?: string;
+	description?: string;
+	path?: string;
+}
+
+const {
+	title = 'Avior Studio',
+	description = 'Avior Studio builds developer tools for Godot and the games behind them — GDAM, gdlint, termcade, Castle Drop, Prizm and Fields of Revik.',
+	path = Astro.url.pathname,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, 'https://aviorstudio.com');
+const icon = (name: keyof typeof octicons, size = 16) =>
+	octicons[name].toSVG({ width: size, height: size });
+
+const nav = [
+	{ href: '/devtools', label: 'Devtools' },
+	{ href: '/games', label: 'Games' },
+];
+
+// A trailing slash is how a static host serves /devtools, so the comparison has
+// to survive both forms or the current page never marks itself.
+const current = (href: string) => path === href || path === `${href}/`;
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Avior Studio',
+	url: 'https://aviorstudio.com',
+	description,
+	sameAs: ['https://github.com/aviorstudio', 'https://gdam.dev', 'https://gdlint.dev'],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#252424" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Avior Studio" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={new URL('/logo.png', canonical)} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	</head>
+	<body>
+		<div class="page-shell">
+			<header class="site-header">
+				<a class="brand" href="/" aria-label="Avior Studio home">
+					<img class="brand-mark" src="/logo-mark.png" alt="" width="96" height="96" />
+					<span>Avior Studio</span>
+				</a>
+				<nav aria-label="Sections">
+					{
+						nav.map((item) => (
+							<a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>
+								{item.label}
+							</a>
+						))
+					}
+					<a class="out" href="https://github.com/aviorstudio">
+						GitHub <span class="icon" set:html={icon('arrow-up-right', 13)} />
+					</a>
+				</nav>
+			</header>
+
+			<slot />
+
+			<footer>
+				<a class="brand footer-brand" href="/">
+					<img class="brand-mark" src="/logo-mark.png" alt="" width="96" height="96" />
+					<span>Avior Studio</span>
+				</a>
+				<p><a href="/devtools">Devtools</a> · <a href="/games">Games</a> · <a href="https://github.com/aviorstudio">GitHub</a></p>
+				<p>© {new Date().getFullYear()} Avior Studio</p>
+			</footer>
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	.page-shell { min-height: 100svh; overflow-x: hidden; }
+
+	.site-header { width: min(1180px, calc(100% - 40px)); height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+	.brand { display: inline-flex; align-items: center; gap: 11px; color: var(--paper); font-size: 16px; font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
+	.brand-mark { width: 30px; height: 30px; border-radius: 50%; }
+	.site-header nav { display: flex; align-items: center; gap: 22px; }
+	.site-header nav a { color: var(--quiet); font-size: 13px; font-weight: 620; text-decoration: none; border-bottom: 1px solid transparent; padding: 6px 0; transition: color .15s ease; }
+	.site-header nav a:hover { color: var(--paper); }
+	.site-header nav a[aria-current='page'] { color: var(--paper); border-bottom-color: var(--line); }
+	.site-header nav .out { display: inline-flex; align-items: center; }
+	.site-header nav .out span { margin-left: 5px; }
+	.icon svg { display: block; fill: currentColor; }
+
+	footer { width: min(1180px, calc(100% - 40px)); min-height: 130px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; border-top: 1px solid var(--line-soft); color: var(--faint); font: 500 10px var(--mono); }
+	footer p { margin: 0; }
+	footer p:nth-child(2) { text-align: center; }
+	footer p:last-child { text-align: right; }
+	footer a { color: var(--faint); text-decoration: none; border-bottom: 1px solid #4a4746; }
+	footer a:hover { color: var(--paper); }
+	footer a.footer-brand { justify-self: start; border: 0; color: var(--paper); font-family: var(--sans); font-size: 15px; }
+	footer .brand-mark { width: 24px; height: 24px; }
+
+	@media (max-width: 600px) {
+		.site-header, footer { width: min(100% - 28px, 1180px); }
+		.site-header { height: 64px; gap: 12px; }
+		.brand span { display: none; }
+		.site-header nav { gap: 16px; }
+		.site-header nav a { font-size: 12.5px; }
+		footer { grid-template-columns: 1fr; justify-items: start; gap: 14px; padding: 30px 0; }
+		footer p:nth-child(2), footer p:last-child { text-align: left; }
+	}
+</style>
