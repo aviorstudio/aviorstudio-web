@@ -1,0 +1,44 @@
+name: CI
+
+# A static site has one way to be broken that matters: it does not build. That
+# is the whole check.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.3"
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      # A build that emits nothing still "succeeds", so the artefacts are
+      # checked rather than the exit code. All three pages, because a broken
+      # route is invisible from the index alone.
+      - name: Every page was actually written
+        run: |
+          for page in index devtools/index games/index; do
+            test -s "dist/$page.html" || { echo "dist/$page.html is missing or empty"; exit 1; }
+          done
+      # The point of this site is that it ships no JavaScript. Nothing else
+      # would notice an integration being added back, and by then the pages
+      # have a runtime they did not need.
+      - name: No JavaScript was shipped
+        run: |
+          if grep -rq '<script[^>]*src=' dist/*.html dist/*/*.html; then
+            echo "a page loads a script — this site is meant to ship none"
+            exit 1
+          fi

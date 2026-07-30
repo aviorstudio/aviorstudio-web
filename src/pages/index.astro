@@ -1,8 +1,212 @@
 ---
-import LandingPage from '../components/LandingPage.astro';
-import Layout from '../layouts/Layout.astro';
+import Full from '../layouts/Full.astro';
+import octicons from '@primer/octicons';
+
+const icon = (name: keyof typeof octicons, size = 16) =>
+	octicons[name].toSVG({ width: size, height: size });
+
+// The two doors, and what is actually behind each one. Naming the contents
+// here rather than saying "and more" means the index never promises a page
+// something is not on.
+const doors = [
+	{
+		href: '/devtools',
+		kicker: 'Devtools',
+		title: 'Two tools, one registry',
+		copy: 'A package manager for Godot addons and a hygiene checker for the GDScript around them. Both are open source, both are single static binaries, and both exist because the games needed them.',
+		items: [
+			{ name: 'GDAM', note: 'Godot addon manager and registry' },
+			{ name: 'gdlint', note: 'GDScript hygiene checker' },
+		],
+	},
+	{
+		href: '/games',
+		kicker: 'Games',
+		title: 'One playable, three in progress',
+		copy: 'A terminal arcade you can run right now, and three Godot projects at various distances from done — castle defense, light puzzles, and a tactics card game.',
+		items: [
+			{ name: 'termcade', note: 'Terminal arcade · playable now' },
+			{ name: 'Castle Drop', note: 'Physics castle defense · prototype' },
+			{ name: 'Prizm', note: 'Light puzzle · prototype' },
+			{ name: 'Fields of Revik', note: 'Tactics card game · in development' },
+		],
+	},
+];
 ---
 
-<Layout>
-	<LandingPage />
-</Layout>
+<Full
+	title="Avior Studio — Godot devtools and the games behind them"
+	description="Avior Studio builds developer tools for the Godot engine and the games that use them: GDAM, gdlint, termcade, Castle Drop, Prizm and Fields of Revik."
+>
+	<main>
+		<section class="hero">
+			<div class="hero-copy">
+				<p class="eyebrow"><span></span> Avior Studio</p>
+				<h1>We build the tools <em>we needed first.</em></h1>
+				<p class="lede">
+					A package manager and a linter, written because three Godot projects here were sharing
+					addons and conventions and nothing was keeping them straight. They turned out to be
+					useful outside those projects, so they went out.
+				</p>
+				<div class="hero-actions">
+					<a class="primary-cta" href="/devtools">See the devtools <span class="icon" set:html={icon('arrow-right', 16)} /></a>
+					<a class="ghost-cta" href="/games">And the games <span class="icon" set:html={icon('arrow-right', 13)} /></a>
+				</div>
+			</div>
+
+			<div class="hero-mark">
+				<img src="/logo.png" alt="Avior Studio" width="512" height="512" />
+			</div>
+		</section>
+
+		<section class="doors" aria-label="What we make">
+			{
+				doors.map((door) => (
+					<a class="door" href={door.href}>
+						<p class="kicker">{door.kicker}</p>
+						<h2>{door.title}</h2>
+						<p class="door-copy">{door.copy}</p>
+						<ul>
+							{door.items.map((item) => (
+								<li>
+									<b>{item.name}</b>
+									<span>{item.note}</span>
+								</li>
+							))}
+						</ul>
+						<span class="door-go">
+							Open {door.kicker.toLowerCase()} <i class="icon" set:html={icon('arrow-right', 14)} />
+						</span>
+					</a>
+				))
+			}
+		</section>
+
+		<section class="principles" aria-label="How the studio works">
+			<article>
+				<span class="number">01</span>
+				<div>
+					<h2>The tools came out of the games</h2>
+					<p>
+						Castle Drop, Prizm and Fields of Revik all pull the same addons and follow the same
+						script conventions. GDAM installs and pins those addons from a registry; gdlint keeps
+						the GDScript around them honest. Neither was a product idea — they were the parts that
+						kept going wrong.
+					</p>
+				</div>
+			</article>
+			<article>
+				<span class="number">02</span>
+				<div>
+					<h2>Published when it is useful to someone else</h2>
+					<p>
+						The tools and the arcade are public and installable in one command. The Godot games
+						stay private until there is something worth playing — a repository nobody can run is
+						not a release, and a link to one is not an announcement.
+					</p>
+				</div>
+			</article>
+			<article>
+				<span class="number">03</span>
+				<div>
+					<h2>Godot 4, Go, and pages that ship no JavaScript</h2>
+					<p>
+						The games are Godot 4.4. The tools, the arcade and the registry APIs are Go, built as
+						single static binaries. The sites — this one included — are static Astro with no
+						client-side runtime at all.
+					</p>
+				</div>
+			</article>
+		</section>
+
+		<section class="closing">
+			<p>Six things.<br />Two of them are tools.</p>
+			<div class="closing-actions">
+				<a class="primary-cta light" href="/devtools">Devtools <span class="icon" set:html={icon('arrow-right', 16)} /></a>
+				<a class="ghost-cta dark" href="/games">Games <span class="icon" set:html={icon('arrow-right', 13)} /></a>
+			</div>
+		</section>
+	</main>
+</Full>
+
+<style>
+	.hero { width: min(1180px, calc(100% - 40px)); margin: 70px auto 110px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 60px; }
+	.hero-copy { position: relative; z-index: 2; }
+	.eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 22px; color: var(--quiet); font: 620 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+	.eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: var(--bone); box-shadow: 0 0 0 4px rgba(247, 242, 233, .1); }
+	h1 { max-width: 620px; margin: 0; color: var(--bone); font-size: clamp(46px, 6vw, 78px); font-weight: 590; line-height: .98; letter-spacing: -.062em; }
+	h1 em { color: var(--quiet); font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+	.lede { max-width: 520px; margin: 30px 0 34px; color: var(--quiet); font-size: 16px; line-height: 1.7; }
+	.hero-actions { display: flex; align-items: center; gap: 24px; }
+
+	/* The mark ships with its own background baked in, a shade off the page's
+	   own #252424 -- close enough to miss in a swatch and impossible to miss as
+	   a 460px square. Rather than repaint the asset, the edges are faded out:
+	   the difference disappears into the page before it can draw a border, and
+	   the brush circle keeps the soft edge the artwork was drawn with. */
+	.hero-mark { display: grid; place-items: center; }
+	.hero-mark img {
+		width: min(100%, 460px);
+		-webkit-mask-image: radial-gradient(circle at 50% 50%, #000 54%, transparent 71%);
+		mask-image: radial-gradient(circle at 50% 50%, #000 54%, transparent 71%);
+	}
+
+	.doors { width: min(1180px, calc(100% - 40px)); margin: 0 auto 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+	.door { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 34px; color: inherit; text-decoration: none; transition: border-color .18s ease, transform .18s ease, background .18s ease; }
+	.door:hover { border-color: #4d4a49; background: #302f2f; transform: translateY(-2px); }
+	.kicker { margin: 0 0 16px; color: var(--quiet); font: 650 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+	.door h2 { margin: 0 0 14px; color: var(--bone); font-size: 26px; font-weight: 580; letter-spacing: -.04em; }
+	.door-copy { margin: 0 0 26px; color: var(--quiet); font-size: 14px; line-height: 1.7; }
+	.door ul { margin: 0 0 26px; padding: 0; list-style: none; border-top: 1px solid var(--line-soft); }
+	.door li { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line-soft); padding: 11px 0; }
+	.door li b { color: var(--paper); font-size: 13.5px; font-weight: 650; }
+	.door li span { color: var(--faint); font: 500 10px var(--mono); text-align: right; }
+	.door-go { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--bone); font-size: 13px; font-weight: 680; }
+	.door-go i { display: block; }
+
+	.principles { width: min(1180px, calc(100% - 40px)); margin: 0 auto 110px; border-top: 1px solid var(--line-soft); }
+	.principles article { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid var(--line-soft); padding: 32px 0; }
+	.principles article div { display: grid; grid-template-columns: .75fr 1fr; align-items: baseline; gap: 40px; }
+	.number { color: var(--faint); font: 650 10px var(--mono); }
+	.principles h2 { margin: 0; color: var(--bone); font-size: 22px; font-weight: 580; letter-spacing: -.035em; }
+	.principles p { max-width: 560px; margin: 0; color: var(--quiet); font-size: 14px; line-height: 1.65; }
+
+	.closing { width: min(1180px, calc(100% - 40px)); margin: 0 auto 20px; border-radius: 10px; background: var(--paper); color: var(--ink); padding: 65px; }
+	.closing > p { max-width: 680px; margin: 0 0 45px; font-size: clamp(40px, 5.6vw, 68px); font-weight: 530; line-height: .98; letter-spacing: -.055em; }
+	.closing-actions { display: flex; align-items: center; gap: 24px; }
+
+	.primary-cta { display: inline-flex; align-items: center; gap: 30px; border-radius: 4px; background: var(--paper); color: var(--ink); padding: 14px 18px; font-size: 13px; font-weight: 680; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+	.primary-cta:hover { transform: translateY(-2px); background: white; }
+	.primary-cta.light { background: var(--ink); color: var(--paper); }
+	.primary-cta.light:hover { background: #333131; }
+	.ghost-cta { display: inline-flex; align-items: center; gap: 7px; color: var(--paper); border-bottom: 1px solid var(--line); padding: 6px 0; font-size: 13px; font-weight: 650; text-decoration: none; }
+	.ghost-cta:hover { border-bottom-color: var(--paper); }
+	.ghost-cta.dark { color: var(--ink); border-bottom-color: #b9b5ae; }
+	.ghost-cta.dark:hover { border-bottom-color: var(--ink); }
+
+	@media (max-width: 980px) {
+		.hero { grid-template-columns: 1fr; margin-top: 45px; gap: 48px; }
+		.hero-copy { max-width: 680px; order: 2; }
+		.hero-mark { order: 1; justify-items: start; }
+		.hero-mark img { width: min(100%, 280px); }
+		.doors { grid-template-columns: 1fr; }
+		.principles article div { grid-template-columns: 1fr; gap: 9px; }
+	}
+	@media (max-width: 600px) {
+		.hero, .doors, .principles, .closing { width: min(100% - 28px, 1180px); }
+		.hero { margin: 40px auto 70px; }
+		h1 { font-size: clamp(40px, 12.5vw, 58px); }
+		.lede { margin-top: 24px; font-size: 15px; }
+		.hero-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
+		.hero-mark img { width: 190px; }
+		.door { padding: 26px; }
+		.door h2 { font-size: 22px; }
+		.door li { align-items: flex-start; flex-direction: column; gap: 4px; }
+		.door li span { text-align: left; }
+		.principles article { grid-template-columns: 42px 1fr; padding: 26px 0; }
+		.principles h2 { font-size: 19px; }
+		.principles p { font-size: 13px; }
+		.closing { padding: 40px 25px; }
+		.closing-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
+	}
+</style>

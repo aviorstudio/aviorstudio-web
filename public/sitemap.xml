@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Three pages, listed by hand. There is no lastmod: it would have to be the
+     deploy date rather than the date the words changed, and a timestamp that
+     moves on every unrelated deploy is a worse signal than none. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://aviorstudio.com/</loc>
+	</url>
+	<url>
+		<loc>https://aviorstudio.com/devtools</loc>
+	</url>
+	<url>
+		<loc>https://aviorstudio.com/games</loc>
+	</url>
+</urlset>

@@ -1,0 +1,41 @@
+/* Fonts are the platform's own, not fetched. The stacks below reach for the
+   native UI sans and native monospace of each platform, so the site loads what
+   the reader already has, makes no third-party request, sends nobody's IP to a
+   font CDN, and needs no CSP exception to do it. */
+
+/* The background is the logo's own backdrop, #252424, sampled out of
+   src/assets/aviorstudio-logo.png. The mark ships with that colour baked in
+   behind it, so matching it exactly is what lets the ibis sit on the page
+   instead of inside a visible square.
+
+   Everything else here is greyscale on purpose. Each product has a colour of
+   its own -- gdlint wears the Godot editor blue, gdam.dev its slate, Revik its
+   parchment -- and a studio that invented a seventh would be competing with
+   the six things it exists to point at. So this site brings no hue and lets
+   the products keep theirs. */
+:root {
+	--ink: #252424;
+	--ink-deep: #1c1b1b;
+	--raised: #2c2b2b;
+	--line: #3b3939;
+	--line-soft: #333131;
+	--paper: #ece9e4;
+	--bone: #f7f2e9;
+	--quiet: #a29d97;
+	--faint: #7c7772;
+	--sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+	--mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	font-family: var(--sans);
+	background: var(--ink);
+	color: var(--paper);
+	font-synthesis: none;
+	color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+body { min-width: 320px; min-height: 100svh; margin: 0; background: var(--ink); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+button, input, textarea, select { font: inherit; }
+img { max-width: 100%; height: auto; }
+::selection { background: var(--bone); color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
