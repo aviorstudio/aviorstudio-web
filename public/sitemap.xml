@@ -4,12 +4,12 @@
      moves on every unrelated deploy is a worse signal than none. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://aviorstudio.com/</loc>
+		<loc>https://avior.studio/</loc>
 	</url>
 	<url>
-		<loc>https://aviorstudio.com/devtools</loc>
+		<loc>https://avior.studio/devtools</loc>
 	</url>
 	<url>
-		<loc>https://aviorstudio.com/games</loc>
+		<loc>https://avior.studio/games</loc>
 	</url>
 </urlset>
