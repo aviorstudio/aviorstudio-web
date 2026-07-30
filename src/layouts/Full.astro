@@ -14,7 +14,7 @@ const {
 	path = Astro.url.pathname,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, 'https://aviorstudio.com');
+const canonical = new URL(Astro.url.pathname, 'https://avior.studio');
 const icon = (name: keyof typeof octicons, size = 16) =>
 	octicons[name].toSVG({ width: size, height: size });
 
@@ -31,7 +31,7 @@ const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Organization',
 	name: 'Avior Studio',
-	url: 'https://aviorstudio.com',
+	url: 'https://avior.studio',
 	description,
 	sameAs: ['https://github.com/aviorstudio', 'https://gdam.dev', 'https://gdlint.dev'],
 };

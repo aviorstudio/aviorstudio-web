@@ -1,7 +1,7 @@
 # Avior Studio web
 
-The public [aviorstudio.com](https://aviorstudio.com) site. Three static Astro
-pages: an index, `/devtools`, and `/games`.
+The public [avior.studio](https://avior.studio) site. Three static Astro pages:
+an index, `/devtools`, and `/games`.
 
 There is no authentication, no application state, no backend and no runtime
 environment configuration. The pages ship no JavaScript, which is why there are
@@ -97,7 +97,10 @@ font CDN and no CSP exception is needed to render the pages.
 
 ## Domain
 
-`src/layouts/Full.astro`, `public/robots.txt` and `public/sitemap.xml` assume
-`https://aviorstudio.com`. The domain resolves but serves nothing yet; the site
-currently deploys to `avior-web.vercel.app`. Those three files are the only
-places the host appears.
+The site is `https://avior.studio`. The host appears in exactly three places —
+the canonical and structured-data URLs in `src/layouts/Full.astro`, the sitemap
+line in `public/robots.txt`, and the three `<loc>` entries in
+`public/sitemap.xml` — so moving it is a three-file change.
+
+`aviorstudio.com` is a different domain and is not this site. Nothing here
+should point at it.

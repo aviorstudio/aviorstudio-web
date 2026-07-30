@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aviorstudio.com/sitemap.xml
+Sitemap: https://avior.studio/sitemap.xml
