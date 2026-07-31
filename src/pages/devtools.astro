@@ -5,20 +5,102 @@ import octicons from '@primer/octicons';
 
 const icon = (name: keyof typeof octicons, size = 16) =>
 	octicons[name].toSVG({ width: size, height: size });
+
+// The addons GDAM was built to carry. Listed alphabetically rather than by
+// importance: fourteen is enough that a reader needs to be able to find one,
+// and a ranking here would be an editorial claim the repositories cannot back.
+//
+// Every blurb comes from the addon's own README and plugin.cfg. Where one says
+// what it deliberately leaves to the game, that is kept — the boundary is the
+// most useful thing to know before installing.
+const addons = [
+	{
+		name: 'gd-audio',
+		tagline: 'Music and pooled sound effects',
+		copy: 'One <code>GdAudio</code> autoload: configure a looping music stream with fades and a persisted volume, register named samples, then <code>play_sfx("click")</code>. Effects play out of a player pool you size. Volume is written to a config file you name, so the settings UI stays in the game.',
+	},
+	{
+		name: 'gd-env',
+		tagline: 'Environment and config loading',
+		copy: 'Typed OS environment lookups with defaults, <code>.env</code> parsing, and JSON config from a file or an HTTP endpoint. It deliberately does not decide which source wins when several are present. Client-side config is public either way, so nothing here is a place for secrets.',
+	},
+	{
+		name: 'gd-gesture',
+		tagline: 'Pointer normalization and gestures',
+		copy: 'Mouse and touch collapse into one typed pointer stream, and a recognizer turns that into tap, double tap, long press, swipe, drag and pinch. Use the global autoload for one shared stream, or the two modules directly when a split-screen or editor scene needs its own thresholds.',
+	},
+	{
+		name: 'gd-network',
+		tagline: 'HTTP, WebSocket and retry primitives',
+		copy: 'A callback JSON HTTP client that uses <code>HTTPRequest</code> natively and a <code>JavaScriptBridge</code> fetch bridge on web, plus a request pool, token-bucket rate limiting, deterministic retry backoff, ordered delta windows and a shared error catalog. Auth, sessions, matchmaking and reconnect policy are left to the game.',
+	},
+	{
+		name: 'gd-object-pool',
+		tagline: 'Object and node reuse',
+		copy: 'Acquire and return instances of any class instead of allocating per bullet, card or effect, with <code>warm_pool</code> to pre-allocate before gameplay and counters for created, reused, returned and disposed. Objects come back clean through a <code>reset</code> method or a callable you supply.',
+	},
+	{
+		name: 'gd-observe',
+		tagline: 'Local observability with a terminal dashboard',
+		copy: 'Timers, gauges and counters alongside logs, events and per-frame traces, all tagged with a context you push and pop. A localhost WebSocket server streams them live to a terminal UI. Metrics are in-memory and local — the point is to see the data before deciding whether any of it should leave the machine.',
+		cli: 'Ships gdobs, a Go terminal UI',
+	},
+	{
+		name: 'gd-playwright',
+		tagline: 'Named handles for web-export browser tests',
+		copy: 'The addon writes element positions, events and test state to browser globals during a web run; the CLI reads them over CDP so a test can click <code>start_button</code> instead of a coordinate. The CLI is strictly read-only — it never mutates browser or game state. Disabled builds no-op, so the calls are safe to leave in.',
+		cli: 'Ships gdpw, a Go CLI',
+	},
+	{
+		name: 'gd-pocketbase',
+		tagline: 'PocketBase auth and session primitives',
+		copy: 'Normalizes either a native <code>{token, record}</code> response or a backend proxy\'s <code>{access_token, user}</code> into one shape, then handles JWT expiry, persisted sessions and stable client IDs. Games keep HTTP transport and refresh policy; no superuser credential ever needs to reach the client.',
+	},
+	{
+		name: 'gd-redis',
+		tagline: 'A Redis client over RESP',
+		copy: 'SET with a TTL, GET, DEL, cursor-based <code>scan_keys</code> rather than <code>KEYS</code>, and both blocking and non-blocking connects — for tools, dedicated servers and local utilities. <code>flushdb</code> stays disabled until dangerous commands are explicitly enabled, and web exports cannot open raw TCP at all.',
+	},
+	{
+		name: 'gd-responsive',
+		tagline: 'Layout that adapts to the viewport',
+		copy: 'Breakpoint classification, scale, margins and content width computed from a <code>.tres</code> config, plus layout, flex and grid nodes that run as <code>@tool</code> scripts so the result is visible while authoring rather than only at runtime. Take just the scale module if you already have containers of your own.',
+	},
+	{
+		name: 'gd-router',
+		tagline: 'Editor-first screen routing',
+		copy: 'A <code>GdRouter</code> autoload owns the route table, params and history while a <code>RouteHost</code> node mounts the active screen under a persistent main scene. Routes auto-discover from <code>*_screen/</code> folders while prototyping, or come from a committed route map so they are inspectable and reviewable in the editor.',
+	},
+	{
+		name: 'gd-serialization',
+		tagline: 'Objects to dictionaries and back',
+		copy: 'Boundary conversion for saves, HTTP and WebSocket payloads and safe clones, with configurable class resolution, ignored properties and key normalization. It serializes script variables, not scene-tree state; cyclic graphs are unsupported, and reflection costs enough that it does not belong in a hot loop.',
+	},
+	{
+		name: 'gd-supabase',
+		tagline: 'Supabase session helpers',
+		copy: 'JWT decoding and expiry checks, local session storage, and a stable client ID, without picking an auth UI or an HTTP client for you. It decodes tokens rather than verifying them, so refresh, revoke, encryption and server trust all stay deliberately on your side.',
+	},
+	{
+		name: 'gd-telemetry',
+		tagline: 'Event batching with no vendor attached',
+		copy: 'Build structured events — timestamp, level, context and subject IDs, message, metadata — queue them, and flush on a size or time threshold into whatever transport you already have. It picks no analytics vendor and opens no sockets, which is the entire design.',
+	},
+];
 ---
 
 <Full
 	title="Devtools — Avior Studio"
-	description="GDAM, the Godot addon manager and registry at gdam.dev, and gdlint, a GDScript hygiene checker. Both open source, both a single static binary."
+	description="GDAM, the Godot addon manager and registry at gdam.dev, gdlint, a GDScript hygiene checker, and the fourteen Godot 4 addons they were built to carry."
 >
 	<main>
 		<section class="page-hero">
 			<p class="eyebrow"><span></span> Devtools</p>
-			<h1>Two tools, <em>one registry.</em></h1>
+			<h1>Two tools, <em>fourteen addons.</em></h1>
 			<p class="lede">
-				Both came out of the games. GDAM installs and pins the addons those projects share; gdlint
-				keeps the GDScript around them honest. Each is one static binary with no runtime, no daemon
-				and nothing to sign up for.
+				All of it came out of the games. GDAM installs and pins the addons those projects share;
+				gdlint keeps the GDScript around them honest. The tools are one static binary each, with no
+				runtime, no daemon and nothing to sign up for. The addons are what they were built to carry.
 			</p>
 		</section>
 
@@ -79,9 +161,43 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 			</Entry>
 		</section>
 
+		<section class="addons" aria-labelledby="addons-heading">
+			<div class="addons-head">
+				<div>
+					<p class="eyebrow"><span></span> Addons</p>
+					<h2 id="addons-heading">The fourteen on the registry.</h2>
+					<p class="addons-intro">
+						Each one was factored out of a game the third time a project here needed the same thing.
+						They are Godot 4, MIT, and published to gdam.dev, and every one of them draws its
+						boundary in the same place: the addon owns the mechanism, the game owns the policy.
+					</p>
+				</div>
+				<div class="command">
+					<code>gdam install @aviorstudio/&lt;name&gt;</code>
+					<p>Same for all fourteen · or copy addon/ in by hand and enable the plugin</p>
+				</div>
+			</div>
+
+			<div class="addon-grid">
+				{
+					addons.map((addon) => (
+						<a class="addon" href={`https://github.com/aviorstudio/${addon.name}`}>
+							<h3>{addon.name}</h3>
+							<p class="addon-tagline">{addon.tagline}</p>
+							<p class="addon-copy" set:html={addon.copy} />
+							{addon.cli && <p class="addon-cli">{addon.cli}</p>}
+							<span class="addon-go">
+								Source <i class="icon" set:html={icon('arrow-up-right', 13)} />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
 		<section class="aside-note">
 			<p>
-				Both tools are used daily on the Godot projects listed under
+				Both tools and every addon on this page are used daily on the Godot projects listed under
 				<a href="/games">Games</a> — that is the whole reason they exist, and the reason they keep
 				getting fixed.
 			</p>
@@ -100,6 +216,32 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 
 	.entries { width: min(1180px, calc(100% - 40px)); margin: 0 auto 90px; }
 
+	.addons { width: min(1180px, calc(100% - 40px)); margin: 0 auto 90px; }
+	/* The install line is identical for all fourteen, so it is stated once up
+	   here beside the intro rather than repeated inside every card. */
+	.addons-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 56px; margin-bottom: 40px; }
+	.addons-head h2 { max-width: 560px; margin: 0; color: var(--bone); font-size: 30px; font-weight: 580; letter-spacing: -.045em; }
+	.addons-intro { max-width: 620px; margin: 18px 0 0; color: var(--quiet); font-size: 14.5px; line-height: 1.72; }
+	.command code { display: block; width: max-content; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 5px; background: var(--ink-deep); padding: 13px 16px; color: var(--paper); font: 500 12.5px/1 var(--mono); white-space: nowrap; }
+	.command p { margin: 10px 0 0; color: var(--faint); font: 500 10px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+
+	/* auto-fill rather than a fixed count: fourteen cards divide evenly into
+	   neither two nor three, and a trailing row with one card in it looks like
+	   something failed to load. */
+	.addon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
+	.addon { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 26px; color: inherit; text-decoration: none; transition: border-color .18s ease, transform .18s ease, background .18s ease; }
+	.addon:hover { border-color: #4d4a49; background: #302f2f; transform: translateY(-2px); }
+	.addon h3 { margin: 0 0 7px; color: var(--bone); font: 620 15px var(--mono); letter-spacing: -.02em; }
+	.addon-tagline { margin: 0 0 14px; color: var(--paper); font-size: 13.5px; font-weight: 550; }
+	.addon-copy { margin: 0; color: var(--quiet); font-size: 13.5px; line-height: 1.68; }
+	.addon-copy :global(code) { border-radius: 3px; background: #333131; padding: 1px 4px; color: #d6d1cb; font: 11.5px var(--mono); }
+	.addon-cli { margin: 14px 0 0; color: var(--faint); font: 500 10px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+	/* margin-top:auto pins the link to the bottom so a row of cards ends on one
+	   line however long each blurb runs; the padding keeps a gap above it even
+	   in the tallest card of the row, where auto resolves to nothing. */
+	.addon-go { margin: auto 0 0; padding-top: 22px; display: inline-flex; align-items: center; gap: 7px; color: var(--paper); font-size: 12.5px; font-weight: 650; }
+	.addon-go i { display: block; color: var(--quiet); }
+
 	.aside-note { width: min(1180px, calc(100% - 40px)); margin: 0 auto 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-radius: 10px; background: var(--raised); border: 1px solid var(--line); padding: 34px 40px; }
 	.aside-note p { max-width: 640px; margin: 0; color: var(--quiet); font-size: 14.5px; line-height: 1.7; }
 	.aside-note p a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--line); }
@@ -108,13 +250,21 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 	.ghost-cta:hover { border-bottom-color: var(--paper); }
 
 	@media (max-width: 980px) {
+		.addons-head { grid-template-columns: 1fr; align-items: start; gap: 28px; }
 		.aside-note { align-items: flex-start; flex-direction: column; gap: 22px; }
 	}
 	@media (max-width: 600px) {
-		.page-hero, .entries, .aside-note { width: min(100% - 28px, 1180px); }
+		.page-hero, .entries, .addons, .aside-note { width: min(100% - 28px, 1180px); }
 		.page-hero { margin: 36px auto 50px; }
 		h1 { font-size: clamp(36px, 11.5vw, 52px); }
 		.lede { margin-top: 22px; font-size: 15px; }
+		.addons-head h2 { font-size: 25px; }
+		.addons-intro { font-size: 13.5px; }
+		.command code { font-size: 10.5px; padding: 11px 13px; }
+		/* Below the card minimum the auto-fill track would overflow the page
+		   rather than wrap, so the grid drops to a single column explicitly. */
+		.addon-grid { grid-template-columns: 1fr; }
+		.addon { padding: 22px; }
 		.aside-note { padding: 26px 24px; }
 		.aside-note p { font-size: 13.5px; }
 	}
