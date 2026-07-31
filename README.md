@@ -22,17 +22,26 @@ any build output.
 - **`/`** — what the studio is, the two doors, and how the tools and games
   relate. The door lists name their contents rather than saying "and more", so
   the index cannot promise a page something that is not on it.
-- **`/devtools`** — GDAM and gdlint, with install commands and links.
+- **`/devtools`** — GDAM and gdlint, with install commands and links, then the
+  fourteen `gd-*` addons on the registry.
 - **`/games`** — termcade, Castle Drop, Prizm and Fields of Revik.
 
 `src/components/Entry.astro` is the shared product block used by both inner
 pages: a fixed-width head column (name, tagline, status, meta) beside a body
 that flows.
 
+The addons on `/devtools` deliberately do not use it. `Entry` is sized for a
+product with a status, a platform line and an install command of its own;
+fourteen of them would bury the two tools the page is mostly about. They are a
+card grid instead, defined as an `addons` array at the top of the page the way
+`index.astro` defines its `doors`. The install line is stated once above the
+grid because it is `gdam install @aviorstudio/<name>` for all fourteen, and
+each card links to its repository rather than carrying its own link row.
+
 ## Status and links
 
 Every product on the site is either linkable or explicitly not, and the page
-says which. Three of the six repositories are private, and a link to a
+says which. Three of the six product repositories are private, and a link to a
 repository a reader cannot open is worse than no link:
 
 | Product | Repository | Public link on the site |
@@ -47,6 +56,14 @@ repository a reader cannot open is worse than no link:
 The status dot is hollow by default and filled only for something a reader can
 run today — a difference told by fill rather than by colour, so it survives
 greyscale and colour blindness both. Only termcade, GDAM and gdlint are filled.
+
+All fourteen addons are public on GitHub and resolve on the registry, so every
+card links to its repository and none carries a status dot: there is no third
+state to tell apart. Two more `gd-*` directories exist in the workspace —
+`gd-animate` and `gd-storybook` — and are **not** on the page. Both are empty
+repositories with a one-line README, no `addon/`, no release and no registry
+entry; `api.gdam.dev` returns a placeholder rather than a package for them.
+They go on the page when they resolve.
 
 ## Copy
 
@@ -66,6 +83,14 @@ The claims worth re-checking when a product changes:
 - **Prizm**: no avatar, combat, health, timer or fail state in the MVP.
 - **Fields of Revik**: one deterministic core shared by the client and a
   headless Godot server; online play is fully server-authoritative.
+- **The addons**: the count. "Fourteen" is written out in the `/devtools`
+  headline and intro, in the `/` door list, closing line and first principle,
+  and in three meta descriptions, so publishing a fifteenth is a seven-place
+  edit. Also each blurb's stated boundary — gd-network leaving auth and
+  reconnect to the game, gd-supabase and gd-pocketbase decoding tokens rather
+  than verifying them, gd-redis keeping `flushdb` behind an explicit opt-in,
+  gd-playwright's CLI being strictly read-only — since those are the claims a
+  reader would act on before installing.
 
 ## Colour and the mark
 
