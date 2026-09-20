@@ -1,6 +1,13 @@
 name: CI
 
-# Every pull request and every merge to main: build, then test, on one runner.
+# Every pull request and every merge to main: build and test, as two
+# independent jobs.
+#
+# Two jobs, not one, because they are independent checks: Build and Test each
+# get their own runner and their own check on the commit, and one failing does
+# not hide the other. They do not depend on each other (`needs`), so Test
+# builds first in its own workspace -- everything ../test asserts is a property
+# of ./dist, and a job's workspace starts empty.
 #
 # Nothing is published and nothing is deployed, so a green tick means one thing
 # -- this commit is good.
@@ -22,8 +29,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ci:
-    runs-on: ubuntu-latest
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
     # Bounded, so a step that hangs fails here rather than sitting until the
     # runner's own timeout hours later.
     timeout-minutes: 15
@@ -36,10 +44,29 @@ jobs:
       # everyone working on this repo. This used to be oven-sh/setup-bun with
       # `bun-version: "1.3"` written out here -- a second place to change one
       # version, and two places drift.
-      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
 
+      # Jobs are separate machines, so Test builds too: the same action Build
+      # runs, in this job's own workspace.
       - name: Build
         uses: ./.github/actions/build
 
       - name: Test
         uses: ./.github/actions/test
+
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    # Bounded, so a step that hangs fails here rather than sitting until the
+    # runner's own timeout hours later.
+    timeout-minutes: 15
+    steps:
+      # Third-party actions are pinned by SHA, with the tag in a trailing
+      # comment so the version is still readable.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Same mise setup as Test: .mise.toml is where bun's version is pinned.
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+
+      - name: Build
+        uses: ./.github/actions/build
