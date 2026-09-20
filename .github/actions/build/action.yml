@@ -3,10 +3,11 @@ description: >
   The static site, into ./dist.
 
   A composite action rather than a reusable workflow so it runs in the caller's
-  job, under the caller's name -- CI / Build -- rather than as a nested
+  job, under the caller's name -- Build or Test -- rather than as a nested
   "caller / callee" check.
 
-  It has exactly one caller: there is no CD here, so nothing can drift from
+  Both callers are in ci.yml: Build, and Test, which builds first because
+  ../test asserts on ./dist. There is no CD here, so nothing can drift from
   anything. It is split out so this repository has the same shape as the rest of
   the organisation, and for no stronger reason than that.
 
