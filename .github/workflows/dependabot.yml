@@ -1,31 +1,29 @@
 name: Dependabot
 
-# Dependabot's minor and patch action updates are grouped in dependabot.yml.
-# Once the required CI check passes, this marks only those low-risk updates for
-# squash merge. Major updates never satisfy the condition and remain manual.
+# Thin caller: the gate body is the shared reusable workflow in nicodes/cicd,
+# pinned by full commit SHA. The policy scripts it runs come from this
+# repository's vendored scripts/engineering/helpers/ at the pull request's
+# protected base SHA -- never from the PR head. This site deploys via Vercel
+# and has no cd.yml, so merged-main coverage is dispatched onto ci.yml.
 on:
-  pull_request:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
 
+# The called workflow can only downgrade these, never elevate them; omitting
+# the block would fall back to the repository's read-only default.
 permissions:
   contents: write
   pull-requests: write
+  actions: write
+  checks: read
+  statuses: read
+
+concurrency:
+  group: dependabot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   auto-merge:
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Read Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Enable auto-merge for minor and patch updates
-        if: >-
-          steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
-          steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+    uses: nicodes/cicd/.github/workflows/dependabot.yml@fade862978fc1a2ba625d9486443aa0e6723f8bf
+    with:
+      dispatch-target: ci.yml

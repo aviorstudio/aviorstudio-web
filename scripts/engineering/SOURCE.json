@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/nicodes/cicd",
+  "revision": "fade862978fc1a2ba625d9486443aa0e6723f8bf",
+  "files": {
+    "helpers/dependency-policy.py": "3a602b3f46d0e2a6dfe38328ca5741eecce57c120830bb57c484fc1da0ba0265",
+    "helpers/merge-checked.py": "b86a1e741697e3f0034da2d3b7decc9af06a0d9e0f23cbd2d001dc90bd4c530e"
+  }
+}
