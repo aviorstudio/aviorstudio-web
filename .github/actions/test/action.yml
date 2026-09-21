@@ -3,17 +3,33 @@ description: >
   Is this commit good. Nothing is published here; a failure means the site is
   wrong, not that the pipeline is.
 
-  Runs AFTER ../build, because everything it asserts is a property of ./dist. A
-  static site has two ways to be broken that matter -- it did not build, and it
-  built the wrong thing -- and only the second one needs a test.
+  Runs AFTER ../build. Everything it asserts about the site is a property of
+  ./dist, except the lint-and-format gate -- a source assertion that goes
+  first, because it needs nothing from ./dist and is cheaper than the ones
+  that do. A static site has two ways to be broken that matter -- it did not
+  build, and it built the wrong thing -- and only the second one needs a dist
+  assertion.
 
-  The assertions are this site's own and differ from its siblings': how many
-  pages it emits, and what else has to be on them. That is the part worth
-  keeping per-repo.
+  The first step is the gate shared by every adopter; the rest are this
+  site's own and differ from its siblings': how many pages it emits, and what
+  else has to be on them. That is the part worth keeping per-repo.
 
 runs:
   using: composite
   steps:
+    # Lint and format, against the biome.json copied verbatim from the
+    # archetype: one canonical configuration for every web repository, so
+    # style is a fleet property rather than a per-repo debate. The engine is
+    # @biomejs/biome, pinned as an exact devDependency in package.json and
+    # installed by ../build's frozen install, which runs before this action
+    # in the Test job -- `bun x` resolves that local binary, so the gate
+    # always runs the pinned version, never a resolved latest. A source
+    # assertion, so it goes first: it needs nothing from ./dist and is
+    # cheaper than the assertions that do.
+    - name: Lint and format are canonical
+      shell: bash
+      run: bun x biome check
+
     # A build that emits nothing still "succeeds", so the artefacts are
     # checked rather than the exit code. All three pages, because a broken
     # route is invisible from the index alone.
