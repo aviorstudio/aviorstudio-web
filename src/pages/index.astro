@@ -1,9 +1,8 @@
 ---
-import Full from '../layouts/Full.astro';
 import octicons from '@primer/octicons';
+import Full from '../layouts/Full.astro';
 
-const icon = (name: keyof typeof octicons, size = 16) =>
-	octicons[name].toSVG({ width: size, height: size });
+const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 
 // The two doors, and what is actually behind each one. Naming the contents
 // here rather than saying "and more" means the index never promises a page
