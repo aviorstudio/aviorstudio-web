@@ -15,8 +15,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, 'https://avior.studio');
-const icon = (name: keyof typeof octicons, size = 16) =>
-	octicons[name].toSVG({ width: size, height: size });
+const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 
 const nav = [
 	{ href: '/devtools', label: 'Devtools' },

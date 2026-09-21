@@ -1,10 +1,9 @@
 ---
-import Full from '../layouts/Full.astro';
-import Entry from '../components/Entry.astro';
 import octicons from '@primer/octicons';
+import Entry from '../components/Entry.astro';
+import Full from '../layouts/Full.astro';
 
-const icon = (name: keyof typeof octicons, size = 16) =>
-	octicons[name].toSVG({ width: size, height: size });
+const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 
 // The addons GDAM was built to carry. Listed alphabetically rather than by
 // importance: fourteen is enough that a reader needs to be able to find one,
@@ -54,7 +53,7 @@ const addons = [
 	{
 		name: 'gd-pocketbase',
 		tagline: 'PocketBase auth and session primitives',
-		copy: 'Normalizes either a native <code>{token, record}</code> response or a backend proxy\'s <code>{access_token, user}</code> into one shape, then handles JWT expiry, persisted sessions and stable client IDs. Games keep HTTP transport and refresh policy; no superuser credential ever needs to reach the client.',
+		copy: "Normalizes either a native <code>{token, record}</code> response or a backend proxy's <code>{access_token, user}</code> into one shape, then handles JWT expiry, persisted sessions and stable client IDs. Games keep HTTP transport and refresh policy; no superuser credential ever needs to reach the client.",
 	},
 	{
 		name: 'gd-redis',

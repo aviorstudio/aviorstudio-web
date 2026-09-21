@@ -1,10 +1,9 @@
 ---
-import Full from '../layouts/Full.astro';
-import Entry from '../components/Entry.astro';
 import octicons from '@primer/octicons';
+import Entry from '../components/Entry.astro';
+import Full from '../layouts/Full.astro';
 
-const icon = (name: keyof typeof octicons, size = 16) =>
-	octicons[name].toSVG({ width: size, height: size });
+const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 ---
 
 <Full
