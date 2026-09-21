@@ -1,6 +1,7 @@
 name: Build
 description: >
-  The static site, into ./dist.
+  The static site, into ./dist -- type-checked first, so a type error does not
+  wait behind a build it was going to fail anyway.
 
   A composite action rather than a reusable workflow so it runs in the caller's
   job, under the caller's name -- Build or Test -- rather than as a nested
@@ -23,6 +24,22 @@ runs:
     - name: Install JS dependencies
       shell: bash
       run: bun install --frozen-lockfile
+
+    # Before the build rather than after it. `astro check` runs its own
+    # `astro sync`, so it needs nothing from ./dist -- and a type error is both
+    # the likeliest failure in this repo and the cheapest to reach, so building
+    # first only delayed it.
+    #
+    # `astro check` rather than plain tsc: it understands .astro files, which is
+    # where everything in this repo lives.
+    #
+    # typescript is pinned to 6 in package.json. TypeScript 7's native compiler
+    # does not expose the programmatic API @astrojs/check needs, and installing
+    # `typescript` unpinned resolves to 7 and fails at startup rather than on
+    # anything about this code.
+    - name: Type check
+      shell: bash
+      run: bun run typecheck
 
     - name: Build
       shell: bash

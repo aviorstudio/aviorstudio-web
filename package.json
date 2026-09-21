@@ -10,10 +10,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "typecheck": "astro check",
     "astro": "astro"
   },
   "dependencies": {
     "@primer/octicons": "^19.29.2",
     "astro": "^5.18.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/primer__octicons": "^19.21.0",
+    "typescript": "6"
   }
 }
