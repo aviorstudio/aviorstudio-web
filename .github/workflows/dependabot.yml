@@ -1,9 +1,9 @@
 name: Dependabot
 
-# Thin caller: the gate body is the shared reusable workflow in nicodes/cicd,
+# Thin caller: the gate body is the shared reusable workflow in nicodes/tools,
 # pinned by full commit SHA. The policy scripts it runs come from this
-# repository's vendored scripts/engineering/helpers/ at the pull request's
-# protected base SHA -- never from the PR head. This site deploys via Vercel
+# shared workflow's independently pinned helper checkout -- never the
+# PR head. This site deploys via Vercel
 # and has no cd.yml, so merged-main coverage is dispatched onto ci.yml.
 on:
   pull_request_target:
@@ -24,6 +24,6 @@ concurrency:
 
 jobs:
   auto-merge:
-    uses: nicodes/cicd/.github/workflows/dependabot.yml@fa8e3e772d386255665a2813b754365ef0f2aae3 # v0.2.1
+    uses: nicodes/tools/.github/workflows/dependabot.yml@7ef549c75cfb7ac4e30ad68cabeb1b0e03e3f509 # v0.9.2
     with:
       dispatch-target: ci.yml
