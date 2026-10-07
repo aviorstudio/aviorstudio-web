@@ -16,7 +16,7 @@ const doors = [
 		items: [
 			{ name: 'GDAM', note: 'Godot addon manager and registry' },
 			{ name: 'gdlint', note: 'GDScript hygiene checker' },
-			{ name: '14 addons', note: 'Godot 4 · MIT · on gdam.dev' },
+			{ name: '14 addons', note: 'Godot 4 · MIT · on app.gdam.dev' },
 		],
 	},
 	{
@@ -36,9 +36,9 @@ const doors = [
 
 <Full
 	title="Avior Studio — Godot devtools and the games behind them"
-	description="Avior Studio builds developer tools for the Godot engine and the games that use them: GDAM, gdlint, fourteen Godot 4 addons on gdam.dev, termcade, Castle Drop, Prizm and Fields of Revik."
+	description="Avior Studio builds developer tools for the Godot engine and the games that use them: GDAM, gdlint, fourteen Godot 4 addons on app.gdam.dev, termcade, Castle Drop, Prizm and Fields of Revik."
 >
-	<main>
+	<main id="main-content">
 		<section class="hero">
 			<div class="hero-copy">
 				<p class="eyebrow"><span></span> Avior Studio</p>
@@ -112,7 +112,7 @@ const doors = [
 				<div>
 					<h2>Godot 4, Go, and pages that ship no JavaScript</h2>
 					<p>
-						The games are Godot 4.4. The tools, the arcade and the registry APIs are Go, built as
+						The games are Godot 4. The tools, the arcade and the registry APIs are Go, built as
 						single static binaries. The sites — this one included — are static Astro with no
 						client-side runtime at all.
 					</p>
@@ -210,4 +210,28 @@ const doors = [
 		.closing { padding: 40px 25px; }
 		.closing-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
 	}
+
+
+/* A studio folio: a large typographic cover and two contrasting editorial doors. */
+.hero { grid-template-columns: 1.45fr .55fr; gap: 24px; margin-top: 82px; border-bottom: 1px solid var(--line); padding-bottom: 70px; }
+h1 { max-width: 900px; font-size: clamp(62px,7.8vw,112px); font-weight: 700; line-height: 1.02; }
+h1 em { font-family: Georgia,serif; color: #e7af78; }
+.hero-mark img { width: 260px; }
+.lede { max-width: 650px; font-size: 18px; }
+.doors { grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #6a5142; }
+.door { border: 0; border-radius: 0; background: #e7af78; color: #30231e; padding: 44px; }
+.door:nth-child(2) { background: #c9d8c2; }
+.door:hover { background: #efc397; transform: none; }
+.door:nth-child(2):hover { background: #d9e4d3; }
+.door h2 { color: #30231e; font-family: Georgia,serif; font-size: 36px; font-weight: 400; }
+.door-copy, .kicker, .door li span, .door li b, .door-go { color: #45382f; }
+.door li { border-color: #30231e35; }
+.door-go { margin-top: auto; padding-top: 30px; }
+.closing { background: transparent; border-radius: 0; border-top: 1px solid var(--line); padding: 60px 0; }
+.closing > p { font-family: Georgia,serif; color: #e7af78; }
+@media (max-width: 980px) { .hero { grid-template-columns: 1fr; } .hero-mark { display: none; } .doors { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .hero { margin-top: 42px; padding-bottom: 45px; } h1 { font-size: 55px; } .door { padding: 28px; } .door h2 { font-size: 30px; } }
+
+
+.ghost-cta.dark { color: #c9d8c2; border-color: #c9d8c2; } .ghost-cta.dark:hover { color: #fff; }
 </style>

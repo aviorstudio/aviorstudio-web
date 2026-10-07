@@ -90,9 +90,9 @@ const addons = [
 
 <Full
 	title="Devtools — Avior Studio"
-	description="GDAM, the Godot addon manager and registry at gdam.dev, gdlint, a GDScript hygiene checker, and the fourteen Godot 4 addons they were built to carry."
+	description="GDAM, the Godot addon manager and registry at app.gdam.dev, gdlint, a GDScript hygiene checker, and the fourteen Godot 4 addons they were built to carry."
 >
-	<main>
+	<main id="main-content">
 		<section class="page-hero">
 			<p class="eyebrow"><span></span> Devtools</p>
 			<h1>Two tools, <em>fourteen addons.</em></h1>
@@ -113,13 +113,13 @@ const addons = [
 				command="go install github.com/aviorstudio/gdam@latest"
 				commandNote="Or the install script · reads are public, no account needed"
 				links={[
-					{ href: 'https://gdam.dev', label: 'gdam.dev registry' },
+					{ href: 'https://app.gdam.dev', label: 'Browse registry' },
 					{ href: 'https://github.com/aviorstudio/gdam', label: 'Source on GitHub' },
 				]}
 			>
 				<p>
 					Install, link, remove and publish Godot addons from GitHub release assets, through a small
-					CLI and the public registry at gdam.dev. <code>gdam init</code> writes a manifest into your
+					CLI and the public registry at app.gdam.dev. <code>gdam init</code> writes a manifest into your
 					project; <code>gdam add @user/addon</code> and <code>gdam install</code> keep that manifest
 					in sync with what is actually sitting under the addons directory.
 				</p>
@@ -167,7 +167,7 @@ const addons = [
 					<h2 id="addons-heading">The fourteen on the registry.</h2>
 					<p class="addons-intro">
 						Each one was factored out of a game the third time a project here needed the same thing.
-						They are Godot 4, MIT, and published to gdam.dev, and every one of them draws its
+						They are Godot 4, MIT, and published to app.gdam.dev, and every one of them draws its
 						boundary in the same place: the addon owns the mechanism, the game owns the policy.
 					</p>
 				</div>
@@ -267,4 +267,7 @@ const addons = [
 		.aside-note { padding: 26px 24px; }
 		.aside-note p { font-size: 13.5px; }
 	}
-</style>
+
+ h1 { font-family: Georgia,serif; font-size: clamp(52px,6vw,84px); color: #e7af78; }
+ .entry-list { border-top: 1px solid #6a5142; }
+ </style>
