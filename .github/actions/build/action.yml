@@ -1,46 +1,11 @@
 name: Build
-description: >
-  The static site, into ./dist -- type-checked first, so a type error does not
-  wait behind a build it was going to fail anyway.
-
-  A composite action rather than a reusable workflow so it runs in the caller's
-  job, under the caller's name -- Build or Test -- rather than as a nested
-  "caller / callee" check.
-
-  Both callers are in ci.yml: Build, and Test, which builds first because
-  ../test asserts on ./dist. There is no CD here, so nothing can drift from
-  anything. It is split out so this repository has the same shape as the rest of
-  the organisation, and for no stronger reason than that.
-
-  NOTHING LEAVES THE RUNNER. The site is left in ./dist for ../test to assert
-  against.
-
+description: Install frozen dependencies, type-check and build the static site.
 runs:
   using: composite
   steps:
-    # --frozen-lockfile so CI fails on a lockfile that does not match
-    # package.json, rather than quietly resolving something newer than what
-    # anyone has run locally.
     - name: Install JS dependencies
       shell: bash
-      run: bun install --frozen-lockfile
-
-    # Before the build rather than after it. `astro check` runs its own
-    # `astro sync`, so it needs nothing from ./dist -- and a type error is both
-    # the likeliest failure in this repo and the cheapest to reach, so building
-    # first only delayed it.
-    #
-    # `astro check` rather than plain tsc: it understands .astro files, which is
-    # where everything in this repo lives.
-    #
-    # typescript is pinned to 6 in package.json. TypeScript 7's native compiler
-    # does not expose the programmatic API @astrojs/check needs, and installing
-    # `typescript` unpinned resolves to 7 and fails at startup rather than on
-    # anything about this code.
-    - name: Type check
+      run: make install
+    - name: Type check and build
       shell: bash
-      run: bun run typecheck
-
-    - name: Build
-      shell: bash
-      run: bun run build
+      run: make build
