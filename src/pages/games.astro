@@ -10,7 +10,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	title="Games — Avior Studio"
 	description="termcade, a terminal arcade you can run today, plus three Godot projects in progress: Castle Drop, Prizm and Fields of Revik."
 >
-	<main>
+	<main id="main-content">
 		<section class="page-hero">
 			<p class="eyebrow"><span></span> Games</p>
 			<h1>One you can play, <em>three on the way.</em></h1>
@@ -35,7 +35,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				<p>
 					Classic games rendered at sub-cell resolution with block pixels, so a terminal cell becomes
 					a 2×2 or 2×3 grid of pixels and the playfield gets sharper than the font should allow. It
-					ships with Asteroid and Tetris, playable offline the moment it starts.
+					ships with Asteroid, Tetris and Brickough, playable offline the moment it starts.
 				</p>
 				<p>
 					The arcade compiles no games into itself. Every game is a sandboxed WebAssembly package
@@ -50,7 +50,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				name="Castle Drop"
 				tagline="Physics-first castle defense"
 				status="Prototype"
-				meta="Godot 4.4 · private repository"
+				meta="Godot 4 · private repository"
 			>
 				<p>
 					A castle defense where the physics is the game rather than the garnish. Clear a siege,
@@ -69,7 +69,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				name="Prizm"
 				tagline="Drag-and-drop light puzzle"
 				status="Prototype"
-				meta="Godot 4.4 · private repository"
+				meta="Godot 4 · private repository"
 			>
 				<p>
 					Spend limited colour mana to cast prism spells into empty drawer slots, then drag those
@@ -88,7 +88,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				name="Fields of Revik"
 				tagline="Tactics card game"
 				status="In development"
-				meta="Godot 4.4 · private repository · site live"
+				meta="Godot 4 · private repository · site live"
 				links={[{ href: 'https://www.fieldsofrevik.com', label: 'fieldsofrevik.com' }]}
 			>
 				<p>
@@ -143,4 +143,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 		.aside-note { padding: 26px 24px; }
 		.aside-note p { font-size: 13.5px; }
 	}
-</style>
+
+ h1 { font-family: Georgia,serif; font-size: clamp(52px,6vw,84px); color: #e7af78; }
+ .entry-list { border-top: 1px solid #6a5142; }
+ </style>
