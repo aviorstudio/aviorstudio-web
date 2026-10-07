@@ -6,12 +6,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	path?: string;
+	noindex?: boolean;
 }
 
 const {
 	title = 'Avior Studio',
 	description = 'Independent games and useful developer tools. Play termcade and Fields of Revik, explore Castle Drop and Prizm, and meet the tools behind the work.',
 	path = Astro.url.pathname,
+	noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, 'https://avior.studio');
@@ -43,18 +45,21 @@ const structuredData = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#f4f3eb" />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Avior Studio" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={new URL('/logo.png', canonical)} />
+		<meta property="og:image:alt" content="Avior Studio's ibis standing in water above its reflection" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL('/logo.png', canonical)} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -63,7 +68,7 @@ const structuredData = {
 		<div class="page-shell">
 			<header class="site-header">
 				<a class="brand" href="/" aria-label="Avior Studio home">
-					<img class="brand-mark" src="/logo-mark.png" alt="" width="96" height="96" />
+					<img class="brand-mark" src="/logo-mark.svg" alt="" width="96" height="96" />
 					<span>Avior Studio</span>
 				</a>
 				<nav aria-label="Sections">
@@ -84,7 +89,7 @@ const structuredData = {
 
 			<footer>
 				<a class="brand footer-brand" href="/" aria-label="Avior Studio home">
-					<img class="brand-mark" src="/logo-mark.png" alt="" width="96" height="96" />
+					<img class="brand-mark" src="/logo-mark.svg" alt="" width="96" height="96" />
 					<span>Avior Studio</span>
 				</a>
 				<p><a href="/devtools">Devtools</a> · <a href="/games">Games</a> · <a href="https://github.com/aviorstudio">GitHub</a></p>
@@ -99,7 +104,7 @@ const structuredData = {
 
 	.site-header { width: min(1180px, calc(100% - 40px)); height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 	.brand { display: inline-flex; align-items: center; gap: 11px; color: var(--paper); font-size: 16px; font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
-	.brand-mark { width: 30px; height: 30px; border-radius: 50%; }
+	.brand-mark { width: 40px; height: 40px; }
 	.site-header nav { display: flex; align-items: center; gap: 22px; }
 	.site-header nav a { color: var(--quiet); font-size: 13px; font-weight: 620; text-decoration: none; border-bottom: 1px solid transparent; padding: 6px 0; transition: color .15s ease; }
 	.site-header nav a:hover { color: var(--paper); }
@@ -115,7 +120,7 @@ const structuredData = {
 	footer a { color: var(--faint); text-decoration: none; border-bottom: 1px solid #4a4746; }
 	footer a:hover { color: var(--paper); }
 	footer a.footer-brand { justify-self: start; border: 0; color: var(--paper); font-family: var(--sans); font-size: 15px; }
-	footer .brand-mark { width: 24px; height: 24px; }
+	footer .brand-mark { width: 32px; height: 32px; }
 
 	@media (max-width: 600px) {
 		.site-header, footer { width: min(100% - 28px, 1180px); }
