@@ -24,6 +24,7 @@ concurrency:
 
 jobs:
   auto-merge:
-    uses: nicodes/tools/.github/workflows/dependabot.yml@b0159323f934beadd356a1bc0a1f37af4d125737 # v0.11.0
+    uses: nicodes/tools/.github/workflows/dependabot.yml@77049b34c6a67ccbc256fe6bad033973d5ca513b # v0.11.1
     with:
+      runner: blacksmith-2vcpu-ubuntu-2404
       dispatch-target: ci.yml
