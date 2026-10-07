@@ -59,7 +59,7 @@ const structuredData = {
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	</head>
-	<body>
+	<body><a class="skip-link" href="#main-content">Skip to content</a>
 		<div class="page-shell">
 			<header class="site-header">
 				<a class="brand" href="/" aria-label="Avior Studio home">
@@ -83,7 +83,7 @@ const structuredData = {
 			<slot />
 
 			<footer>
-				<a class="brand footer-brand" href="/">
+				<a class="brand footer-brand" href="/" aria-label="Avior Studio home">
 					<img class="brand-mark" src="/logo-mark.png" alt="" width="96" height="96" />
 					<span>Avior Studio</span>
 				</a>
