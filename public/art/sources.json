@@ -1,0 +1,45 @@
+{
+  "description": "Original game art; vector frames exported with Spritesmith svg.",
+  "vector_sources": [
+    {
+      "game": "castledrop",
+      "source": "art/dragon.py",
+      "animation": "fly",
+      "frame": 0,
+      "file": "dragon.svg"
+    },
+    {
+      "game": "castledrop",
+      "source": "art/grunt.py",
+      "animation": "idle",
+      "frame": 0,
+      "file": "goblin.svg"
+    },
+    {
+      "game": "castledrop",
+      "source": "art/backdrop/hills.py",
+      "animation": "far",
+      "frame": 0,
+      "file": "hills-far.svg"
+    },
+    {
+      "game": "castledrop",
+      "source": "art/backdrop/hills.py",
+      "animation": "near",
+      "frame": 0,
+      "file": "hills-near.svg"
+    },
+    {
+      "game": "prizm",
+      "source": "art/crystal.py",
+      "animation": "purple",
+      "frame": 0,
+      "file": "crystal.svg"
+    }
+  ],
+  "images": {
+    "castledrop-logo.png": "castledrop/godot_client/src/assets/sprites/ui/title_logo.png",
+    "prizm-logo.png": "prizm/godot_client/src/static/assets/ui/title_logo.png",
+    "revik-title.png": "fieldsofrevik/godot_client/src/assets/ui/title/title-concept-2.png"
+  }
+}

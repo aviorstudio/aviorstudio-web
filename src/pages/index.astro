@@ -1,237 +1,546 @@
 ---
-import octicons from '@primer/octicons';
 import Full from '../layouts/Full.astro';
-
-const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
-
-// The two doors, and what is actually behind each one. Naming the contents
-// here rather than saying "and more" means the index never promises a page
-// something is not on.
-const doors = [
-	{
-		href: '/devtools',
-		kicker: 'Devtools',
-		title: 'Two tools and what they carry',
-		copy: 'A package manager for Godot addons, a hygiene checker for the GDScript around them, and the fourteen addons on the registry that the games here share. All open source, and all of it exists because the games needed it.',
-		items: [
-			{ name: 'GDAM', note: 'Godot addon manager and registry' },
-			{ name: 'gdlint', note: 'GDScript hygiene checker' },
-			{ name: '14 addons', note: 'Godot 4 · MIT · on app.gdam.dev' },
-		],
-	},
-	{
-		href: '/games',
-		kicker: 'Games',
-		title: 'One playable, three in progress',
-		copy: 'A terminal arcade you can run right now, and three Godot projects at various distances from done — castle defense, light puzzles, and a tactics card game.',
-		items: [
-			{ name: 'termcade', note: 'Terminal arcade · playable now' },
-			{ name: 'Castle Drop', note: 'Physics castle defense · prototype' },
-			{ name: 'Prizm', note: 'Light puzzle · prototype' },
-			{ name: 'Fields of Revik', note: 'Tactics card game · in development' },
-		],
-	},
-];
 ---
 
 <Full
-	title="Avior Studio — Godot devtools and the games behind them"
-	description="Avior Studio builds developer tools for the Godot engine and the games that use them: GDAM, gdlint, fourteen Godot 4 addons on app.gdam.dev, termcade, Castle Drop, Prizm and Fields of Revik."
+	title="Avior Studio — Small worlds. Useful tools."
+	description="Independent games, a terminal arcade, and developer tools built from the work of making them. Explore Fields of Revik, Castle Drop, Prizm, GDAM and gdlint."
 >
 	<main id="main-content">
-		<section class="hero">
-			<div class="hero-copy">
-				<p class="eyebrow"><span></span> Avior Studio</p>
-				<h1>We build the tools <em>we needed first.</em></h1>
-				<p class="lede">
-					A package manager and a linter, written because three Godot projects here were sharing
-					addons and conventions and nothing was keeping them straight. They turned out to be
-					useful outside those projects, so they went out.
+		<section class="cover">
+			<div class="cover-copy">
+				<p class="eyebrow">INDEPENDENT GAMES & DEVELOPER TOOLS</p>
+				<h1>
+					Small worlds.
+					<br />
+					<em>Big possibilities.</em>
+				</h1>
+				<p>
+					Games worth getting lost in.
+					<br />
+					Tools that help us get there.
 				</p>
-				<div class="hero-actions">
-					<a class="primary-cta" href="/devtools">See the devtools <span class="icon" set:html={icon('arrow-right', 16)} /></a>
-					<a class="ghost-cta" href="/games">And the games <span class="icon" set:html={icon('arrow-right', 13)} /></a>
-				</div>
+				<a class="studio-button" href="/games">
+					Explore our worlds <span>↗</span>
+				</a>
+				<span class="cover-index">AVIOR STUDIO / SELECTED WORK</span>
 			</div>
-
-			<div class="hero-mark">
-				<img src="/logo.png" alt="Avior Studio" width="512" height="512" />
+			<a class="cover-art" href="https://app.revik.gg" aria-label="Play Fields of Revik">
+				<img
+					src="/art/revik-title.png"
+					alt="A fox knight overlooking the colourful hex-tile valley of Fields of Revik"
+					width="1024"
+					height="1536"
+					fetchpriority="high"
+				/>
+				<div class="art-label">
+					<span>FIELDS OF REVIK</span>
+					<span>Enter the valley ↗</span>
+				</div>
+			</a>
+		</section>
+		<section class="work">
+			<div class="section-line">
+				<h2>Worlds in the making</h2>
+				<a href="/games">All games ↗</a>
+			</div>
+			<div class="game-grid">
+				<a class="game-art castle" href="/games#castle-drop">
+					<div class="castle-scene">
+						<img class="far" src="/art/hills-far.svg" alt="" />
+						<img class="near" src="/art/hills-near.svg" alt="" />
+						<img class="dragon" src="/art/dragon.svg" alt="Castle Drop's red dragon" />
+						<img class="goblin" src="/art/goblin.svg" alt="" />
+						<img class="game-logo" src="/art/castledrop-logo.png" alt="Castle Drop" />
+					</div>
+					<div class="game-caption">
+						<div>
+							<h3>Castle Drop</h3>
+							<p>Grab. Throw. Defend your castle.</p>
+						</div>
+						<span>PROTOTYPE ↗</span>
+					</div>
+				</a>
+				<a class="game-art prizm" href="/games#prizm">
+					<div class="prizm-scene">
+						<span class="beam one"></span>
+						<span class="beam two"></span>
+						<img class="crystal" src="/art/crystal.svg" alt="Prizm's faceted purple crystal" />
+						<img class="game-logo" src="/art/prizm-logo.png" alt="Prizm" />
+					</div>
+					<div class="game-caption">
+						<div>
+							<h3>Prizm</h3>
+							<p>A little light. A new way through.</p>
+						</div>
+						<span>PROTOTYPE ↗</span>
+					</div>
+				</a>
 			</div>
 		</section>
-
-		<section class="doors" aria-label="What we make">
-			{
-				doors.map((door) => (
-					<a class="door" href={door.href}>
-						<p class="kicker">{door.kicker}</p>
-						<h2>{door.title}</h2>
-						<p class="door-copy">{door.copy}</p>
-						<ul>
-							{door.items.map((item) => (
-								<li>
-									<b>{item.name}</b>
-									<span>{item.note}</span>
-								</li>
-							))}
-						</ul>
-						<span class="door-go">
-							Open {door.kicker.toLowerCase()} <i class="icon" set:html={icon('arrow-right', 14)} />
-						</span>
-					</a>
-				))
-			}
+		<section class="arcade-strip">
+			<div>
+				<p class="eyebrow">PLAY SOMETHING RIGHT NOW</p>
+				<h2>
+					An arcade.
+					<br />
+					In your terminal.
+				</h2>
+				<p>Asteroid, Tetris and Brickough. A small collection of classics, rendered in the place you already work.</p>
+				<a class="studio-button" href="https://www.termca.de">
+					Meet termcade ↗
+				</a>
+			</div>
+			<div class="pixel-art" aria-hidden="true">
+				<span>▟▙</span>
+				<b>▐▛▀▜▌</b>
+				<span>▝▘ ▝▘</span>
+				<small>INSERT COMMAND</small>
+				<code>go run github.com/aviorstudio/termcade@latest</code>
+			</div>
 		</section>
-
-		<section class="principles" aria-label="How the studio works">
-			<article>
-				<span class="number">01</span>
-				<div>
-					<h2>The tools came out of the games</h2>
-					<p>
-						Castle Drop, Prizm and Fields of Revik all pull the same addons and follow the same
-						script conventions. GDAM installs and pins those addons from a registry; gdlint keeps
-						the GDScript around them honest. Neither was a product idea — they were the parts that
-						kept going wrong, and the fourteen addons on the registry were factored out the same
-						way, on the third time a project needed the same thing.
-					</p>
+		<section class="tool-story">
+			<div>
+				<p class="eyebrow">FROM THE WORKBENCH</p>
+				<h2>
+					Better tools.
+					<br />
+					<em>More time to play.</em>
+				</h2>
+				<p>
+					The games share more than a studio. Their addons, script checks and vector artwork grow from the same
+					workbench.
+				</p>
+				<a href="/devtools">Explore the devtools ↗</a>
+			</div>
+			<div class="tool-links">
+				<a href="https://gdam.dev">
+					<span>01</span>
+					<div>
+						<h3>GDAM</h3>
+						<p>Godot addons. Installed and pinned.</p>
+					</div>
+					<b>↗</b>
+				</a>
+				<a href="https://gdlint.dev">
+					<span>02</span>
+					<div>
+						<h3>gdlint</h3>
+						<p>Keep the GDScript tidy.</p>
+					</div>
+					<b>↗</b>
+				</a>
+				<div class="tool-note">
+					<span>03</span>
+					<div>
+						<h3>Spritesmith</h3>
+						<p>
+							Vector-authored game art, from Python to the screen. The dragon and crystals above come straight from the
+							games.
+						</p>
+					</div>
 				</div>
-			</article>
-			<article>
-				<span class="number">02</span>
-				<div>
-					<h2>Published when it is useful to someone else</h2>
-					<p>
-						The tools, the addons and the arcade are public and installable in one command. The
-						Godot games stay private until there is something worth playing — a repository nobody
-						can run is not a release, and a link to one is not an announcement.
-					</p>
-				</div>
-			</article>
-			<article>
-				<span class="number">03</span>
-				<div>
-					<h2>Godot 4, Go, and pages that ship no JavaScript</h2>
-					<p>
-						The games are Godot 4. The tools, the arcade and the registry APIs are Go, built as
-						single static binaries. The sites — this one included — are static Astro with no
-						client-side runtime at all.
-					</p>
-				</div>
-			</article>
-		</section>
-
-		<section class="closing">
-			<p>Two tools.<br />Fourteen addons.<br />Four games.</p>
-			<div class="closing-actions">
-				<a class="primary-cta light" href="/devtools">Devtools <span class="icon" set:html={icon('arrow-right', 16)} /></a>
-				<a class="ghost-cta dark" href="/games">Games <span class="icon" set:html={icon('arrow-right', 13)} /></a>
 			</div>
 		</section>
 	</main>
 </Full>
-
 <style>
-	.hero { width: min(1180px, calc(100% - 40px)); margin: 70px auto 110px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 60px; }
-	.hero-copy { position: relative; z-index: 2; }
-	.eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 22px; color: var(--quiet); font: 620 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-	.eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: var(--bone); box-shadow: 0 0 0 4px rgba(247, 242, 233, .1); }
-	h1 { max-width: 620px; margin: 0; color: var(--bone); font-size: clamp(46px, 6vw, 78px); font-weight: 590; line-height: .98; letter-spacing: -.062em; }
-	h1 em { color: var(--quiet); font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
-	.lede { max-width: 520px; margin: 30px 0 34px; color: var(--quiet); font-size: 16px; line-height: 1.7; }
-	.hero-actions { display: flex; align-items: center; gap: 24px; }
-
-	/* The mark ships with its own background baked in, a shade off the page's
-	   own #252424 -- close enough to miss in a swatch and impossible to miss as
-	   a 460px square. Rather than repaint the asset, the edges are faded out:
-	   the difference disappears into the page before it can draw a border, and
-	   the brush circle keeps the soft edge the artwork was drawn with. */
-	.hero-mark { display: grid; place-items: center; }
-	.hero-mark img {
-		width: min(100%, 460px);
-		-webkit-mask-image: radial-gradient(circle at 50% 50%, #000 54%, transparent 71%);
-		mask-image: radial-gradient(circle at 50% 50%, #000 54%, transparent 71%);
+	.cover {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		min-height: 720px;
+		margin: 0 auto 90px;
+		max-width: 1440px;
+		background: #e9e7dc;
 	}
-
-	.doors { width: min(1180px, calc(100% - 40px)); margin: 0 auto 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-	.door { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 34px; color: inherit; text-decoration: none; transition: border-color .18s ease, transform .18s ease, background .18s ease; }
-	.door:hover { border-color: #4d4a49; background: #302f2f; transform: translateY(-2px); }
-	.kicker { margin: 0 0 16px; color: var(--quiet); font: 650 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-	.door h2 { margin: 0 0 14px; color: var(--bone); font-size: 26px; font-weight: 580; letter-spacing: -.04em; }
-	.door-copy { margin: 0 0 26px; color: var(--quiet); font-size: 14px; line-height: 1.7; }
-	.door ul { margin: 0 0 26px; padding: 0; list-style: none; border-top: 1px solid var(--line-soft); }
-	.door li { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line-soft); padding: 11px 0; }
-	.door li b { color: var(--paper); font-size: 13.5px; font-weight: 650; }
-	.door li span { color: var(--faint); font: 500 10px var(--mono); text-align: right; }
-	.door-go { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--bone); font-size: 13px; font-weight: 680; }
-	.door-go i { display: block; }
-
-	.principles { width: min(1180px, calc(100% - 40px)); margin: 0 auto 110px; border-top: 1px solid var(--line-soft); }
-	.principles article { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid var(--line-soft); padding: 32px 0; }
-	.principles article div { display: grid; grid-template-columns: .75fr 1fr; align-items: baseline; gap: 40px; }
-	.number { color: var(--faint); font: 650 10px var(--mono); }
-	.principles h2 { margin: 0; color: var(--bone); font-size: 22px; font-weight: 580; letter-spacing: -.035em; }
-	.principles p { max-width: 560px; margin: 0; color: var(--quiet); font-size: 14px; line-height: 1.65; }
-
-	.closing { width: min(1180px, calc(100% - 40px)); margin: 0 auto 20px; border-radius: 10px; background: var(--paper); color: var(--ink); padding: 65px; }
-	.closing > p { max-width: 680px; margin: 0 0 45px; font-size: clamp(40px, 5.6vw, 68px); font-weight: 530; line-height: .98; letter-spacing: -.055em; }
-	.closing-actions { display: flex; align-items: center; gap: 24px; }
-
-	.primary-cta { display: inline-flex; align-items: center; gap: 30px; border-radius: 4px; background: var(--paper); color: var(--ink); padding: 14px 18px; font-size: 13px; font-weight: 680; text-decoration: none; transition: transform .18s ease, background .18s ease; }
-	.primary-cta:hover { transform: translateY(-2px); background: white; }
-	.primary-cta.light { background: var(--ink); color: var(--paper); }
-	.primary-cta.light:hover { background: #333131; }
-	.ghost-cta { display: inline-flex; align-items: center; gap: 7px; color: var(--paper); border-bottom: 1px solid var(--line); padding: 6px 0; font-size: 13px; font-weight: 650; text-decoration: none; }
-	.ghost-cta:hover { border-bottom-color: var(--paper); }
-	.ghost-cta.dark { color: var(--ink); border-bottom-color: #b9b5ae; }
-	.ghost-cta.dark:hover { border-bottom-color: var(--ink); }
-
-	@media (max-width: 980px) {
-		.hero { grid-template-columns: 1fr; margin-top: 45px; gap: 48px; }
-		.hero-copy { max-width: 680px; order: 2; }
-		.hero-mark { order: 1; justify-items: start; }
-		.hero-mark img { width: min(100%, 280px); }
-		.doors { grid-template-columns: 1fr; }
-		.principles article div { grid-template-columns: 1fr; gap: 9px; }
+	.cover-copy {
+		padding: 85px max(32px, calc((100vw - 1180px) / 2));
+		padding-right: 35px;
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
+	.cover h1 {
+		font-size: clamp(54px, 5.6vw, 84px);
+		line-height: 1.02;
+		letter-spacing: -0.06em;
+		font-weight: 600;
+		margin: 36px 0 24px;
+	}
+	.cover h1 em {
+		font-family: Georgia, serif;
+		font-weight: 400;
+		color: #536048;
+	}
+	.cover-copy > p:not(.eyebrow) {
+		font-size: 20px;
+		line-height: 1.6;
+		color: #586052;
+	}
+	.cover-index {
+		margin-top: auto;
+		padding-top: 65px;
+		font: 10px var(--mono);
+		letter-spacing: 0.15em;
+	}
+	.cover-art {
+		position: relative;
+		display: block;
+		overflow: hidden;
+	}
+	.cover-art > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: absolute;
+		transition: transform 0.6s;
+	}
+	.cover-art:hover > img {
+		transform: scale(1.025);
+	}
+	.art-label {
+		position: absolute;
+		bottom: 24px;
+		left: 24px;
+		right: 24px;
+		background: #183026e8;
+		color: #fff;
+		padding: 20px;
+		display: flex;
+		justify-content: space-between;
+		gap: 16px;
+		font: 11px var(--mono);
+	}
+	.studio-button {
+		display: inline-flex;
+		gap: 35px;
+		background: #24392b;
+		color: #fff;
+		padding: 18px 24px;
+		text-decoration: none;
+		font-size: 13px;
+		border-radius: 2px;
+	}
+	.studio-button:hover {
+		background: #42633d;
+	}
+	.work,
+	.tool-story,
+	.arcade-strip {
+		width: min(1180px, calc(100% - 64px));
+		margin: 0 auto 90px;
+	}
+	.section-line {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 25px;
+	}
+	.section-line h2 {
+		font-size: 25px;
+		font-weight: 500;
+		margin: 0;
+	}
+	.section-line a,
+	.tool-story a {
+		color: inherit;
+		font-size: 13px;
+		text-underline-offset: 5px;
+	}
+	.game-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 26px;
+	}
+	.game-art {
+		color: inherit;
+		text-decoration: none;
+	}
+	.castle-scene,
+	.prizm-scene {
+		height: 380px;
+		position: relative;
+		overflow: hidden;
+	}
+	.castle-scene {
+		background: linear-gradient(#bddeea, #e7ecd9);
+	}
+	.castle-scene .far,
+	.castle-scene .near {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		height: 40%;
+		object-fit: fill;
+	}
+	.castle-scene .far {
+		bottom: 12%;
+		opacity: 0.7;
+	}
+	.dragon {
+		position: absolute;
+		width: 70%;
+		bottom: 12%;
+		left: 20%;
+		filter: drop-shadow(0 15px 15px #293f3930);
+		transition: transform 0.4s;
+	}
+	.goblin {
+		position: absolute;
+		width: 23%;
+		bottom: -2%;
+		left: 4%;
+	}
+	.game-logo {
+		position: absolute;
+		width: 45%;
+		top: 20px;
+		left: 20px;
+	}
+	.game-art:hover .dragon {
+		transform: translateY(-8px) rotate(-2deg);
+	}
+	.prizm-scene {
+		background-color: #222837;
+		background-image:
+			linear-gradient(#9dacc415 1px, transparent 1px), linear-gradient(90deg, #9dacc415 1px, transparent 1px);
+		background-size: 48px 48px;
+	}
+	.prizm-scene .crystal {
+		position: absolute;
+		width: 65%;
+		right: -2%;
+		bottom: -2%;
+		filter: drop-shadow(0 0 30px #aa66ff40);
+	}
+	.prizm-scene .game-logo {
+		width: 46%;
+		top: 24px;
+	}
+	.beam {
+		position: absolute;
+		background: #cb77ff;
+		box-shadow: 0 0 18px #d278ff;
+		width: 60%;
+		height: 3px;
+		top: 68%;
+		left: -10%;
+		transform: rotate(-20deg);
+	}
+	.beam.two {
+		left: 58%;
+		top: 33%;
+		width: 55%;
+		transform: rotate(-62deg);
+	}
+	.game-caption {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 22px 0;
+		border-bottom: 1px solid #cbd0c3;
+		gap: 12px;
+	}
+	.game-caption h3 {
+		font-size: 21px;
+		font-weight: 600;
+		margin: 0 0 7px;
+	}
+	.game-caption p {
+		font-size: 13px;
+		color: #596452;
+		margin: 0;
+	}
+	.game-caption > span {
+		font: 9px var(--mono);
+		white-space: nowrap;
+	}
+	.arcade-strip {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		background: #192622;
+		color: #eff3dd;
+		padding: 55px;
+		gap: 40px;
+	}
+	.arcade-strip h2 {
+		font-size: 48px;
+		letter-spacing: -0.05em;
+		line-height: 1.1;
+		margin: 20px 0;
+	}
+	.arcade-strip p:not(.eyebrow) {
+		max-width: 420px;
+		color: #b3c0ad;
+		line-height: 1.7;
+		font-size: 15px;
+	}
+	.arcade-strip .studio-button {
+		background: #d1df8c;
+		color: #1c2b21;
+	}
+	.pixel-art {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font: 70px/1 var(--mono);
+		color: #d1df8c;
+		text-align: center;
+	}
+	.pixel-art b {
+		font-weight: 400;
+	}
+	.pixel-art small {
+		font: 10px var(--mono);
+		letter-spacing: 0.3em;
+		margin-top: 30px;
+	}
+	.pixel-art code {
+		font: 11px/1.6 var(--mono);
+		margin-top: 15px;
+		overflow-wrap: anywhere;
+	}
+	.tool-story {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 90px;
+		padding: 20px 0 40px;
+	}
+	.tool-story h2 {
+		font-size: 48px;
+		line-height: 1.1;
+		letter-spacing: -0.04em;
+		font-weight: 500;
+		margin: 24px 0;
+	}
+	.tool-story h2 em {
+		font-family: Georgia, serif;
+		color: #536048;
+	}
+	.tool-story p {
+		font-size: 15px;
+		line-height: 1.7;
+		max-width: 440px;
+		color: #596452;
+	}
+	.tool-links > a,
+	.tool-note {
+		display: flex;
+		align-items: start;
+		gap: 25px;
+		padding: 28px 0;
+		border-top: 1px solid #cbd0c3;
+		text-decoration: none;
+	}
+	.tool-links span {
+		font: 10px var(--mono);
+		margin-top: 5px;
+		color: #65705f;
+	}
+	.tool-links h3 {
+		margin: 0;
+		font-size: 25px;
+		font-weight: 550;
+	}
+	.tool-links p {
+		margin: 7px 0 0;
+		font-size: 13px;
+	}
+	.tool-links b {
+		margin-left: auto;
+	}
+	.eyebrow {
+		font: 10px var(--mono);
+		letter-spacing: 0.14em;
+	}
+	@media (max-width: 900px) {
+		.cover-copy {
+			padding: 60px 32px;
+		}
+		.cover {
+			min-height: 620px;
+		}
+		.cover h1 {
+			font-size: 58px;
+		}
+		.tool-story {
+			gap: 40px;
+		}
+		.castle-scene,
+		.prizm-scene {
+			height: 300px;
+		}
+		.arcade-strip {
+			padding: 35px;
+		}
+		.pixel-art {
+			font-size: 50px;
+		}
 	}
 	@media (max-width: 600px) {
-		.hero, .doors, .principles, .closing { width: min(100% - 28px, 1180px); }
-		.hero { margin: 40px auto 70px; }
-		h1 { font-size: clamp(40px, 12.5vw, 58px); }
-		.lede { margin-top: 24px; font-size: 15px; }
-		.hero-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
-		.hero-mark img { width: 190px; }
-		.door { padding: 26px; }
-		.door h2 { font-size: 22px; }
-		.door li { align-items: flex-start; flex-direction: column; gap: 4px; }
-		.door li span { text-align: left; }
-		.principles article { grid-template-columns: 42px 1fr; padding: 26px 0; }
-		.principles h2 { font-size: 19px; }
-		.principles p { font-size: 13px; }
-		.closing { padding: 40px 25px; }
-		.closing-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
+		.cover {
+			grid-template-columns: 1fr;
+			margin-bottom: 50px;
+		}
+		.cover-copy {
+			padding: 45px 24px;
+		}
+		.cover h1 {
+			font-size: 52px;
+		}
+		.cover-copy > p:not(.eyebrow) {
+			font-size: 17px;
+		}
+		.cover-index {
+			padding-top: 30px;
+		}
+		.cover-art {
+			height: 470px;
+		}
+		.cover-art > img {
+			object-position: center 60%;
+		}
+		.work,
+		.tool-story,
+		.arcade-strip {
+			width: calc(100% - 40px);
+			margin-bottom: 55px;
+		}
+		.game-grid,
+		.tool-story,
+		.arcade-strip {
+			grid-template-columns: 1fr;
+		}
+		.castle-scene,
+		.prizm-scene {
+			height: 300px;
+		}
+		.section-line h2 {
+			font-size: 21px;
+		}
+		.section-line a {
+			font-size: 11px;
+		}
+		.arcade-strip {
+			padding: 30px 24px;
+			gap: 35px;
+		}
+		.arcade-strip h2,
+		.tool-story h2 {
+			font-size: 40px;
+		}
+		.pixel-art {
+			padding: 20px 0;
+		}
+		.game-caption > span {
+			font-size: 8px;
+		}
+		.game-caption p {
+			font-size: 12px;
+		}
+		.tool-story {
+			gap: 30px;
+		}
 	}
-
-
-/* A studio folio: a large typographic cover and two contrasting editorial doors. */
-.hero { grid-template-columns: 1.45fr .55fr; gap: 24px; margin-top: 82px; border-bottom: 1px solid var(--line); padding-bottom: 70px; }
-h1 { max-width: 900px; font-size: clamp(62px,7.8vw,112px); font-weight: 700; line-height: 1.02; }
-h1 em { font-family: Georgia,serif; color: #e7af78; }
-.hero-mark img { width: 260px; }
-.lede { max-width: 650px; font-size: 18px; }
-.doors { grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #6a5142; }
-.door { border: 0; border-radius: 0; background: #e7af78; color: #30231e; padding: 44px; }
-.door:nth-child(2) { background: #c9d8c2; }
-.door:hover { background: #efc397; transform: none; }
-.door:nth-child(2):hover { background: #d9e4d3; }
-.door h2 { color: #30231e; font-family: Georgia,serif; font-size: 36px; font-weight: 400; }
-.door-copy, .kicker, .door li span, .door li b, .door-go { color: #45382f; }
-.door li { border-color: #30231e35; }
-.door-go { margin-top: auto; padding-top: 30px; }
-.closing { background: transparent; border-radius: 0; border-top: 1px solid var(--line); padding: 60px 0; }
-.closing > p { font-family: Georgia,serif; color: #e7af78; }
-@media (max-width: 980px) { .hero { grid-template-columns: 1fr; } .hero-mark { display: none; } .doors { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { .hero { margin-top: 42px; padding-bottom: 45px; } h1 { font-size: 55px; } .door { padding: 28px; } .door h2 { font-size: 30px; } }
-
-
-.ghost-cta.dark { color: #c9d8c2; border-color: #c9d8c2; } .ghost-cta.dark:hover { color: #fff; }
 </style>
