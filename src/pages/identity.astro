@@ -52,6 +52,7 @@ const variants = [
           <div class="copy">
             <p class="number">{variant.number}</p>
             <h2 id={`title-${variant.key}`}>{variant.name}</h2>
+            {variant.key === 'pond' && <p class="selected">Selected studio identity</p>}
             <p>{variant.description}</p>
           </div>
           <div class="wordmark">
@@ -126,6 +127,7 @@ const variants = [
     line-height: 1.6;
     margin-bottom: 40px;
   }
+  .selected { color: #28594d; font-size: 12px; font-weight: 700; }
   .directions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

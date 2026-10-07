@@ -37,3 +37,11 @@ for index, (key, label, style) in enumerate([
     sheet.paste(tiny, (x, 570), tiny)
     draw.text((x + 68, 584), '48px mark', font=small, fill='#203c42')
 sheet.save(out / 'logo-directions.png')
+
+# The selected studio identity is direction 02, the pond emblem.
+selected = out / 'ibis-pond.svg'
+(root / 'public/logo-mark.svg').write_bytes(selected.read_bytes())
+for destination, size in [('public/logo-mark.png', 256), ('public/logo.png', 1024),
+                          ('public/favicon.png', 64), ('src/assets/aviorstudio-logo.png', 1024)]:
+    cairosvg.svg2png(url=str(selected), write_to=str(root / destination),
+                    output_width=size, output_height=size)
