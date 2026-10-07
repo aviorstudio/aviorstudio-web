@@ -6,12 +6,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	path?: string;
+	noindex?: boolean;
 }
 
 const {
 	title = 'Avior Studio',
 	description = 'Independent games and useful developer tools. Play termcade and Fields of Revik, explore Castle Drop and Prizm, and meet the tools behind the work.',
 	path = Astro.url.pathname,
+	noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, 'https://avior.studio');
@@ -43,7 +45,7 @@ const structuredData = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#f4f3eb" />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta property="og:type" content="website" />

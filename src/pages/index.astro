@@ -7,6 +7,19 @@ import Full from '../layouts/Full.astro';
 	description="Independent games, a terminal arcade, and developer tools built from the work of making them. Explore Fields of Revik, Castle Drop, Prizm, GDAM and gdlint."
 >
 	<main id="main-content">
+    <aside class="identity-preview" aria-label="Logo directions">
+      <a href="/identity">Compare the three new Avior logo directions ↗</a>
+      <div aria-hidden="true">
+        {["badge", "pond", "seal"].map((name) => (
+          <img
+            src={`/art/identity/ibis-${name}.svg`}
+            alt=""
+            width="64"
+            height="64"
+          />
+        ))}
+      </div>
+    </aside>
 		<section class="cover">
 			<div class="cover-copy">
 				<p class="eyebrow">INDEPENDENT GAMES & DEVELOPER TOOLS</p>
@@ -543,4 +556,12 @@ import Full from '../layouts/Full.astro';
 			gap: 30px;
 		}
 	}
+</style>
+
+<style>
+.identity-preview { max-width: 1180px; margin: 0 auto 24px; padding: 16px 20px; background: #e5e9da; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.identity-preview a { color: #203c42; font-weight: 650; }
+.identity-preview div { display: flex; flex-shrink: 0; gap: 8px; }
+.identity-preview img { width: 48px; height: 48px; }
+@media (max-width: 600px) { .identity-preview { margin: 0 14px 20px; flex-direction: column; align-items: flex-start; } }
 </style>

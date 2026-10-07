@@ -1,0 +1,251 @@
+---
+import Full from '../layouts/Full.astro';
+
+const variants = [
+	{
+		key: 'badge',
+		number: '01',
+		name: 'Game badge',
+		description: 'Warm sunlight, strong outlines and a shield shape. Closest to the playful art in our games.',
+	},
+	{
+		key: 'pond',
+		number: '02',
+		name: 'Pond emblem',
+		description: 'An open golden sweep around the ibis and its pond. Closest to the original studio mark.',
+	},
+	{
+		key: 'seal',
+		number: '03',
+		name: 'Studio seal',
+		description: 'A quieter circular mark with clean shapes, warm feathers and deep teal.',
+	},
+];
+---
+
+<Full
+  title="Avior Studio — Logo directions"
+  description="Three new Avior ibis logo directions to compare."
+  noindex
+>
+  <main id="main-content" class="identity">
+    <a class="back" href="/">
+      ← Back to the studio
+    </a>
+    <p class="eyebrow">AVIOR STUDIO / IDENTITY EXPLORATION</p>
+    <h1>One ibis. Three directions.</h1>
+    <p class="intro">
+      An ibis standing in water, above its reflection. Compare each direction as
+      a large mark, a studio wordmark and a small icon.
+    </p>
+    <div class="directions">
+      {variants.map((variant) => (
+        <article aria-labelledby={`title-${variant.key}`}>
+          <div class="hero-mark">
+            <img
+              src={`/art/identity/ibis-${variant.key}.svg`}
+              alt={`${variant.name}: an ibis standing in water over its reflection`}
+              width="512"
+              height="512"
+            />
+          </div>
+          <div class="copy">
+            <p class="number">{variant.number}</p>
+            <h2 id={`title-${variant.key}`}>{variant.name}</h2>
+            <p>{variant.description}</p>
+          </div>
+          <div class="wordmark">
+            <img
+              src={`/art/identity/ibis-${variant.key}.svg`}
+              alt=""
+              width="48"
+              height="48"
+            />
+            <span>Avior Studio</span>
+          </div>
+          <div class="dark">
+            <img
+              src={`/art/identity/ibis-${variant.key}.svg`}
+              alt=""
+              width="48"
+              height="48"
+            />
+            <span>Avior Studio</span>
+          </div>
+          <div class="icons">
+            <span>Icon sizes</span>
+            {[48, 32, 16].map((size) => (
+              <div>
+                <img
+                  src={`/art/identity/ibis-${variant.key}.svg`}
+                  alt=""
+                  width={size}
+                  height={size}
+                />
+                <small>{size}px</small>
+              </div>
+            ))}
+          </div>
+          <a
+            class="download"
+            href={`/art/identity/ibis-${variant.key}.svg`}
+            download
+          >
+            Download SVG ↗
+          </a>
+        </article>
+      ))}
+    </div>
+  </main>
+</Full>
+
+<style>
+  .identity {
+    width: min(1180px, calc(100% - 40px));
+    margin: 32px auto 80px;
+    color: #203c42;
+  }
+  .back {
+    color: #42665f;
+    font-size: 14px;
+  }
+  .eyebrow {
+    margin: 40px 0 16px;
+    font: 600 11px var(--mono);
+    letter-spacing: 0.08em;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+    margin: 0 0 22px;
+  }
+  .intro {
+    max-width: 640px;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .directions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  article {
+    background: #fffaf0;
+    border: 1px solid #d6d8c9;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .hero-mark {
+    background: #f0ecdf;
+    padding: 24px;
+  }
+  .hero-mark img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .copy {
+    padding: 24px;
+    min-height: 195px;
+  }
+  .number {
+    font: 600 12px var(--mono);
+    color: #677b6d;
+    margin: 0 0 8px;
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: 25px;
+    letter-spacing: -0.025em;
+  }
+  .copy > p:last-child {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .wordmark,
+  .dark {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  .dark {
+    background: #152b30;
+    color: #fff4d7;
+  }
+  .icons {
+    min-height: 106px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 20px;
+  }
+  .icons > span {
+    font-size: 12px;
+    margin-right: auto;
+  }
+  .icons div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .icons small {
+    font: 10px var(--mono);
+  }
+  .download {
+    display: block;
+    padding: 16px 24px 24px;
+    color: #28594d;
+    font-size: 14px;
+  }
+  @media (max-width: 950px) {
+    .directions {
+      gap: 12px;
+    }
+    .wordmark,
+    .dark {
+      font-size: 16px;
+      padding: 14px;
+    }
+    .icons {
+      gap: 10px;
+      padding: 16px 12px;
+    }
+    .copy {
+      padding: 18px;
+      min-height: 230px;
+    }
+  }
+  @media (max-width: 700px) {
+    .identity {
+      width: calc(100% - 28px);
+    }
+    .directions {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .copy {
+      min-height: 0;
+    }
+    .hero-mark {
+      padding: 24px 48px;
+    }
+    .wordmark,
+    .dark {
+      font-size: 20px;
+      padding: 20px;
+    }
+    .icons {
+      padding: 20px;
+      gap: 20px;
+    }
+  }
+</style>
