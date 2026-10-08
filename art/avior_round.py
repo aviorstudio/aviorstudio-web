@@ -12,7 +12,7 @@ KEY = 'avior_round'
 NAME = 'Avior Studio — rounded cradle'
 SIZE = (128, 128)
 STEPS = {
-    'mark':        dict(w0=2.0, w1=7.0, eye=1.7),     # the chosen mark: Smooth, the skinnier sweep, a dot eye
+    'mark':        dict(w0=2.0, w1=7.0, eye=1.7, centre=True),     # the chosen mark: Smooth, the skinnier sweep, a dot eye
     'smooth':      dict(),
     'k2':          dict(k=2),
     'k4':          dict(k=4),
@@ -173,7 +173,11 @@ def s_ink():
     return pal('ink')
 
 
-def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, refl=.3, ripw=(1.4, 1.1, .9), start=150, end=400, cy=58, eye=0.0):
+def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, refl=.3, ripw=(1.4, 1.1, .9), start=150, end=400, cy=58, eye=0.0, centre=False):
+    if centre:
+        # The drawing's ink (sweep, bird and reflection) is centred on (64.9, 55.6) at full size; move it onto
+        # the canvas centre and scale it to leave an even margin, so tiles and icons sit true.
+        s.raw('<g transform="translate(64 64) scale(0.9) translate(-64.9 -55.6)">')
     sweep(s, w0=w0, w1=w1, caps=True, ease=ease, start=start, end=end, cy=cy)
     def b():
         with s.g(sx=scale, sy=scale, about=(62, 92)):
@@ -186,6 +190,8 @@ def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, re
             s.dot(82.2, 25.2, eye, '@paper')   # the eye, in the ground colour
     if ripw:
         ripples(s, ws=ripw)
+    if centre:
+        s.raw('</g>')
 
 
 def draw(s, anim, i):
