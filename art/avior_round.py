@@ -12,7 +12,7 @@ KEY = 'avior_round'
 NAME = 'Avior Studio — rounded cradle'
 SIZE = (128, 128)
 STEPS = {
-    'mark':        dict(w0=2.0, w1=7.0),     # the chosen mark: Smooth with the skinnier sweep
+    'mark':        dict(w0=2.0, w1=7.0, eye=1.7),     # the chosen mark: Smooth, the skinnier sweep, a dot eye
     'smooth':      dict(),
     'k2':          dict(k=2),
     'k4':          dict(k=4),
@@ -38,7 +38,7 @@ STEPS = {
     'even':        dict(w0=4.0, w1=4.0),
 }
 ANIMS = {k: 1 for k in ['base', 'caps', 'smoother', 'smoothest', 'plump', 'built'] + list(STEPS)}
-PALETTE = {'ink': '#ffffff'}
+PALETTE = {'ink': '#ffffff', 'paper': '#000000'}
 VARIANTS = {'cream': {'ink': '#f4f3eb'}, 'bone': {'ink': '#e6dcc4'}}
 
 BIRD = ('M34 64 C39 54 45 43 58 42 C65 41 70 45 73 42 C76 39 70 31 73 24 C76 17 84 18 87 23 C89 27 85 31 82 31 '
@@ -173,7 +173,7 @@ def s_ink():
     return pal('ink')
 
 
-def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, refl=.3, ripw=(1.4, 1.1, .9), start=150, end=400, cy=58):
+def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, refl=.3, ripw=(1.4, 1.1, .9), start=150, end=400, cy=58, eye=0.0):
     sweep(s, w0=w0, w1=w1, caps=True, ease=ease, start=start, end=end, cy=cy)
     def b():
         with s.g(sx=scale, sy=scale, about=(62, 92)):
@@ -181,6 +181,9 @@ def cradle(s, k=3, fat=0.0, legw=4.2, w0=2.5, w1=11.0, ease=False, scale=1.0, re
     if refl:
         reflection(s, b, op=refl, cy=cy)
     b()
+    if eye:
+        with s.g(sx=scale, sy=scale, about=(62, 92)):
+            s.dot(82.2, 25.2, eye, '@paper')   # the eye, in the ground colour
     if ripw:
         ripples(s, ws=ripw)
 
