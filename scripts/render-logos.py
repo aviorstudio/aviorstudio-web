@@ -3,8 +3,8 @@
 Usage: python scripts/render-logos.py /path/to/spritesmith-checkout
 Run with a Python environment that has CairoSVG and Pillow (Spritesmith's own .venv works).
 
-The mark is the `cradle` animation of art/avior_enso.py in its `white` palette: a white ibis and its
-reflection cradled by a brush sweep. It is written transparent (for dark surfaces) and on a black
+The mark is the `mark` animation of art/avior_round.py: a white ibis and its reflection cradled by a
+brush sweep, outline smoothed, ends rounded. It is written transparent (for dark surfaces) and on a black
 rounded tile (the site mark, favicon and share image).
 """
 import re
@@ -20,8 +20,8 @@ identity = root / 'public/art/identity'
 identity.mkdir(parents=True, exist_ok=True)
 
 mark = identity / 'enso-cradle.svg'
-subprocess.run([sys.executable, str(spritesmith), '--palette', 'white', 'svg', str(root / 'art/avior_enso.py'),
-                '--anim', 'cradle', '--style', 'cozy', '--cell', '256', '--out', str(mark)], check=True)
+subprocess.run([sys.executable, str(spritesmith), 'svg', str(root / 'art/avior_round.py'),
+                '--anim', 'mark', '--style', 'cozy', '--cell', '256', '--out', str(mark)], check=True)
 
 # The tile: the same drawing over a black rounded square, in one SVG.
 inner = re.sub(r'^<svg[^>]*>', '', mark.read_text(encoding='utf-8').strip())[:-len('</svg>')]
