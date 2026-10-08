@@ -1,100 +1,68 @@
 ---
 import Full from '../layouts/Full.astro';
 
-const variants = [
-	{
-		key: 'badge',
-		number: '01',
-		name: 'Game badge',
-		description: 'Warm sunlight, strong outlines and a shield shape. Closest to the playful art in our games.',
-	},
-	{
-		key: 'pond',
-		number: '02',
-		name: 'Pond emblem',
-		description: 'An open golden sweep around the ibis and its pond. Closest to the original studio mark.',
-	},
-	{
-		key: 'seal',
-		number: '03',
-		name: 'Studio seal',
-		description: 'A quieter circular mark with clean shapes, warm feathers and deep teal.',
-	},
+const earlier = [
+	{ key: 'badge', name: 'Game badge' },
+	{ key: 'pond', name: 'Pond emblem' },
+	{ key: 'seal', name: 'Studio seal' },
 ];
 ---
 
 <Full
-  title="Avior Studio — Logo directions"
-  description="Three new Avior ibis logo directions to compare."
+  title="Avior Studio — Identity"
+  description="The Avior Studio mark: a white ibis and its reflection cradled by a brush sweep."
   noindex
 >
   <main id="main-content" class="identity">
     <a class="back" href="/">
       ← Back to the studio
     </a>
-    <p class="eyebrow">AVIOR STUDIO / IDENTITY EXPLORATION</p>
-    <h1>One ibis. Three directions.</h1>
+    <p class="eyebrow">AVIOR STUDIO / IDENTITY</p>
+    <h1>An ibis, cradled.</h1>
     <p class="intro">
-      An ibis standing in water, above its reflection. Compare each direction as
-      a large mark, a studio wordmark and a small icon.
+      One brush sweep thickens under a white ibis standing in still water. The mark is a
+      flat silhouette drawn with Spritesmith, so it exports at any size with no raster source.
     </p>
-    <div class="directions">
-      {variants.map((variant) => (
-        <article aria-labelledby={`title-${variant.key}`}>
-          <div class="hero-mark">
-            <img
-              src={`/art/identity/ibis-${variant.key}.svg`}
-              alt={`${variant.name}: an ibis standing in water over its reflection`}
-              width="512"
-              height="512"
-            />
-          </div>
-          <div class="copy">
-            <p class="number">{variant.number}</p>
-            <h2 id={`title-${variant.key}`}>{variant.name}</h2>
-            {variant.key === 'pond' && <p class="selected">Selected studio identity</p>}
-            <p>{variant.description}</p>
-          </div>
-          <div class="wordmark">
-            <img
-              src={`/art/identity/ibis-${variant.key}.svg`}
-              alt=""
-              width="48"
-              height="48"
-            />
-            <span>Avior Studio</span>
-          </div>
-          <div class="dark">
-            <img
-              src={`/art/identity/ibis-${variant.key}.svg`}
-              alt=""
-              width="48"
-              height="48"
-            />
-            <span>Avior Studio</span>
-          </div>
-          <div class="icons">
-            <span>Icon sizes</span>
-            {[48, 32, 16].map((size) => (
-              <div>
-                <img
-                  src={`/art/identity/ibis-${variant.key}.svg`}
-                  alt=""
-                  width={size}
-                  height={size}
-                />
-                <small>{size}px</small>
-              </div>
-            ))}
-          </div>
-          <a
-            class="download"
-            href={`/art/identity/ibis-${variant.key}.svg`}
-            download
-          >
-            Download SVG ↗
-          </a>
-        </article>
+
+    <section class="mark" aria-labelledby="mark-title">
+      <div class="hero">
+        <img src="/art/identity/enso-cradle.svg" alt="A white ibis standing above its reflection, cradled by a brush sweep" width="512" height="512" />
+      </div>
+      <div class="copy">
+        <h2 id="mark-title">The mark</h2>
+        <p>
+          White on black. The sweep starts thin at the top left, passes under the water and ends thick
+          at the right, so the bird reads as held rather than enclosed.
+        </p>
+        <div class="bar">
+          <img src="/logo-mark.svg" alt="" width="40" height="40" />
+          <span>Avior Studio</span>
+        </div>
+        <div class="icons">
+          <span>Tile sizes</span>
+          {[48, 32, 16].map((size) => (
+            <div>
+              <img src="/logo-mark.svg" alt="" width={size} height={size} />
+              <small>{size}px</small>
+            </div>
+          ))}
+        </div>
+        <p class="downloads">
+          <a href="/art/identity/enso-cradle.svg" download>Mark, transparent SVG</a>
+          <a href="/art/identity/enso-cradle-tile.svg" download>Tile SVG</a>
+          <a href="/logo.png" download>Share image PNG</a>
+        </p>
+      </div>
+    </section>
+
+    <h2 class="earlier-title">Earlier directions</h2>
+    <p class="earlier-intro">Three coloured ibis directions from the first exploration, kept for reference.</p>
+    <div class="earlier">
+      {earlier.map((variant) => (
+        <figure>
+          <img src={`/art/identity/ibis-${variant.key}.svg`} alt={`${variant.name}: a coloured ibis standing in water`} width="256" height="256" />
+          <figcaption>{variant.name}</figcaption>
+        </figure>
       ))}
     </div>
   </main>
@@ -127,127 +95,116 @@ const variants = [
     line-height: 1.6;
     margin-bottom: 40px;
   }
-  .selected { color: #28594d; font-size: 12px; font-weight: 700; }
-  .directions {
+  .mark {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-  article {
-    background: #fffaf0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     border: 1px solid #d6d8c9;
     border-radius: 16px;
     overflow: hidden;
+    background: #fffaf0;
   }
-  .hero-mark {
-    background: #f0ecdf;
-    padding: 24px;
+  .hero {
+    background: #000;
+    padding: 48px;
   }
-  .hero-mark img {
+  .hero img {
     display: block;
     width: 100%;
     height: auto;
   }
   .copy {
-    padding: 24px;
-    min-height: 195px;
-  }
-  .number {
-    font: 600 12px var(--mono);
-    color: #677b6d;
-    margin: 0 0 8px;
+    padding: 28px;
+    display: grid;
+    align-content: start;
+    gap: 16px;
   }
   h2 {
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 25px;
     letter-spacing: -0.025em;
   }
-  .copy > p:last-child {
+  .copy > p {
     margin: 0;
     font-size: 15px;
     line-height: 1.6;
   }
-  .wordmark,
-  .dark {
-    padding: 20px;
+  .bar {
     display: flex;
     align-items: center;
     gap: 12px;
+    padding: 16px 20px;
+    border: 1px solid #d6d8c9;
+    border-radius: 10px;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.025em;
   }
-  .dark {
-    background: #152b30;
-    color: #fff4d7;
-  }
   .icons {
-    min-height: 106px;
     display: flex;
     gap: 18px;
-    align-items: center;
-    padding: 16px 20px;
+    align-items: flex-end;
   }
   .icons > span {
     font-size: 12px;
     margin-right: auto;
+    align-self: center;
   }
   .icons div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
     gap: 8px;
   }
   .icons small {
     font: 10px var(--mono);
   }
-  .download {
-    display: block;
-    padding: 16px 24px 24px;
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .downloads a {
     color: #28594d;
     font-size: 14px;
   }
-  @media (max-width: 950px) {
-    .directions {
-      gap: 12px;
-    }
-    .wordmark,
-    .dark {
-      font-size: 16px;
-      padding: 14px;
-    }
-    .icons {
-      gap: 10px;
-      padding: 16px 12px;
-    }
-    .copy {
-      padding: 18px;
-      min-height: 230px;
-    }
+  .earlier-title {
+    margin-top: 56px;
   }
-  @media (max-width: 700px) {
+  .earlier-intro {
+    margin: 8px 0 20px;
+    font-size: 15px;
+  }
+  .earlier {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .earlier figure {
+    margin: 0;
+    padding: 20px;
+    background: #f0ecdf;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .earlier img {
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: 0 auto 12px;
+  }
+  .earlier figcaption {
+    font-size: 13px;
+  }
+  @media (max-width: 800px) {
     .identity {
       width: calc(100% - 28px);
     }
-    .directions {
+    .mark,
+    .earlier {
       grid-template-columns: 1fr;
-      gap: 28px;
     }
-    .copy {
-      min-height: 0;
-    }
-    .hero-mark {
-      padding: 24px 48px;
-    }
-    .wordmark,
-    .dark {
-      font-size: 20px;
-      padding: 20px;
-    }
-    .icons {
-      padding: 20px;
-      gap: 20px;
+    .hero {
+      padding: 32px 64px;
     }
   }
 </style>

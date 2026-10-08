@@ -1,47 +1,42 @@
-"""Render Avior identity candidates using a Spritesmith checkout and CairoSVG/Pillow.
+"""Render the Avior Studio identity from its Spritesmith source.
 
-Usage: python scripts/render-logos.py /path/to/spritesmith-be/spritesmith
-Run with the Python environment containing Spritesmith's rendering dependencies.
+Usage: python scripts/render-logos.py /path/to/spritesmith-checkout
+Run with a Python environment that has CairoSVG and Pillow (Spritesmith's own .venv works).
+
+The mark is the `cradle` animation of art/avior_enso.py in its `white` palette: a white ibis and its
+reflection cradled by a brush sweep. It is written transparent (for dark surfaces) and on a black
+rounded tile (the site mark, favicon and share image).
 """
-from io import BytesIO
-from pathlib import Path
+import re
 import subprocess
 import sys
+from pathlib import Path
+
 import cairosvg
-from PIL import Image, ImageDraw, ImageFont
 
 root = Path(__file__).resolve().parents[1]
-out = root / 'public/art/identity'
-out.mkdir(parents=True, exist_ok=True)
-sheet = Image.new('RGB', (1440, 660), '#f4efe4')
-draw = ImageDraw.Draw(sheet)
-font = ImageFont.truetype('DejaVuSans.ttf', 24)
-small = ImageFont.truetype('DejaVuSans.ttf', 16)
-for index, (key, label, style) in enumerate([
-    ('badge', '01 · Game badge', 'cozy'),
-    ('pond', '02 · Pond emblem', 'cozy'),
-    ('seal', '03 · Studio seal', 'flat'),
-]):
-    svg = out / f'ibis-{key}.svg'
-    subprocess.run([sys.executable, str(Path(sys.argv[1]).resolve().parent / 'py/spritesmith.py'),
-                    'svg', str(root / 'art/avior_ibis.py'), '--anim', key,
-                    '--style', style, '--cell', '256', '--out', str(svg)], check=True)
-    png = cairosvg.svg2png(url=str(svg), output_width=400, output_height=400)
-    (out / f'ibis-{key}.png').write_bytes(png)
-    image = Image.open(BytesIO(png))
-    x = index * 480 + 40
-    sheet.paste(image, (x, 65), image)
-    draw.text((x, 490), label, font=font, fill='#203c42')
-    draw.text((x, 530), 'AVIOR STUDIO', font=small, fill='#203c42')
-    tiny = image.resize((48, 48), Image.Resampling.LANCZOS)
-    sheet.paste(tiny, (x, 570), tiny)
-    draw.text((x + 68, 584), '48px mark', font=small, fill='#203c42')
-sheet.save(out / 'logo-directions.png')
+spritesmith = Path(sys.argv[1]).resolve() / 'py/spritesmith.py'
+identity = root / 'public/art/identity'
+identity.mkdir(parents=True, exist_ok=True)
 
-# The selected studio identity is direction 02, the pond emblem.
-selected = out / 'ibis-pond.svg'
-(root / 'public/logo-mark.svg').write_bytes(selected.read_bytes())
-for destination, size in [('public/logo-mark.png', 256), ('public/logo.png', 1024),
-                          ('public/favicon.png', 64), ('src/assets/aviorstudio-logo.png', 1024)]:
-    cairosvg.svg2png(url=str(selected), write_to=str(root / destination),
-                    output_width=size, output_height=size)
+mark = identity / 'enso-cradle.svg'
+subprocess.run([sys.executable, str(spritesmith), '--palette', 'white', 'svg', str(root / 'art/avior_enso.py'),
+                '--anim', 'cradle', '--style', 'cozy', '--cell', '256', '--out', str(mark)], check=True)
+
+# The tile: the same drawing over a black rounded square, in one SVG.
+inner = re.sub(r'^<svg[^>]*>', '', mark.read_text(encoding='utf-8').strip())[:-len('</svg>')]
+inner = re.sub(r'<title>.*?</title>', '', inner, count=1)
+tile = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><title>Avior Studio</title>'
+        '<rect width="128" height="128" rx="26" fill="#000000"/>' + inner + '</svg>')
+(root / 'public/logo-mark.svg').write_text(tile, encoding='utf-8')
+(identity / 'enso-cradle-tile.svg').write_text(tile, encoding='utf-8')
+
+# The share image is a plain black square, like the studio's first mark.
+square = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><title>Avior Studio</title>'
+          '<rect width="128" height="128" fill="#000000"/>' + inner + '</svg>')
+
+for destination, source, size in [('public/logo-mark.png', tile, 256), ('public/favicon.png', tile, 64),
+                                  ('public/logo.png', square, 1024), ('src/assets/aviorstudio-logo.png', square, 1024),
+                                  ('public/art/identity/enso-cradle.png', mark.read_text(encoding='utf-8'), 512)]:
+    cairosvg.svg2png(bytestring=source.encode(), write_to=str(root / destination), output_width=size, output_height=size)
+    print('wrote', destination)
