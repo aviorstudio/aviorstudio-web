@@ -1,4 +1,4 @@
-name: CI
+name: "Build & Test"
 
 # One workspace builds and asserts the same output. Both established check names remain.
 on:
