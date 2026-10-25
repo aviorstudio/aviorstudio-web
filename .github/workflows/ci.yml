@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: "Check out source"
@@ -42,7 +42,7 @@ jobs:
     name: Test
     needs: build
     if: always()
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: Require the complete build and assertions
