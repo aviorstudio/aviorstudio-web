@@ -22,4 +22,4 @@ jobs:
     name: Apply dependency policy
     uses: nicodes/tools/.github/workflows/dependency-merge.yml@247267492cd455647facafcfcc6eed4c63c49c0e # v0.27.2
     with:
-      runner: blacksmith-2vcpu-ubuntu-2404
+      runner: ubuntu-24.04
