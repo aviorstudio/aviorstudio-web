@@ -1,7 +1,7 @@
-"""Render the Avior Studio identity from its Spritesmith source.
+"""Render the Avior Studio identity from its spritesmith source.
 
 Usage: python scripts/render-logos.py /path/to/spritesmith-checkout
-Run with a Python environment that has CairoSVG and Pillow (Spritesmith's own .venv works).
+Run with a Python environment that has CairoSVG and Pillow (spritesmith's own .venv works).
 
 The mark is the `mark` animation of art/avior_round.py: a white ibis and its reflection cradled by a
 brush sweep, outline smoothed, ends rounded. It is written transparent (for dark surfaces) and on a black

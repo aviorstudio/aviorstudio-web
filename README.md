@@ -1,10 +1,10 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 4aa5d445603ca916a04a9982bcdfc903cf59b953c1b45490f7fba360dcecdc30 -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 2600f8e036116e21dc20c098cb3e90094635918cf6d5efd66c6a61aa91c224e4 -->
 
 # aviorstudio-web
 
 Static website built with Astro.
 
-Install the [Komizo release](https://github.com/nicodes/komizo#install) matching `komizo.lock`, then run:
+Install the [komizo release](https://github.com/nicodes/komizo#install) matching `komizo.lock`, then run:
 
 ```sh
 komizo dev                 # Foreground development server

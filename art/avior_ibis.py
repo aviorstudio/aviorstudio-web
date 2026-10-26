@@ -1,4 +1,4 @@
-"""Avior's ibis and its reflection, authored with Spritesmith's vector primitives."""
+"""Avior's ibis and its reflection, authored with spritesmith's vector primitives."""
 KEY = 'avior_ibis'
 NAME = 'Avior Studio — ibis standing above its reflection'
 SIZE = (128, 128)
