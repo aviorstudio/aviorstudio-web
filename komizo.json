@@ -3,36 +3,13 @@
   "recipe": "static-site",
   "repository": "aviorstudio/aviorstudio-web",
   "stages": {
-    "lint": [
-      [
-        "bun",
-        "x",
-        "--no-install",
-        "biome",
-        "check"
-      ],
-      [
-        "bun",
-        "run",
-        "typecheck"
-      ]
-    ],
-    "artifact-check": [
-      [
-        "python3",
-        "scripts/check-output.py"
-      ]
-    ]
+    "lint": [["bun", "x", "--no-install", "biome", "check"], ["bun", "run", "typecheck"]],
+    "artifact-check": [["python3", "scripts/check-output.py"]]
   },
   "validation": {
     "workflow": {
-      "required": [
-        "ci.yml",
-        "dependency-policy.yml"
-      ],
-      "ci_gates": [
-        "Test"
-      ]
+      "required": ["ci.yml", "dependency-policy.yml"],
+      "ci_gates": ["Test"]
     }
   }
 }
