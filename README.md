@@ -1,9 +1,16 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: f72f1a156829223995cac03d843fdf891b5fa5de9245ebda9e032c41fba2508c -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 4aa5d445603ca916a04a9982bcdfc903cf59b953c1b45490f7fba360dcecdc30 -->
 
-# Avior Studio website
+# aviorstudio-web
 
-Source for the public website.
+Static website built with Astro.
 
-## Development
+Install the [Komizo release](https://github.com/nicodes/komizo#install) matching `komizo.lock`, then run:
 
-Use the Bun version pinned in `.mise.toml`. Install with `bun install --frozen-lockfile`; see `package.json` for the development, test and build scripts.
+```sh
+komizo dev                 # Foreground development server
+komizo check               # Complete applicable source, build and output checks
+komizo run build           # Generate dist/
+komizo describe            # Inspect tools and available commands
+```
+
+Ctrl-C stops development. This website needs no runtime credentials or credential `.env` file.
