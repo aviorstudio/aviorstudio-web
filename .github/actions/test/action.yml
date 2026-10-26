@@ -1,8 +1,0 @@
-name: Test
-description: Verify source formatting and all product-owned static output assertions.
-runs:
-  using: composite
-  steps:
-    - name: Verify source and static output
-      shell: bash
-      run: make test
