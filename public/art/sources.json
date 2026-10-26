@@ -1,5 +1,5 @@
 {
-  "description": "Original game art; vector frames exported with Spritesmith svg.",
+  "description": "Original game art; vector frames exported with spritesmith svg.",
   "vector_sources": [
     {
       "game": "castledrop",
