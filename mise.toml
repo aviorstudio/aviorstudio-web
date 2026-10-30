@@ -20,10 +20,11 @@ run = ["python3 scripts/check-output.py"]
 depends = ["build"]
 
 [tasks."dev"]
-run = ["bun run dev"]
+run = "python3 \"$TOOLS_ROOT/helpers/dev.py\" run --state .artifacts/dev --prepare '[\"ghenv\",\"local\",\"--\",\"mise\",\"run\",\"install\"]' --policy-input mise.toml -- ghenv local -- python3 \"$TOOLS_ROOT/helpers/static-site.py\""
+tools = {"github:nicodes/ghenv" = "v0.4.0"}
 
 [tasks."clean"]
-run = ["bun -e 'const fs=require('\"'\"'node:fs'\"'\"');for(const p of ['\"'\"'dist'\"'\"','\"'\"'.astro'\"'\"'])fs.rmSync(p,{recursive:true,force:true})'"]
+run = "python3 \"$TOOLS_ROOT/helpers/dev.py\" clean --state .artifacts/dev -- mise run _clean"
 
 [tasks."lint"]
 run = ["bun x --no-install biome check", "bun run typecheck"]
@@ -33,4 +34,11 @@ run = [{"task" = "install"}, {"task" = "lint"}, {"task" = "build"}, {"task" = "a
 
 [tasks."_build"]
 run = ["bun run build"]
+hide = true
+
+[tasks."stop"]
+run = "python3 \"$TOOLS_ROOT/helpers/dev.py\" stop --state .artifacts/dev"
+
+[tasks."_clean"]
+run = ["bun -e 'const fs=require('\"'\"'node:fs'\"'\"');for(const p of ['\"'\"'dist'\"'\"','\"'\"'.astro'\"'\"'])fs.rmSync(p,{recursive:true,force:true})'"]
 hide = true
