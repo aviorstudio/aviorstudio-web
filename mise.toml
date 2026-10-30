@@ -4,15 +4,16 @@
 "node" = "24.18.1"
 
 [env]
-TOOLS_ROOT = "{{ get_env(name='TOOLS_ROOT', default=config_root ~ '/.ci-tools') }}"
-GOTOOLCHAIN = "local"
-PYTHONDONTWRITEBYTECODE = "1"
+"TOOLS_ROOT" = "{{ get_env(name='TOOLS_ROOT', default=config_root ~ '/.ci-tools') }}"
+"GOTOOLCHAIN" = "local"
+"PYTHONDONTWRITEBYTECODE" = "1"
 
 [tasks."install"]
 run = ["bun install --frozen-lockfile"]
 
 [tasks."build"]
-run = ["bun run build"]
+run = "python3 \"$TOOLS_ROOT/helpers/verification.py\" build --name build --artifact dist -- mise run _build"
+depends = ["install"]
 
 [tasks."artifact-check"]
 run = ["python3 scripts/check-output.py"]
@@ -29,3 +30,7 @@ run = ["bun x --no-install biome check", "bun run typecheck"]
 
 [tasks."check"]
 run = [{"task" = "install"}, {"task" = "lint"}, {"task" = "build"}, {"task" = "artifact-check"}]
+
+[tasks."_build"]
+run = ["bun run build"]
+hide = true
