@@ -6,7 +6,12 @@
   "integration_job": "ci",
   "dispatch_workflow": "ci.yml",
   "max_group_size": 10,
-  "managed_dependencies": ["aviorstudio/gdam-actions/*", "nicodes/komizo-actions/*", "nicodes/komizo/*"],
+  "managed_dependencies": [
+    "aviorstudio/gdam-actions/*",
+    "nicodes/komizo-actions/*",
+    "nicodes/komizo/*",
+    "nicodes/tools/*"
+  ],
   "sensitive_dependencies": [
     "*clerk*",
     "*pocketbase*",
