@@ -121,7 +121,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				</p>
 				<p>
 					Offline play against the machine and online play against a person run the same rules: the deterministic
-					gameplay lives in one shared core used by both the client and a headless Godot server, and online matches are
+					gameplay lives in one shared Rust core used by both the Godot client and the game server, and online matches are
 					fully server-authoritative. The client never gets to decide what happened.
 				</p>
 			</Entry>
