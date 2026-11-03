@@ -50,9 +50,9 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				tagline="A terminal arcade"
 				status="Playable now"
 				available={true}
-				meta="Go · Bubble Tea · wazero"
-				command="go run github.com/aviorstudio/termcade@latest"
-				commandNote="Needs a truecolor terminal at 80×24 or larger"
+				meta="Rust · Ratatui · Wasmtime"
+				command="termcade"
+				commandNote="Install a verified release; use a truecolor terminal at 80×24 or larger"
 				links={[{ href: 'https://github.com/aviorstudio/termcade', label: 'Source on GitHub' }]}
 			>
 				<p>
@@ -61,7 +61,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 					Brickough, playable offline the moment it starts.
 				</p>
 				<p>
-					The arcade compiles no games into itself. Every game is a sandboxed WebAssembly package running under wazero
+					The arcade compiles no games into itself. Every game is a sandboxed WebAssembly package running under Wasmtime
 					with no filesystem and no network, so a broken one shows up dimmed on the menu with its reason rather than
 					taking the arcade down. The same binary is the dev kit: <code>termcade dev new you/mygame</code> scaffolds
 					one, <code>termcade dev build</code>
