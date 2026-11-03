@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import revikTitle from '../assets/revik-title.png';
 import Full from '../layouts/Full.astro';
 ---
 
@@ -26,8 +28,10 @@ import Full from '../layouts/Full.astro';
 				<span class="cover-index">AVIOR STUDIO / SELECTED WORK</span>
 			</div>
 			<a class="cover-art" href="https://app.revik.gg" aria-label="Play Fields of Revik">
-				<img
-					src="/art/revik-title.png"
+				<Image
+					src={revikTitle}
+					format="webp"
+					quality={80}
 					alt="A fox knight overlooking the colourful hex-tile valley of Fields of Revik"
 					width="1024"
 					height="1536"
