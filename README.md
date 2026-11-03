@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 6a543e41f12752137d68ef5feb225f587b9d2d0d3506616861a5035a16501efb -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 828c700d5a2a07da6c12726c94caec049b161faefb265221966cee3b3db17ca0 -->
 
 # aviorstudio-web
 
@@ -31,3 +31,5 @@ Build commands record source and exact regular output hashes. Declared tests pro
 ## Contributor task interface
 
 Contributor tool versions and task entry points live in the native Mise configuration. Use `mise run lint` for source checks, `mise run test` for the applicable behavioral tests, and `mise run check` for the complete supported gate. `mise run clean` removes declared generated outputs while preserving source, credentials and retained data. Use `mise run dev` and `mise run stop` for this checkout's owned local session.
+
+Built exports enforce the product byte limits in `scripts/site-budget.json`: 2 MiB total, 512 KiB per file, 64 KiB gzip HTML per page and 128 KiB gzip JavaScript in aggregate. `mise run artifact-check` checks these actual output bytes alongside metadata and accessible markup. Browser acceptance covers responsive layout, images and keyboard use.

@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import octicons from '@primer/octicons';
+import revikTitle from '../assets/revik-title.png';
 import Entry from '../components/Entry.astro';
 import Full from '../layouts/Full.astro';
 
@@ -26,7 +28,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 
 		<section class="game-gallery" aria-label="Art from our games">
 			<a href="https://app.revik.gg">
-				<img src="/art/revik-title.png" alt="Fields of Revik" />
+				<Image src={revikTitle} alt="Fields of Revik" format="webp" quality={80} width={768} loading="lazy" />
 				<span>Play Fields of Revik ↗</span>
 			</a>
 			<a href="#castle-drop">
