@@ -38,13 +38,13 @@ const addons = [
 		name: 'gd-observe',
 		tagline: 'Local observability with a terminal dashboard',
 		copy: 'Timers, gauges and counters alongside logs, events and per-frame traces, all tagged with a context you push and pop. A localhost WebSocket server streams them live to a terminal UI. Metrics are in-memory and local — the point is to see the data before deciding whether any of it should leave the machine.',
-		cli: 'Ships gdobs, a Rust terminal UI with Ratatui',
+		cli: 'Companion: gd-observe-cli, a Rust terminal UI with Ratatui',
 	},
 	{
 		name: 'gd-playwright',
 		tagline: 'Named handles for web-export browser tests',
 		copy: 'The addon writes element positions, events and test state to browser globals during a web run; the CLI reads them over CDP so a test can click <code>start_button</code> instead of a coordinate. The CLI is strictly read-only — it never mutates browser or game state. Disabled builds no-op, so the calls are safe to leave in.',
-		cli: 'Ships gdpw, a Rust CLI',
+		cli: 'Companion: gd-playwright-cli, a Rust CLI',
 	},
 	{
 		name: 'gd-pocketbase',
