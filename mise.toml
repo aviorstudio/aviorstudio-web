@@ -16,7 +16,7 @@ run = "python3 \"$TOOLS_ROOT/helpers/verification.py\" build --name build --arti
 depends = ["install"]
 
 [tasks."artifact-check"]
-run = ["python3 scripts/check-output.py", "python3 \"$TOOLS_ROOT/helpers/site-contract.py\" dist --budget scripts/site-budget.json"]
+run = ["python3 scripts/check-output.py", "python3 \"$TOOLS_ROOT/helpers/site-contract.py\" dist --budget scripts/site-budget.toml"]
 depends = ["build"]
 
 [tasks."dev"]
