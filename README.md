@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: fbc7ac3655fde4bd300afeadb436affd30bfa5f709088e4eea101e33f5134659 -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: d07e64dae7e88e91c69bbb35d86c2981e8d6bb046755702ecb5da0260bd01067 -->
 
 # aviorstudio-web
 
@@ -19,7 +19,7 @@ For contributor verification, prepare the pinned helper source before running na
 
 ```sh
 git clone https://github.com/nicodes/tools.git .ci-tools
-git -C .ci-tools checkout --detach 39666e8d26d2bd0e1c7e5fee6f289fd0fd3a5202
+git -C .ci-tools checkout --detach 46bf98735de2e7fe41cca1042c20c98f5b01824a
 mise install
 mise run check
 ```
