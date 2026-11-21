@@ -14,25 +14,11 @@
       "animation": "idle",
       "frame": 0,
       "file": "goblin.svg"
-    },
-    {
-      "game": "castledrop",
-      "source": "art/backdrop/hills.py",
-      "animation": "far",
-      "frame": 0,
-      "file": "hills-far.svg"
-    },
-    {
-      "game": "castledrop",
-      "source": "art/backdrop/hills.py",
-      "animation": "near",
-      "frame": 0,
-      "file": "hills-near.svg"
     }
   ],
   "images": {
-    "castledrop-logo.png": "castledrop/godot_client/src/assets/sprites/ui/title_logo.png",
     "fianchetto-black-queen.webp": "fianchetto-be/app/src/static/assets/ui/enc_blackqueen.png",
-    "fianchetto-queen.webp": "fianchetto-be/app/src/static/assets/ui/art_queen.png"
+    "fianchetto-queen.webp": "fianchetto-be/app/src/static/assets/ui/art_queen.png",
+    "castledrop-fight.webp": "Screenshot of the live game at castledrop.avior.studio, November 21, 2026"
   }
 }

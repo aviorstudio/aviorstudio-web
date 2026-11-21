@@ -28,6 +28,24 @@ import Full from '../layouts/Full.astro';
 				<a href="/games">All games →</a>
 			</div>
 			<div class="game-grid">
+				<a class="game-art castle" href="/games#castle-drop">
+					<div class="castle-scene">
+						<img
+							src="/art/castledrop-fight.webp"
+							alt="A Castle Drop fight: goblins march down the field toward the castle wall past a new archer tower, with a hand of cards below"
+							width="1280"
+							height="720"
+							loading="lazy"
+						/>
+					</div>
+					<div class="game-caption">
+						<div>
+							<h3>Castle Drop</h3>
+							<p>Draw cards. Raise towers. Hold the wall.</p>
+						</div>
+						<span>PLAYABLE NOW</span>
+					</div>
+				</a>
 				<a class="game-art fianchetto" href="/games#fianchetto">
 					<div class="fianchetto-scene">
 						<img
@@ -44,22 +62,6 @@ import Full from '../layouts/Full.astro';
 							<p>Start with a king. Play the rest from your hand.</p>
 						</div>
 						<span>IN DEVELOPMENT</span>
-					</div>
-				</a>
-				<a class="game-art castle" href="/games#castle-drop">
-					<div class="castle-scene">
-						<img class="far" src="/art/hills-far.svg" alt="" />
-						<img class="near" src="/art/hills-near.svg" alt="" />
-						<img class="dragon" src="/art/dragon.svg" alt="Castle Drop's red dragon" />
-						<img class="goblin" src="/art/goblin.svg" alt="" />
-						<img class="game-logo" src="/art/castledrop-logo.png" alt="Castle Drop" />
-					</div>
-					<div class="game-caption">
-						<div>
-							<h3>Castle Drop</h3>
-							<p>Grab. Throw. Defend your castle.</p>
-						</div>
-						<span>PROTOTYPE</span>
 					</div>
 				</a>
 			</div>
@@ -119,8 +121,8 @@ import Full from '../layouts/Full.astro';
 					<div>
 						<h3>spritesmith</h3>
 						<p>
-							Game art from Python to the screen. The dragon above comes straight from Castle Drop, and the
-							mark above is one of its cut-out sprites.
+							Game art from Python to the screen. Castle Drop's painted towers and goblins are its cut-out puppets,
+							and so is the ibis at the top of this page.
 						</p>
 					</div>
 				</div>
@@ -254,7 +256,8 @@ import Full from '../layouts/Full.astro';
 	.fianchetto-scene {
 		background: #3a2b33;
 	}
-	.fianchetto-scene img {
+	.fianchetto-scene img,
+	.castle-scene img {
 		position: absolute;
 		inset: 0;
 		width: 100%;
@@ -263,7 +266,8 @@ import Full from '../layouts/Full.astro';
 		object-position: center 30%;
 		transition: transform 0.6s;
 	}
-	.game-art.fianchetto:hover .fianchetto-scene img {
+	.game-art.fianchetto:hover .fianchetto-scene img,
+	.game-art.castle:hover .castle-scene img {
 		transform: scale(1.03);
 	}
 	.fianchetto-scene,
@@ -271,42 +275,10 @@ import Full from '../layouts/Full.astro';
 		height: 340px;
 	}
 	.castle-scene {
-		background: linear-gradient(#bddeea, #e7ecd9);
+		background: #a8c66c;
 	}
-	.castle-scene .far,
-	.castle-scene .near {
-		position: absolute;
-		width: 100%;
-		bottom: 0;
-		height: 40%;
-		object-fit: fill;
-	}
-	.castle-scene .far {
-		bottom: 12%;
-		opacity: 0.7;
-	}
-	.dragon {
-		position: absolute;
-		width: 62%;
-		bottom: 12%;
-		left: 26%;
-		filter: drop-shadow(0 15px 15px #293f3930);
-		transition: transform 0.4s;
-	}
-	.goblin {
-		position: absolute;
-		width: 21%;
-		bottom: -2%;
-		left: 4%;
-	}
-	.game-logo {
-		position: absolute;
-		width: 42%;
-		top: 20px;
-		left: 20px;
-	}
-	.game-art:hover .dragon {
-		transform: translateY(-8px) rotate(-2deg);
+	.castle-scene img {
+		object-position: center 45%;
 	}
 	.game-caption {
 		display: flex;
