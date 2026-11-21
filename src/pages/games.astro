@@ -8,7 +8,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 
 <Full
 	title="Games — Avior Studio"
-	description="Play termcade, the terminal arcade, and meet Fianchetto and Castle Drop, the games in development at Avior Studio."
+	description="Play termcade in your terminal and Castle Drop in your browser, and meet Fianchetto, the chess card game in development at Avior Studio."
 >
 	<main id="main-content">
 		<section class="page-hero">
@@ -19,8 +19,8 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				Step into <em>another world.</em>
 			</h1>
 			<p class="lede">
-				Play the terminal arcade today. Fianchetto, a chess card game, and Castle Drop, a physics castle defense, are
-				taking shape in the studio.
+				Play the terminal arcade, or hold the castle wall in your browser. Fianchetto, a chess card game, is taking shape
+				in the studio.
 			</p>
 		</section>
 
@@ -33,6 +33,17 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				</div>
 				<span>termcade · play now ↓</span>
 			</a>
+			<a href="#castle-drop">
+				<img
+					class="gallery-castle"
+					src="/art/castledrop-fight.webp"
+					alt="Castle Drop goblins marching on the castle wall past an archer tower"
+					width="1280"
+					height="720"
+					loading="lazy"
+				/>
+				<span>Castle Drop · play now ↓</span>
+			</a>
 			<a href="#fianchetto">
 				<img
 					class="gallery-fianchetto"
@@ -43,12 +54,6 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 					loading="lazy"
 				/>
 				<span>Fianchetto · in development ↓</span>
-			</a>
-			<a href="#castle-drop">
-				<div class="gallery-castle">
-					<img src="/art/dragon.svg" alt="Castle Drop dragon" />
-				</div>
-				<span>Castle Drop · prototype ↓</span>
 			</a>
 		</section>
 		<section class="entries">
@@ -78,6 +83,29 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 			</Entry>
 
 			<Entry
+				name="Castle Drop"
+				id="castle-drop"
+				tagline="A card-driven castle defense"
+				status="Playable now"
+				available={true}
+				meta="Godot 4 · browser game"
+				links={[{ href: 'https://castledrop.avior.studio', label: 'Play in your browser' }]}
+			>
+				<p>
+					Goblins march down the rows of a five-by-nine field toward your castle wall, and a hand of cards refills as the
+					fight goes on. Build cards raise archer, mage, artillery, wall and workshop towers on the tiles and level them
+					up; ability cards fire every tower of a kind near the spot you choose; spells like Gust, Snare and Pitfall deal
+					with goblins too heavy to lift. The rest you can still grab and throw.
+				</p>
+				<p>
+					Fights string together into a run across lands, each mapped like a roguelike, with elites, merchants, events and
+					rest stops on the way to the land's giant. Win a fight to add a card to your deck; gold from kills builds towers
+					and buys cards, and towers stand for the whole run. The towers, goblins and backdrops are painted, then animated
+					as cut-out puppets.
+				</p>
+			</Entry>
+
+			<Entry
 				name="Fianchetto"
 				id="fianchetto"
 				tagline="A chess card game"
@@ -96,24 +124,6 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				</p>
 			</Entry>
 
-			<Entry
-				name="Castle Drop"
-				id="castle-drop"
-				tagline="Physics-first castle defense"
-				status="Prototype"
-				meta="Godot 4 · private repository"
-			>
-				<p>
-					A castle defense where the physics is the game rather than the garnish. Clear a siege, draft a tower, place it
-					on a rampart slot, then use that tower's abilities to amplify what you were already doing by hand — grabbing
-					attackers, throwing them, and turning enemies into collisions with each other.
-				</p>
-				<p>
-					Progression is castle upgrades only; there is no meta-currency layer bolted on beside it. Waves, enemies,
-					towers and tuning are all authored as Godot resources in the Inspector, so the balance lives in the editor
-					rather than in code.
-				</p>
-			</Entry>
 
 		</section>
 
@@ -155,11 +165,6 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 		font: 11px var(--mono);
 		padding: 18px 0;
 	}
-	.gallery-castle {
-		background: #bbdce0;
-		display: grid;
-		place-items: center;
-	}
 	.gallery-termcade {
 		background: var(--ink-deep);
 		border: 1px solid var(--line-soft);
@@ -173,10 +178,8 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	.gallery-termcade b {
 		font-weight: 400;
 	}
-	.gallery-castle img {
-		width: 100%;
-		height: 95%;
-		object-fit: contain;
+	.gallery-castle {
+		object-position: 22% 50%;
 	}
 	@media (max-width: 600px) {
 		.game-gallery {
