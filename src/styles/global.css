@@ -1,21 +1,24 @@
-/* The studio folio uses warm paper and forest tones; each game keeps its own original artwork. */
+/* The studio is set on the charcoal its ibis was painted for: warm bone ink, quiet greys and a single seal red,
+   used sparingly. Each game keeps its own original artwork and colours. */
 :root {
-	--ink: #f4f3eb;
-	--ink-deep: #e8ecdf;
-	--raised: #eaeee2;
-	--line: #c6cebd;
-	--line-soft: #dce1d3;
-	--paper: #253729;
-	--bone: #253729;
-	--quiet: #596452;
-	--faint: #67705e;
+	--ink: #252424;
+	--ink-deep: #1d1c1c;
+	--raised: #2c2b2a;
+	--line: #4a4744;
+	--line-soft: #363433;
+	--paper: #ece8dd;
+	--bone: #f4f1e8;
+	--quiet: #b8b1a5;
+	--faint: #8f887e;
+	--seal: #c4553e;
 	--sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+	--serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
 	--mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 	font-family: var(--sans);
 	background: var(--ink);
 	color: var(--paper);
 	font-synthesis: none;
-	color-scheme: light;
+	color-scheme: dark;
 }
 
 * {
@@ -44,7 +47,7 @@ img {
 	height: auto;
 }
 ::selection {
-	background: var(--bone);
+	background: var(--paper);
 	color: var(--ink);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -52,14 +55,13 @@ img {
 	*::before,
 	*::after {
 		scroll-behavior: auto !important;
-		animation-duration: 0.01ms !important;
 		transition-duration: 0.01ms !important;
 	}
 }
 
 a:focus-visible,
 summary:focus-visible {
-	outline: 3px solid currentColor;
+	outline: 2px solid var(--paper);
 	outline-offset: 5px;
 }
 
@@ -69,14 +71,29 @@ summary:focus-visible {
 	left: 12px;
 	z-index: 100;
 	padding: 12px 18px;
-	background: #fff;
-	color: #111;
+	background: var(--paper);
+	color: var(--ink);
 	transform: translateY(-160%);
 }
 .skip-link:focus {
 	transform: translateY(0);
 }
 
-:root {
-	--faint: #aba49b;
+/* A small seal-red square, like a hanko pressed beside a brush painting. */
+.seal {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	background: var(--seal);
+	border-radius: 1px;
+	flex: none;
+}
+
+/* Inline code reads as a pale wash on the charcoal. */
+:where(p, li) code {
+	border-radius: 3px;
+	background: var(--raised);
+	padding: 1px 5px;
+	color: var(--paper);
+	font: 0.87em var(--mono);
 }

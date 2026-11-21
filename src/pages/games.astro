@@ -209,9 +209,8 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	.eyebrow span {
 		width: 7px;
 		height: 7px;
-		border-radius: 50%;
-		background: var(--bone);
-		box-shadow: 0 0 0 4px rgba(247, 242, 233, 0.1);
+		border-radius: 1px;
+		background: var(--seal);
 	}
 	/* Narrow enough that the line breaks where the sentence does, between the
 		   roman half and the italic one, instead of mid-phrase. */
@@ -226,7 +225,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	}
 	h1 em {
 		color: var(--quiet);
-		font-family: Georgia, 'Times New Roman', serif;
+		font-family: var(--serif);
 		font-weight: 400;
 	}
 	.lede {
@@ -309,11 +308,14 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	}
 
 	h1 {
-		font-family: Georgia, serif;
-		font-size: clamp(52px, 6vw, 84px);
-		color: #3e5e40;
+		font: 400 clamp(48px, 6vw, 80px) / 1.04 var(--serif);
+		letter-spacing: -0.02em;
+		color: var(--bone);
+	}
+	h1 em {
+		font-style: italic;
 	}
 	.entry-list {
-		border-top: 1px solid #6a5142;
+		border-top: 1px solid var(--line-soft);
 	}
 </style>

@@ -6,7 +6,16 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!.astro"]
+    "includes": [
+      "**",
+      "!dist",
+      "!.astro",
+      "!src/styles/mark.css",
+      "!src/components/AviorMark.astro",
+      "!art/ibis-2026/locked/sprite.json",
+      "!art/ibis-2026/locked/rig.json",
+      "!art/ibis-2026/locked/geometry.json"
+    ]
   },
   "formatter": {
     "enabled": true,

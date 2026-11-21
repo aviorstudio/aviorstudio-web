@@ -131,9 +131,9 @@ const isExternal = (href: string) => href.startsWith('http');
 	}
 	.entry-body :global(code) {
 		border-radius: 3px;
-		background: #e2e9d7;
+		background: var(--raised);
 		padding: 1px 5px;
-		color: #596452;
+		color: var(--quiet);
 		font: 12.5px var(--mono);
 	}
 
@@ -216,12 +216,14 @@ const isExternal = (href: string) => href.startsWith('http');
 		padding: 48px 0;
 	}
 	.entry-head h2 {
-		font-family: Georgia, serif;
-		color: #3e5e40;
+		font-family: var(--serif);
+		font-weight: 400;
+		letter-spacing: -0.01em;
+		color: var(--bone);
 		font-size: 36px;
 	}
 	.links a {
-		color: #3e5e40;
+		color: var(--bone);
 	}
 	@media (max-width: 980px) {
 		.entry {
