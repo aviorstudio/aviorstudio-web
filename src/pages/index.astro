@@ -1,13 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import revikTitle from '../assets/revik-title.png';
 import AviorMark from '../components/AviorMark.astro';
 import Full from '../layouts/Full.astro';
 ---
 
 <Full
 	title="Avior Studio — Small worlds. Useful tools."
-	description="Independent games, a terminal arcade, and developer tools built from the work of making them. Explore Fields of Revik, Castle Drop, Prizm, gdam and gdlint."
+	description="Independent games, a terminal arcade, and developer tools built from the work of making them. Play termcade, meet Fianchetto and Castle Drop, and explore gdam and gdlint."
 >
 	<main id="main-content">
 		<section class="cover">
@@ -30,23 +28,22 @@ import Full from '../layouts/Full.astro';
 				<a href="/games">All games →</a>
 			</div>
 			<div class="game-grid">
-				<a class="game-art revik" href="https://app.revik.gg">
-					<div class="revik-scene">
-						<Image
-							src={revikTitle}
-							format="webp"
-							quality={80}
-							alt="A fox knight overlooking the colourful hex-tile valley of Fields of Revik"
-							width="768"
+				<a class="game-art fianchetto" href="/games#fianchetto">
+					<div class="fianchetto-scene">
+						<img
+							src="/art/fianchetto-black-queen.webp"
+							alt="Fianchetto's Black Queen between two dark rooks in a ruined hall"
+							width="680"
+							height="441"
 							loading="lazy"
 						/>
 					</div>
 					<div class="game-caption">
 						<div>
-							<h3>Fields of Revik</h3>
-							<p>Enter the valley in your browser.</p>
+							<h3>Fianchetto</h3>
+							<p>Start with a king. Play the rest from your hand.</p>
 						</div>
-						<span>PLAY NOW ↗</span>
+						<span>IN DEVELOPMENT</span>
 					</div>
 				</a>
 				<a class="game-art castle" href="/games#castle-drop">
@@ -61,21 +58,6 @@ import Full from '../layouts/Full.astro';
 						<div>
 							<h3>Castle Drop</h3>
 							<p>Grab. Throw. Defend your castle.</p>
-						</div>
-						<span>PROTOTYPE</span>
-					</div>
-				</a>
-				<a class="game-art prizm" href="/games#prizm">
-					<div class="prizm-scene">
-						<span class="beam one"></span>
-						<span class="beam two"></span>
-						<img class="crystal" src="/art/crystal.svg" alt="Prizm's faceted purple crystal" />
-						<img class="game-logo" src="/art/prizm-logo.png" alt="Prizm" />
-					</div>
-					<div class="game-caption">
-						<div>
-							<h3>Prizm</h3>
-							<p>A little light. A new way through.</p>
 						</div>
 						<span>PROTOTYPE</span>
 					</div>
@@ -137,7 +119,7 @@ import Full from '../layouts/Full.astro';
 					<div>
 						<h3>spritesmith</h3>
 						<p>
-							Game art from Python to the screen. The dragon and crystals above come straight from the games, and the
+							Game art from Python to the screen. The dragon above comes straight from Castle Drop, and the
 							mark above is one of its cut-out sprites.
 						</p>
 					</div>
@@ -255,7 +237,6 @@ import Full from '../layouts/Full.astro';
 	.game-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: auto auto;
 		gap: 26px 30px;
 	}
 	.game-art {
@@ -264,35 +245,30 @@ import Full from '../layouts/Full.astro';
 		display: flex;
 		flex-direction: column;
 	}
-	.game-art.revik {
-		grid-row: span 2;
-	}
-	.revik-scene,
-	.castle-scene,
-	.prizm-scene {
+	.fianchetto-scene,
+	.castle-scene {
 		position: relative;
 		overflow: hidden;
 		border-radius: 3px;
 	}
-	.revik-scene {
-		flex: 1;
-		min-height: 420px;
+	.fianchetto-scene {
+		background: #3a2b33;
 	}
-	.revik-scene :global(img) {
+	.fianchetto-scene img {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center 55%;
+		object-position: center 30%;
 		transition: transform 0.6s;
 	}
-	.game-art.revik:hover .revik-scene :global(img) {
-		transform: scale(1.025);
+	.game-art.fianchetto:hover .fianchetto-scene img {
+		transform: scale(1.03);
 	}
-	.castle-scene,
-	.prizm-scene {
-		height: 300px;
+	.fianchetto-scene,
+	.castle-scene {
+		height: 340px;
 	}
 	.castle-scene {
 		background: linear-gradient(#bddeea, #e7ecd9);
@@ -331,39 +307,6 @@ import Full from '../layouts/Full.astro';
 	}
 	.game-art:hover .dragon {
 		transform: translateY(-8px) rotate(-2deg);
-	}
-	.prizm-scene {
-		background-color: #222837;
-		background-image:
-			linear-gradient(#9dacc415 1px, transparent 1px), linear-gradient(90deg, #9dacc415 1px, transparent 1px);
-		background-size: 48px 48px;
-	}
-	.prizm-scene .crystal {
-		position: absolute;
-		width: 58%;
-		right: -2%;
-		bottom: -2%;
-		filter: drop-shadow(0 0 30px #aa66ff40);
-	}
-	.prizm-scene .game-logo {
-		width: 44%;
-		top: 24px;
-	}
-	.beam {
-		position: absolute;
-		background: #cb77ff;
-		box-shadow: 0 0 18px #d278ff;
-		width: 60%;
-		height: 3px;
-		top: 68%;
-		left: -10%;
-		transform: rotate(-20deg);
-	}
-	.beam.two {
-		left: 58%;
-		top: 33%;
-		width: 55%;
-		transform: rotate(-62deg);
 	}
 	.game-caption {
 		display: flex;
@@ -483,9 +426,9 @@ import Full from '../layouts/Full.astro';
 		.tool-story {
 			gap: 40px;
 		}
-		.castle-scene,
-		.prizm-scene {
-			height: 260px;
+		.fianchetto-scene,
+		.castle-scene {
+			height: 280px;
 		}
 		.arcade-strip {
 			padding: 40px;
@@ -512,12 +455,6 @@ import Full from '../layouts/Full.astro';
 		.tool-story,
 		.arcade-strip {
 			grid-template-columns: 1fr;
-		}
-		.game-art.revik {
-			grid-row: auto;
-		}
-		.revik-scene {
-			min-height: 380px;
 		}
 		.section-line h2 {
 			font-size: 24px;
