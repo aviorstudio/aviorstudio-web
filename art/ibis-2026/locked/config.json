@@ -1,0 +1,42 @@
+{
+  "id": "avior-ibis",
+  "name": "Avior ibis",
+  "original": "painting.png",
+  "waterline": 590,
+  "line_len": 100,
+  "line_band": 18,
+  "neck_cut": [[540, 318], [596, 392]],
+  "connected": true,
+  "mirror_reflection": { "squash": 0.75, "opacity": 0.45 },
+  "refl_bands": 15,
+  "band_seam_px": 7.5,
+  "split_ripples": true,
+  "leg_fade": { "above": 55, "below": 45, "gap": 8 },
+  "motion": {
+    "frames": 64,
+    "ms": 50,
+    "dip_deg": 0,
+    "body_dy": 0.12,
+    "ripple_px": 0.5,
+    "ripple_stretch": 0.006,
+    "ripple_fade": 0.05,
+    "band_phase": 0.34,
+    "stroke_px": 0.7,
+    "sweep_deg": 0,
+    "sweep_breathe": 0,
+    "water_cycles": 1
+  },
+  "ring_draw": {
+    "segments": 15,
+    "rows": 3,
+    "seam": 0.5,
+    "row_seam": 0.5,
+    "soft": 0.05,
+    "jitter": 0.05,
+    "row_lead": [0.025, 0.0, -0.02],
+    "draw": 0.32,
+    "fade_start": 0.8,
+    "fade": "opacity"
+  },
+  "scene_offset": [-3, -5]
+}

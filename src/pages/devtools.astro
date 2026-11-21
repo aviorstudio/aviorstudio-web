@@ -212,26 +212,26 @@ const addons = [
 	.eyebrow {
 		font: 10px var(--mono);
 		letter-spacing: 0.12em;
-		color: #637357;
+		color: var(--quiet);
 	}
 	.tools-cover h1 {
-		font-size: clamp(55px, 7vw, 90px);
-		line-height: 1.02;
-		letter-spacing: -0.06em;
-		font-weight: 550;
+		font: 400 clamp(52px, 6.6vw, 86px) / 1.04 var(--serif);
+		letter-spacing: -0.02em;
+		color: var(--bone);
 		margin: 30px 0;
 	}
 	.tools-cover h1 em,
 	.art-workbench h2 em {
-		font-family: Georgia, serif;
+		font-family: var(--serif);
 		font-weight: 400;
-		color: #637357;
+		font-style: italic;
+		color: var(--quiet);
 	}
 	.tools-cover > p:last-child {
 		font-size: 18px;
 		line-height: 1.7;
 		max-width: 600px;
-		color: #596452;
+		color: var(--quiet);
 	}
 	.featured-tools {
 		display: grid;
@@ -239,33 +239,29 @@ const addons = [
 		gap: 25px;
 	}
 	.featured-tools article {
-		background: #dce6d0;
-		border: 1px solid #c3d1b7;
+		background: var(--raised);
+		border: 1px solid var(--line-soft);
+		border-radius: 3px;
 		padding: 35px;
-	}
-	.featured-tools article:nth-child(2) {
-		background: #e6e1d2;
-		border-color: #d4ccba;
 	}
 	.tool-index {
 		font: 10px var(--mono);
-		color: #637357;
+		color: var(--quiet);
 	}
 	.featured-tools h2 {
-		font-size: 40px;
-		font-weight: 600;
-		letter-spacing: -0.04em;
+		font: 400 40px var(--serif);
+		color: var(--bone);
 		margin: 25px 0 20px;
 	}
 	.featured-tools p {
 		font-size: 15px;
 		line-height: 1.7;
-		color: #596452;
+		color: var(--quiet);
 		max-width: 430px;
 	}
 	.tool-sample {
 		padding: 22px;
-		background: #f4f3eb;
+		background: var(--ink-deep);
 		margin: 25px 0;
 	}
 	.tool-sample code {
@@ -273,40 +269,40 @@ const addons = [
 		overflow-wrap: anywhere;
 	}
 	.tool-sample span {
-		color: #7a735e;
+		color: var(--faint);
 	}
 	.featured-tools a {
 		display: inline-block;
 		margin: 0 20px 8px 0;
 		font-size: 12px;
 		text-underline-offset: 5px;
-		color: #253729;
+		color: var(--paper);
 	}
 	.art-workbench {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 60px;
 		align-items: center;
-		background: #20382b;
-		color: #e8eedf;
+		background: var(--ink-deep);
+		border: 1px solid var(--line-soft);
+		border-radius: 3px;
+		color: var(--paper);
 		padding: 40px;
 	}
 	.art-workbench .eyebrow {
-		color: #b2c899;
+		color: var(--quiet);
 	}
 	.art-workbench h2 {
-		font-size: 45px;
-		line-height: 1.1;
-		letter-spacing: -0.04em;
-		font-weight: 500;
+		font: 400 45px / 1.1 var(--serif);
+		color: var(--bone);
 	}
 	.art-workbench h2 em {
-		color: #b2c899;
+		color: var(--quiet);
 	}
 	.art-workbench p:not(.eyebrow) {
 		font-size: 14px;
 		line-height: 1.7;
-		color: #bbc7b0;
+		color: var(--quiet);
 	}
 	.vector-preview {
 		display: flex;
@@ -327,19 +323,17 @@ const addons = [
 		margin-bottom: 35px;
 	}
 	.catalog-heading h2 {
-		font-size: 40px;
-		line-height: 1.1;
-		font-weight: 550;
-		letter-spacing: -0.04em;
+		font: 400 40px / 1.1 var(--serif);
+		color: var(--bone);
 		margin: 22px 0 0;
 	}
 	.catalog-heading p:not(.eyebrow) {
 		font-size: 15px;
 		line-height: 1.7;
-		color: #596452;
+		color: var(--quiet);
 	}
 	.catalog-heading a {
-		color: #253729;
+		color: var(--paper);
 		font-size: 12px;
 		text-underline-offset: 5px;
 	}
@@ -349,15 +343,16 @@ const addons = [
 		gap: 20px;
 	}
 	.addon-grid article {
-		background: #eceee2;
-		border: 1px solid #d0d8c5;
+		background: var(--raised);
+		border: 1px solid var(--line-soft);
+		border-radius: 3px;
 		padding: 25px;
 		display: flex;
 		flex-direction: column;
 	}
 	.addon-number {
 		font: 9px var(--mono);
-		color: #758068;
+		color: var(--faint);
 	}
 	.addon-grid h3 {
 		font: 600 17px var(--mono);
@@ -367,20 +362,20 @@ const addons = [
 		font-size: 14px;
 		line-height: 1.6;
 		margin: 0 0 20px;
-		color: #596452;
+		color: var(--quiet);
 		min-height: 44px;
 	}
 	.addon-grid details {
 		font-size: 12px;
 		line-height: 1.7;
-		color: #596452;
+		color: var(--quiet);
 		margin-bottom: 20px;
 	}
 	.addon-grid summary {
 		cursor: pointer;
 		text-decoration: underline;
 		text-underline-offset: 4px;
-		color: #526447;
+		color: var(--paper);
 	}
 	.addon-grid details p {
 		font-size: 12px;
@@ -395,12 +390,12 @@ const addons = [
 	}
 	.addon-grid a {
 		font-size: 11px;
-		color: #253729;
+		color: var(--paper);
 		margin-top: auto;
 		text-underline-offset: 5px;
 	}
 	.tools-outro {
-		border-top: 1px solid #c6cebd;
+		border-top: 1px solid var(--line-soft);
 		padding: 35px 0;
 		display: flex;
 		align-items: center;
@@ -408,13 +403,12 @@ const addons = [
 		gap: 30px;
 	}
 	.tools-outro h2 {
-		font-size: 26px;
-		font-weight: 500;
-		letter-spacing: -0.025em;
+		font: 400 28px var(--serif);
+		color: var(--bone);
 	}
 	.tools-outro a {
 		font-size: 13px;
-		color: #253729;
+		color: var(--paper);
 		text-underline-offset: 5px;
 	}
 	@media (max-width: 900px) {

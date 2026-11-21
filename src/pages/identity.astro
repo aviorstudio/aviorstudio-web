@@ -1,16 +1,18 @@
 ---
+import AviorMark from '../components/AviorMark.astro';
 import Full from '../layouts/Full.astro';
 
 const earlier = [
-	{ key: 'badge', name: 'Game badge' },
-	{ key: 'pond', name: 'Pond emblem' },
-	{ key: 'seal', name: 'Studio seal' },
+	{ src: '/art/identity/enso-cradle.svg', name: 'Enso cradle, 2026' },
+	{ src: '/art/identity/ibis-badge.svg', name: 'Game badge' },
+	{ src: '/art/identity/ibis-pond.svg', name: 'Pond emblem' },
+	{ src: '/art/identity/ibis-seal.svg', name: 'Studio seal' },
 ];
 ---
 
 <Full
   title="Avior Studio — Identity"
-  description="The Avior Studio mark: a white ibis and its reflection cradled by a brush sweep."
+  description="The Avior Studio mark: a dry-brush ibis standing in still water inside a dry-brush ring, painted once and animated as a cut-out sprite."
   noindex
 >
   <main id="main-content" class="identity">
@@ -18,50 +20,51 @@ const earlier = [
       ← Back to the studio
     </a>
     <p class="eyebrow">AVIOR STUDIO / IDENTITY</p>
-    <h1>An ibis, cradled.</h1>
+    <h1>An ibis, <em>at rest.</em></h1>
     <p class="intro">
-      One brush sweep thickens under a white ibis standing in still water. The mark is a
-      flat silhouette drawn with spritesmith, its outline lightly smoothed and every end rounded, so it
-      exports at any size with no raster source.
+      A white ibis stands in still water inside a ring laid down with a dry brush. It was painted once,
+      on a transparent ground, then cut into parts and animated as a spritesmith cut-out sprite: the
+      ring paints itself in, rests and fades, while the reflection breathes in a slow wave.
     </p>
 
     <section class="mark" aria-labelledby="mark-title">
       <div class="hero">
-        <img src="/art/identity/enso-cradle.svg" alt="A white ibis standing above its reflection, cradled by a brush sweep" width="512" height="512" />
+        <AviorMark />
       </div>
       <div class="copy">
         <h2 id="mark-title">The mark</h2>
         <p>
-          White on black. The sweep starts thin at the top left, passes under the water and ends in a
-          round cap at the right, so the bird reads as held rather than enclosed.
+          Bone white on charcoal. The bird holds still and the water moves. The ring opens at the lower left,
+          so the bird reads as held rather than enclosed. Where motion is unwelcome, the mark rests with its
+          ring complete.
         </p>
         <div class="bar">
-          <img src="/logo-mark.svg" alt="" width="40" height="40" />
+          <img src="/mark/mark-96.png" alt="" width="44" height="44" />
           <span>Avior Studio</span>
         </div>
         <div class="icons">
           <span>Tile sizes</span>
           {[48, 32, 16].map((size) => (
             <div>
-              <img src="/logo-mark.svg" alt="" width={size} height={size} />
+              <img src="/favicon.png" alt="" width={size} height={size} />
               <small>{size}px</small>
             </div>
           ))}
         </div>
         <p class="downloads">
-          <a href="/art/identity/enso-cradle.svg" download>Mark, transparent SVG</a>
-          <a href="/art/identity/enso-cradle-tile.svg" download>Tile SVG</a>
+          <a href="/mark/mark.png" download>Mark, transparent PNG</a>
+          <a href="/logo-mark.png" download>Tile PNG</a>
           <a href="/logo.png" download>Share image PNG</a>
         </p>
       </div>
     </section>
 
     <h2 class="earlier-title">Earlier directions</h2>
-    <p class="earlier-intro">Three coloured ibis directions from the first exploration, kept for reference.</p>
+    <p class="earlier-intro">The vector mark this one replaces, and three coloured directions from the first exploration, kept for reference.</p>
     <div class="earlier">
       {earlier.map((variant) => (
         <figure>
-          <img src={`/art/identity/ibis-${variant.key}.svg`} alt={`${variant.name}: a coloured ibis standing in water`} width="256" height="256" />
+          <img src={variant.src} alt={`${variant.name}: an earlier ibis mark`} width="256" height="256" />
           <figcaption>{variant.name}</figcaption>
         </figure>
       ))}
@@ -73,10 +76,10 @@ const earlier = [
   .identity {
     width: min(1180px, calc(100% - 40px));
     margin: 32px auto 80px;
-    color: #203c42;
+    color: var(--bone);
   }
   .back {
-    color: #42665f;
+    color: var(--quiet);
     font-size: 14px;
   }
   .eyebrow {
@@ -85,10 +88,11 @@ const earlier = [
     letter-spacing: 0.08em;
   }
   h1 {
-    font-size: clamp(36px, 5vw, 64px);
-    letter-spacing: -0.045em;
-    line-height: 1.08;
+    font: 400 clamp(40px, 5vw, 66px) / 1.08 var(--serif);
     margin: 0 0 22px;
+  }
+  h1 em {
+    color: var(--quiet);
   }
   .intro {
     max-width: 640px;
@@ -99,19 +103,14 @@ const earlier = [
   .mark {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    border: 1px solid #d6d8c9;
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
     overflow: hidden;
-    background: #fffaf0;
+    background: var(--raised);
   }
   .hero {
-    background: #000;
-    padding: 48px;
-  }
-  .hero img {
-    display: block;
-    width: 100%;
-    height: auto;
+    background: var(--ink);
+    padding: 32px;
   }
   .copy {
     padding: 28px;
@@ -121,8 +120,7 @@ const earlier = [
   }
   h2 {
     margin: 0;
-    font-size: 25px;
-    letter-spacing: -0.025em;
+    font: 400 28px var(--serif);
   }
   .copy > p {
     margin: 0;
@@ -134,11 +132,9 @@ const earlier = [
     align-items: center;
     gap: 12px;
     padding: 16px 20px;
-    border: 1px solid #d6d8c9;
+    border: 1px solid var(--line);
     border-radius: 10px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font: 500 21px var(--serif);
   }
   .icons {
     display: flex;
@@ -165,7 +161,7 @@ const earlier = [
     gap: 8px 20px;
   }
   .downloads a {
-    color: #28594d;
+    color: var(--paper);
     font-size: 14px;
   }
   .earlier-title {
@@ -177,14 +173,14 @@ const earlier = [
   }
   .earlier {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
   }
   .earlier figure {
     margin: 0;
     padding: 20px;
-    background: #f0ecdf;
-    border-radius: 12px;
+    background: var(--ink-deep);
+    border-radius: 4px;
     text-align: center;
   }
   .earlier img {
@@ -200,9 +196,11 @@ const earlier = [
     .identity {
       width: calc(100% - 28px);
     }
-    .mark,
-    .earlier {
+    .mark {
       grid-template-columns: 1fr;
+    }
+    .earlier {
+      grid-template-columns: 1fr 1fr;
     }
     .hero {
       padding: 32px 64px;
