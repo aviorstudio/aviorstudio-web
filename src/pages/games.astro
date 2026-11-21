@@ -1,321 +1,625 @@
 ---
-import octicons from '@primer/octicons';
-import Entry from '../components/Entry.astro';
 import Full from '../layouts/Full.astro';
-
-const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 ---
 
 <Full
 	title="Games — Avior Studio"
-	description="Play termcade in your terminal and Castle Drop in your browser, and meet Fianchetto, the chess card game in development at Avior Studio."
+	description="Play termcade in your terminal and Castle Drop in your browser, and peek at Fianchetto, the chess card game taking shape at Avior Studio."
 >
-	<main id="main-content">
-		<section class="page-hero">
-			<p class="eyebrow">
-				<span></span> Games
-			</p>
+	<main id="main-content" class="games">
+		<section class="hero">
+			<p class="eyebrow"><span class="seal"></span> Games</p>
 			<h1>
-				Step into <em>another world.</em>
+				Pick a world.
+				<em>Lose an afternoon.</em>
 			</h1>
 			<p class="lede">
-				Play the terminal arcade, or hold the castle wall in your browser. Fianchetto, a chess card game, is taking shape
-				in the studio.
+				An arcade that lives in your terminal, a castle that really needs you to throw goblins at things, and a chess
+				game where you start with nothing but your king.
 			</p>
+
+			<nav class="shelf" aria-label="Jump to a game">
+				<a class="cart termcade" href="#termcade">
+					<span class="cart-art" aria-hidden="true">
+						<svg class="invader" viewBox="0 0 11 8" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="2" y="0" width="1" height="1" /><rect x="8" y="0" width="1" height="1" /><rect x="3" y="1" width="1" height="1" /><rect x="7" y="1" width="1" height="1" /><rect x="2" y="2" width="1" height="1" /><rect x="3" y="2" width="1" height="1" /><rect x="4" y="2" width="1" height="1" /><rect x="5" y="2" width="1" height="1" /><rect x="6" y="2" width="1" height="1" /><rect x="7" y="2" width="1" height="1" /><rect x="8" y="2" width="1" height="1" /><rect x="1" y="3" width="1" height="1" /><rect x="2" y="3" width="1" height="1" /><rect x="4" y="3" width="1" height="1" /><rect x="5" y="3" width="1" height="1" /><rect x="6" y="3" width="1" height="1" /><rect x="8" y="3" width="1" height="1" /><rect x="9" y="3" width="1" height="1" /><rect x="0" y="4" width="1" height="1" /><rect x="1" y="4" width="1" height="1" /><rect x="2" y="4" width="1" height="1" /><rect x="3" y="4" width="1" height="1" /><rect x="4" y="4" width="1" height="1" /><rect x="5" y="4" width="1" height="1" /><rect x="6" y="4" width="1" height="1" /><rect x="7" y="4" width="1" height="1" /><rect x="8" y="4" width="1" height="1" /><rect x="9" y="4" width="1" height="1" /><rect x="10" y="4" width="1" height="1" /><rect x="0" y="5" width="1" height="1" /><rect x="2" y="5" width="1" height="1" /><rect x="3" y="5" width="1" height="1" /><rect x="4" y="5" width="1" height="1" /><rect x="5" y="5" width="1" height="1" /><rect x="6" y="5" width="1" height="1" /><rect x="7" y="5" width="1" height="1" /><rect x="8" y="5" width="1" height="1" /><rect x="10" y="5" width="1" height="1" /><rect x="0" y="6" width="1" height="1" /><rect x="2" y="6" width="1" height="1" /><rect x="8" y="6" width="1" height="1" /><rect x="10" y="6" width="1" height="1" /><rect x="3" y="7" width="1" height="1" /><rect x="4" y="7" width="1" height="1" /><rect x="6" y="7" width="1" height="1" /><rect x="7" y="7" width="1" height="1" /></svg>
+					</span>
+					<span class="cart-name">termcade</span>
+					<span class="sticker">Play now</span>
+				</a>
+				<a class="cart castle" href="#castle-drop">
+					<img class="cart-art" src="/art/castledrop-fight.webp" alt="" width="1280" height="720" loading="lazy" />
+					<span class="cart-name">Castle Drop</span>
+					<span class="sticker">Play now</span>
+				</a>
+				<a class="cart fianchetto" href="#fianchetto">
+					<img class="cart-art" src="/art/fianchetto-queen.webp" alt="" width="445" height="443" loading="lazy" />
+					<span class="cart-name">Fianchetto</span>
+					<span class="sticker">Coming soon</span>
+				</a>
+			</nav>
 		</section>
 
-		<section class="game-gallery" aria-label="Art from our games">
-			<a href="#termcade">
-				<div class="gallery-termcade" aria-hidden="true">
-					<span>▟▙</span>
-					<b>▐▛▀▜▌</b>
-					<span>▝▘ ▝▘</span>
+		<section class="game termcade" id="termcade" aria-labelledby="termcade-title">
+			<div class="art">
+				<div class="terminal" role="img" aria-label="A terminal window running termcade, with a pixel space invader">
+					<div class="bar"><i></i><i></i><i></i><span>~/arcade</span></div>
+					<div class="screen">
+						<svg class="invader big" viewBox="0 0 11 8" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="2" y="0" width="1" height="1" /><rect x="8" y="0" width="1" height="1" /><rect x="3" y="1" width="1" height="1" /><rect x="7" y="1" width="1" height="1" /><rect x="2" y="2" width="1" height="1" /><rect x="3" y="2" width="1" height="1" /><rect x="4" y="2" width="1" height="1" /><rect x="5" y="2" width="1" height="1" /><rect x="6" y="2" width="1" height="1" /><rect x="7" y="2" width="1" height="1" /><rect x="8" y="2" width="1" height="1" /><rect x="1" y="3" width="1" height="1" /><rect x="2" y="3" width="1" height="1" /><rect x="4" y="3" width="1" height="1" /><rect x="5" y="3" width="1" height="1" /><rect x="6" y="3" width="1" height="1" /><rect x="8" y="3" width="1" height="1" /><rect x="9" y="3" width="1" height="1" /><rect x="0" y="4" width="1" height="1" /><rect x="1" y="4" width="1" height="1" /><rect x="2" y="4" width="1" height="1" /><rect x="3" y="4" width="1" height="1" /><rect x="4" y="4" width="1" height="1" /><rect x="5" y="4" width="1" height="1" /><rect x="6" y="4" width="1" height="1" /><rect x="7" y="4" width="1" height="1" /><rect x="8" y="4" width="1" height="1" /><rect x="9" y="4" width="1" height="1" /><rect x="10" y="4" width="1" height="1" /><rect x="0" y="5" width="1" height="1" /><rect x="2" y="5" width="1" height="1" /><rect x="3" y="5" width="1" height="1" /><rect x="4" y="5" width="1" height="1" /><rect x="5" y="5" width="1" height="1" /><rect x="6" y="5" width="1" height="1" /><rect x="7" y="5" width="1" height="1" /><rect x="8" y="5" width="1" height="1" /><rect x="10" y="5" width="1" height="1" /><rect x="0" y="6" width="1" height="1" /><rect x="2" y="6" width="1" height="1" /><rect x="8" y="6" width="1" height="1" /><rect x="10" y="6" width="1" height="1" /><rect x="3" y="7" width="1" height="1" /><rect x="4" y="7" width="1" height="1" /><rect x="6" y="7" width="1" height="1" /><rect x="7" y="7" width="1" height="1" /></svg>
+						<p class="score" aria-hidden="true">HI 004200 · 1UP</p>
+						<p class="prompt" aria-hidden="true">$ termcade<span class="cursor"></span></p>
+					</div>
 				</div>
-				<span>termcade · play now ↓</span>
-			</a>
-			<a href="#castle-drop">
-				<img
-					class="gallery-castle"
-					src="/art/castledrop-fight.webp"
-					alt="Castle Drop goblins marching on the castle wall past an archer tower"
-					width="1280"
-					height="720"
-					loading="lazy"
-				/>
-				<span>Castle Drop · play now ↓</span>
-			</a>
-			<a href="#fianchetto">
-				<img
-					class="gallery-fianchetto"
-					src="/art/fianchetto-queen.webp"
-					alt="Fianchetto's ivory queen, crowned in gold, between candles"
-					width="445"
-					height="443"
-					loading="lazy"
-				/>
-				<span>Fianchetto · in development ↓</span>
-			</a>
-		</section>
-		<section class="entries">
-			<Entry
-				name="termcade"
-				id="termcade"
-				tagline="A terminal arcade"
-				status="Playable now"
-				available={true}
-				meta="Rust · Ratatui · Wasmtime"
-				command="termcade"
-				commandNote="Install a verified release; use a truecolor terminal at 80×24 or larger"
-				links={[{ href: 'https://github.com/aviorstudio/termcade', label: 'Source on GitHub' }]}
-			>
-				<p>
-					Classic games rendered at sub-cell resolution with block pixels, so a terminal cell becomes a 2×2 or 2×3 grid
-					of pixels and the playfield gets sharper than the font should allow. It ships with Asteroid, Tetris and
-					Brickough, playable offline the moment it starts.
+			</div>
+			<div class="copy">
+				<p class="sticker">Play now · in your terminal</p>
+				<h2 id="termcade-title">termcade</h2>
+				<p class="pitch">An arcade in the window you already have open.</p>
+				<ol class="beats">
+					<li><b>1</b> Type <code>termcade</code></li>
+					<li><b>2</b> Pick Asteroid, Tetris or Brickough</li>
+					<li><b>3</b> Get absolutely nothing done</li>
+				</ol>
+				<p class="more">
+					Block pixels squeeze two or three dots into every character, so the games look sharper than a terminal has any
+					right to. Every game runs in its own sandbox, and the same binary helps you make and share your own.
 				</p>
-				<p>
-					The arcade compiles no games into itself. Every game is a sandboxed WebAssembly package running under Wasmtime
-					with no filesystem and no network, so a broken one shows up dimmed on the menu with its reason rather than
-					taking the arcade down. The same binary is the dev kit: <code>termcade dev new you/mygame</code> scaffolds
-					one, <code>termcade dev build</code>
-					packages it, and anyone can publish for players to <code>termcade add</code>.
-				</p>
-			</Entry>
-
-			<Entry
-				name="Castle Drop"
-				id="castle-drop"
-				tagline="A card-driven castle defense"
-				status="Playable now"
-				available={true}
-				meta="Godot 4 · browser game"
-				links={[{ href: 'https://castledrop.avior.studio', label: 'Play in your browser' }]}
-			>
-				<p>
-					Goblins march down the rows of a five-by-nine field toward your castle wall, and a hand of cards refills as the
-					fight goes on. Build cards raise archer, mage, artillery, wall and workshop towers on the tiles and level them
-					up; ability cards fire every tower of a kind near the spot you choose; spells like Gust, Snare and Pitfall deal
-					with goblins too heavy to lift. The rest you can still grab and throw.
-				</p>
-				<p>
-					Fights string together into a run across lands, each mapped like a roguelike, with elites, merchants, events and
-					rest stops on the way to the land's giant. Win a fight to add a card to your deck; gold from kills builds towers
-					and buys cards, and towers stand for the whole run. The towers, goblins and backdrops are painted, then animated
-					as cut-out puppets.
-				</p>
-			</Entry>
-
-			<Entry
-				name="Fianchetto"
-				id="fianchetto"
-				tagline="A chess card game"
-				status="In development"
-				meta="Godot 4 · Rust rules core · private repository"
-			>
-				<p>
-					Every fight starts with your king alone on the board. Summon pieces and cast spells from a hand of cards, with
-					mana that grows by one each turn, then move each of your pieces once. Capture the enemy king to win; lose yours
-					and the fight is over. The enemy plays by the same rules, with its own deck, mana and pieces.
-				</p>
-				<p>
-					Two modes on one device: Gambit, a roguelike run of three fights where each win adds a card to your deck, and
-					Normal, where you build a twenty-card deck and face the computer opponent of your choice. The rules live in a
-					shared Rust core, laid out for a phone held upright like a chess app.
-				</p>
-			</Entry>
-
-
+				<div class="actions">
+					<a class="play" href="https://www.termca.de">Get termcade <span aria-hidden="true">↗</span></a>
+					<a class="side" href="https://github.com/aviorstudio/termcade">Source on GitHub ↗</a>
+				</div>
+			</div>
 		</section>
 
-		<section class="aside-note">
-			<p>
-				Fianchetto and Castle Drop run on the studio's own devtools — gdam pins the addons they share, gdlint checks
-				the GDScript.
-			</p>
-			<a class="ghost-cta" href="/devtools">
-				See the devtools <span class="icon" set:html={icon('arrow-right', 13)} />
-			</a>
+		<section class="game castle" id="castle-drop" aria-labelledby="castle-title">
+			<div class="art">
+				<figure class="frame">
+					<img
+						src="/art/castledrop-fight.webp"
+						alt="A Castle Drop fight: goblins march toward the castle wall past an archer tower, with a hand of cards below"
+						width="1280"
+						height="720"
+						loading="lazy"
+					/>
+				</figure>
+				<span class="burst" aria-hidden="true">Goblins!</span>
+			</div>
+			<div class="copy">
+				<p class="sticker">Play now · in your browser</p>
+				<h2 id="castle-title">Castle Drop</h2>
+				<p class="pitch">The goblins are coming. You have cards, towers and two very good throwing arms.</p>
+				<ol class="beats">
+					<li><b>1</b> Draw a hand of cards</li>
+					<li><b>2</b> Raise towers in the goblins' path</li>
+					<li><b>3</b> Grab a goblin. Throw it at the others.</li>
+				</ol>
+				<p class="more">
+					Spells blow goblins back, trip them up and drop them into pits. Each land is a winding map of fights, merchants
+					and surprises with a giant waiting at the end, and every win adds a card to your deck.
+				</p>
+				<div class="actions">
+					<a class="play" href="https://castledrop.avior.studio">Play in your browser <span aria-hidden="true">↗</span></a>
+				</div>
+			</div>
 		</section>
+
+		<section class="game fianchetto" id="fianchetto" aria-labelledby="fianchetto-title">
+			<div class="art">
+				<figure class="frame">
+					<img
+						src="/art/fianchetto-black-queen.webp"
+						alt="Fianchetto's Black Queen between two dark rooks in a ruined hall"
+						width="680"
+						height="441"
+						loading="lazy"
+					/>
+				</figure>
+				<img class="pop" src="/art/fianchetto-queen.webp" alt="" width="445" height="443" loading="lazy" />
+			</div>
+			<div class="copy">
+				<p class="sticker">In the workshop</p>
+				<h2 id="fianchetto-title">Fianchetto</h2>
+				<p class="pitch">Chess, except you start with a king and a hand of cards.</p>
+				<ol class="beats">
+					<li><b>1</b> Summon pieces from your hand</li>
+					<li><b>2</b> Cast spells: Pin, Fortress, Zugzwang</li>
+					<li><b>3</b> Take their king before they take yours</li>
+				</ol>
+				<p class="more">
+					Your mana grows every turn and every piece moves once. Run the gauntlet of three themed enemies, or build a deck
+					of your own and pick your opponent. It's built for a phone held upright, like a chess app.
+				</p>
+			</div>
+		</section>
+
+		<p class="outro">
+			Built with our own tools, and those are yours too: <a href="/devtools">peek at the workbench →</a>
+		</p>
 	</main>
 </Full>
 
 <style>
-	.game-gallery {
+	.games {
+		--accent: var(--paper);
 		width: min(1180px, calc(100% - 40px));
-		margin: 0 auto 70px;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 20px;
-	}
-	.game-gallery > a {
-		color: inherit;
-		text-decoration: none;
-		display: flex;
-		flex-direction: column;
-	}
-	.game-gallery > a > img,
-	.gallery-castle,
-	.gallery-termcade {
-		height: 320px;
-		width: 100%;
-		object-fit: cover;
-		object-position: center 40%;
-	}
-	.game-gallery > a > span {
-		font: 11px var(--mono);
-		padding: 18px 0;
-	}
-	.gallery-termcade {
-		background: var(--ink-deep);
-		border: 1px solid var(--line-soft);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: var(--paper);
-		font: 56px/1 var(--mono);
-	}
-	.gallery-termcade b {
-		font-weight: 400;
-	}
-	.gallery-castle {
-		object-position: 22% 50%;
-	}
-	@media (max-width: 600px) {
-		.game-gallery {
-			grid-template-columns: 1fr;
-		}
-		.game-gallery > a > img,
-		.gallery-castle,
-		.gallery-termcade {
-			height: 350px;
-		}
+		margin: 0 auto 60px;
 	}
 
-	.page-hero {
-		width: min(1180px, calc(100% - 40px));
-		margin: 60px auto 70px;
+	/* ---- Hero and the shelf of game cartridges ---- */
+	.hero {
+		padding: 46px 0 40px;
+		text-align: center;
 	}
 	.eyebrow {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
-		gap: 9px;
-		margin: 0 0 22px;
+		gap: 10px;
+		margin: 0;
 		color: var(--quiet);
-		font: 620 11px/1 var(--mono);
-		letter-spacing: 0.08em;
+		font: 500 11px var(--mono);
+		letter-spacing: 0.16em;
 		text-transform: uppercase;
 	}
-	.eyebrow span {
-		width: 7px;
-		height: 7px;
-		border-radius: 1px;
-		background: var(--seal);
-	}
-	/* Narrow enough that the line breaks where the sentence does, between the
-		   roman half and the italic one, instead of mid-phrase. */
 	h1 {
-		max-width: 640px;
-		margin: 0;
+		margin: 18px 0 20px;
 		color: var(--bone);
-		font-size: clamp(42px, 5.4vw, 68px);
-		font-weight: 590;
-		line-height: 0.99;
-		letter-spacing: -0.058em;
+		font: 400 clamp(46px, 6.4vw, 86px) / 1.02 var(--serif);
+		letter-spacing: -0.02em;
 	}
 	h1 em {
+		display: inline-block;
 		color: var(--quiet);
-		font-family: var(--serif);
-		font-weight: 400;
+		transform: rotate(-2deg);
 	}
 	.lede {
 		max-width: 620px;
-		margin: 28px 0 0;
+		margin: 0 auto;
 		color: var(--quiet);
-		font-size: 16px;
-		line-height: 1.7;
+		font-size: 18px;
+		line-height: 1.6;
+	}
+	.shelf {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 260px));
+		justify-content: center;
+		gap: 34px;
+		margin: 56px 0 0;
+	}
+	.cart {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: 12px 12px 16px;
+		border-radius: 14px;
+		background: var(--accent);
+		color: var(--ink);
+		text-decoration: none;
+		box-shadow: 0 18px 40px #0007;
+		transform: rotate(var(--tilt));
+		transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+	}
+	.cart:hover,
+	.cart:focus-visible {
+		transform: rotate(0deg) translateY(-10px) scale(1.04);
+	}
+	.cart.termcade {
+		--tilt: -4deg;
+	}
+	.cart.castle {
+		--tilt: 2deg;
+	}
+	.cart.fianchetto {
+		--tilt: -1.5deg;
+	}
+	.cart-art {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		border-radius: 8px;
+		object-fit: cover;
+		background: var(--ink-deep);
+	}
+	.cart.castle .cart-art {
+		object-position: 22% 50%;
+	}
+	.cart-name {
+		font: italic 400 26px var(--serif);
+		text-align: left;
+		padding-left: 4px;
+	}
+	.sticker {
+		display: inline-block;
+		width: max-content;
+		margin: 0;
+		padding: 6px 12px;
+		border-radius: 999px;
+		background: var(--ink);
+		color: var(--accent);
+		font: 700 11px var(--mono);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.cart .sticker {
+		position: absolute;
+		top: -12px;
+		right: -10px;
+		rotate: 8deg;
+		box-shadow: 0 4px 12px #0006;
+		animation: bob 3s ease-in-out infinite;
 	}
 
-	.entries {
-		width: min(1180px, calc(100% - 40px));
-		margin: 0 auto 90px;
+	/* ---- Each game has its own colour world ---- */
+	.termcade {
+		--accent: #a6e37f;
+		--wash: #16231a;
+	}
+	.castle {
+		--accent: #f4c45a;
+		--wash: #2a2618;
+	}
+	.fianchetto {
+		--accent: #e3a0b4;
+		--wash: #2c1d24;
 	}
 
-	.aside-note {
-		width: min(1180px, calc(100% - 40px));
-		margin: 0 auto 40px;
+	.game {
+		display: grid;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+		align-items: center;
+		gap: 64px;
+		margin: 80px 0 0;
+		padding: 56px;
+		border-radius: 28px;
+		background: var(--wash);
+		scroll-margin-top: 20px;
+	}
+	.game.castle .art {
+		order: 2;
+	}
+	.copy .sticker {
+		background: var(--accent);
+		color: var(--ink);
+	}
+	.game h2 {
+		margin: 18px 0 8px;
+		color: var(--bone);
+		font: 400 clamp(44px, 5vw, 64px) / 1 var(--serif);
+		letter-spacing: -0.02em;
+	}
+	.pitch {
+		margin: 0 0 26px;
+		color: var(--accent);
+		font: italic 400 22px / 1.35 var(--serif);
+	}
+	.beats {
+		display: grid;
+		gap: 10px;
+		margin: 0 0 26px;
+		padding: 0;
+		list-style: none;
+	}
+	.beats li {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		gap: 40px;
-		border-radius: 10px;
-		background: var(--raised);
-		border: 1px solid var(--line);
-		padding: 34px 40px;
+		gap: 14px;
+		color: var(--paper);
+		font-size: 16px;
 	}
-	.aside-note p {
-		max-width: 640px;
-		margin: 0;
+	.beats b {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: var(--accent);
+		color: var(--ink);
+		font: 700 13px var(--mono);
+	}
+	.beats li:nth-child(2) b {
+		rotate: -8deg;
+	}
+	.beats li:nth-child(3) b {
+		rotate: 6deg;
+	}
+	.beats code {
+		background: #0005;
+		color: var(--accent);
+	}
+	.more {
+		max-width: 480px;
+		margin: 0 0 30px;
 		color: var(--quiet);
-		font-size: 14.5px;
+		font-size: 15px;
 		line-height: 1.7;
 	}
-	.ghost-cta {
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		flex: none;
-		color: var(--paper);
-		border-bottom: 1px solid var(--line);
-		padding: 6px 0;
-		font-size: 13px;
-		font-weight: 650;
-		text-decoration: none;
+	.fianchetto .more {
+		margin-bottom: 0;
 	}
-	.ghost-cta:hover {
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 22px;
+	}
+	.play {
+		display: inline-flex;
+		gap: 14px;
+		padding: 16px 26px;
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--ink);
+		font-size: 15px;
+		font-weight: 700;
+		text-decoration: none;
+		box-shadow: 0 6px 0 color-mix(in srgb, var(--accent) 45%, #000);
+		transition:
+			transform 0.12s ease,
+			box-shadow 0.12s ease;
+	}
+	.play:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 0 color-mix(in srgb, var(--accent) 45%, #000);
+	}
+	.play:active {
+		transform: translateY(4px);
+		box-shadow: 0 2px 0 color-mix(in srgb, var(--accent) 45%, #000);
+	}
+	.side {
+		color: var(--paper);
+		font-size: 14px;
+		text-decoration: none;
+		border-bottom: 1px solid var(--line);
+	}
+	.side:hover {
 		border-bottom-color: var(--paper);
 	}
 
-	@media (max-width: 980px) {
-		.aside-note {
-			align-items: flex-start;
-			flex-direction: column;
-			gap: 22px;
+	/* ---- The art side ---- */
+	.art {
+		position: relative;
+	}
+	.frame {
+		margin: 0;
+		padding: 10px;
+		border-radius: 18px;
+		background: var(--accent);
+		box-shadow: 0 24px 50px #0008;
+		rotate: -2.5deg;
+		transition:
+			rotate 0.3s cubic-bezier(0.3, 1.6, 0.5, 1),
+			scale 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+	}
+	.game:hover .frame {
+		rotate: -1deg;
+		scale: 1.02;
+	}
+	.fianchetto .frame {
+		rotate: 2.5deg;
+	}
+	.fianchetto:hover .frame {
+		rotate: 1deg;
+	}
+	.frame img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+	}
+	.burst {
+		position: absolute;
+		top: -30px;
+		right: -18px;
+		padding: 30px 34px;
+		background: var(--accent);
+		color: var(--ink);
+		font: italic 700 22px var(--serif);
+		clip-path: polygon(
+			50% 0,
+			61% 18%,
+			82% 8%,
+			80% 31%,
+			100% 38%,
+			84% 54%,
+			96% 74%,
+			74% 74%,
+			70% 98%,
+			52% 82%,
+			32% 100%,
+			28% 76%,
+			4% 80%,
+			16% 58%,
+			0 42%,
+			20% 32%,
+			14% 8%,
+			38% 18%
+		);
+		rotate: 10deg;
+		animation: bob 2.6s ease-in-out infinite;
+	}
+	.pop {
+		position: absolute;
+		width: 34%;
+		left: -5%;
+		bottom: -18%;
+		border-radius: 50%;
+		border: 6px solid var(--accent);
+		box-shadow: 0 16px 34px #0009;
+		rotate: -8deg;
+		animation: bob 3.4s ease-in-out infinite;
+	}
+
+	/* termcade's terminal */
+	.terminal {
+		border-radius: 14px;
+		overflow: hidden;
+		background: #0c120d;
+		border: 2px solid color-mix(in srgb, var(--accent) 40%, #000);
+		box-shadow:
+			0 24px 50px #0008,
+			0 0 60px color-mix(in srgb, var(--accent) 14%, transparent);
+		rotate: 2deg;
+		transition:
+			rotate 0.3s cubic-bezier(0.3, 1.6, 0.5, 1),
+			scale 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+	}
+	.game:hover .terminal {
+		rotate: 0.5deg;
+		scale: 1.02;
+	}
+	.bar {
+		display: flex;
+		align-items: center;
+		gap: 7px;
+		padding: 11px 14px;
+		background: #1a231c;
+		color: var(--faint);
+		font: 11px var(--mono);
+	}
+	.bar i {
+		width: 11px;
+		height: 11px;
+		border-radius: 50%;
+		background: #3a4a3d;
+	}
+	.bar i:first-child {
+		background: var(--seal);
+	}
+	.bar span {
+		margin-left: auto;
+	}
+	.screen {
+		display: grid;
+		justify-items: center;
+		gap: 18px;
+		padding: 44px 24px 34px;
+		color: var(--accent);
+		text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 50%, transparent);
+	}
+	.invader {
+		width: 44%;
+		height: auto;
+	}
+	.invader.big {
+		width: min(190px, 46%);
+		animation: march 1.6s steps(2) infinite;
+	}
+	.score {
+		margin: 0;
+		font: 12px var(--mono);
+		letter-spacing: 0.2em;
+		opacity: 0.8;
+	}
+	.prompt {
+		justify-self: start;
+		margin: 6px 0 0;
+		font: 16px var(--mono);
+	}
+	.cursor {
+		display: inline-block;
+		width: 0.6em;
+		height: 1.1em;
+		margin-left: 6px;
+		vertical-align: -0.2em;
+		background: var(--accent);
+		animation: blink 1s steps(2) infinite;
+	}
+	.cart.termcade .cart-art {
+		background: #0c120d;
+		color: #a6e37f;
+	}
+
+	.outro {
+		margin: 80px 0 0;
+		color: var(--quiet);
+		font: italic 400 20px var(--serif);
+		text-align: center;
+	}
+	.outro a {
+		color: var(--bone);
+		text-decoration: none;
+		border-bottom: 1px solid var(--line);
+	}
+	.outro a:hover {
+		border-bottom-color: var(--bone);
+	}
+
+	@keyframes bob {
+		50% {
+			translate: 0 -5px;
 		}
 	}
-	@media (max-width: 600px) {
-		.page-hero,
-		.entries,
-		.aside-note {
-			width: min(100% - 28px, 1180px);
+	@keyframes march {
+		50% {
+			translate: 14px 0;
 		}
-		.page-hero {
-			margin: 36px auto 50px;
+	}
+	@keyframes blink {
+		50% {
+			opacity: 0;
 		}
-		h1 {
-			font-size: clamp(36px, 11.5vw, 52px);
-		}
-		.lede {
-			margin-top: 22px;
-			font-size: 15px;
-		}
-		.aside-note {
-			padding: 26px 24px;
-		}
-		.aside-note p {
-			font-size: 13.5px;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.games :is(.sticker, .burst, .pop, .invader, .cursor) {
+			animation: none;
 		}
 	}
 
-	h1 {
-		font: 400 clamp(48px, 6vw, 80px) / 1.04 var(--serif);
-		letter-spacing: -0.02em;
-		color: var(--bone);
+	@media (max-width: 900px) {
+		.game {
+			grid-template-columns: 1fr;
+			gap: 44px;
+			padding: 36px 28px 40px;
+		}
+		.game.castle .art {
+			order: 0;
+		}
+		.shelf {
+			gap: 22px;
+		}
 	}
-	h1 em {
-		font-style: italic;
-	}
-	.entry-list {
-		border-top: 1px solid var(--line-soft);
+	@media (max-width: 640px) {
+		.games {
+			width: calc(100% - 28px);
+		}
+		.hero {
+			padding-top: 26px;
+		}
+		.lede {
+			font-size: 16px;
+		}
+		.shelf {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 12px;
+			margin-top: 40px;
+		}
+		.cart {
+			padding: 7px 7px 10px;
+			border-radius: 10px;
+			gap: 8px;
+		}
+		.cart-name {
+			font-size: 16px;
+		}
+		.cart .sticker {
+			font-size: 8px;
+			padding: 4px 7px;
+			top: -10px;
+			right: -6px;
+		}
+		.game {
+			margin-top: 56px;
+			padding: 28px 20px 32px;
+			border-radius: 20px;
+		}
+		.pitch {
+			font-size: 19px;
+		}
+		.burst {
+			font-size: 17px;
+			padding: 22px 24px;
+			right: -6px;
+		}
 	}
 </style>
