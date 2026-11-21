@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import octicons from '@primer/octicons';
-import revikTitle from '../assets/revik-title.png';
 import Entry from '../components/Entry.astro';
 import Full from '../layouts/Full.astro';
 
@@ -10,7 +8,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 
 <Full
 	title="Games — Avior Studio"
-	description="Play termcade and Fields of Revik, and explore Castle Drop and Prizm prototypes from Avior Studio."
+	description="Play termcade, the terminal arcade, and meet Fianchetto and Castle Drop, the games in development at Avior Studio."
 >
 	<main id="main-content">
 		<section class="page-hero">
@@ -21,15 +19,30 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				Step into <em>another world.</em>
 			</h1>
 			<p class="lede">
-				Play the terminal arcade or enter Fields of Revik in your browser. Castle Drop and Prizm are prototypes:
-				glimpses of the worlds taking shape in the studio.
+				Play the terminal arcade today. Fianchetto, a chess card game, and Castle Drop, a physics castle defense, are
+				taking shape in the studio.
 			</p>
 		</section>
 
 		<section class="game-gallery" aria-label="Art from our games">
-			<a href="https://app.revik.gg">
-				<Image src={revikTitle} alt="Fields of Revik" format="webp" quality={80} width={768} loading="lazy" />
-				<span>Play Fields of Revik ↗</span>
+			<a href="#termcade">
+				<div class="gallery-termcade" aria-hidden="true">
+					<span>▟▙</span>
+					<b>▐▛▀▜▌</b>
+					<span>▝▘ ▝▘</span>
+				</div>
+				<span>termcade · play now ↓</span>
+			</a>
+			<a href="#fianchetto">
+				<img
+					class="gallery-fianchetto"
+					src="/art/fianchetto-queen.webp"
+					alt="Fianchetto's ivory queen, crowned in gold, between candles"
+					width="445"
+					height="443"
+					loading="lazy"
+				/>
+				<span>Fianchetto · in development ↓</span>
 			</a>
 			<a href="#castle-drop">
 				<div class="gallery-castle">
@@ -37,16 +50,11 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				</div>
 				<span>Castle Drop · prototype ↓</span>
 			</a>
-			<a href="#prizm">
-				<div class="gallery-prizm">
-					<img src="/art/crystal.svg" alt="Prizm crystal" />
-				</div>
-				<span>Prizm · prototype ↓</span>
-			</a>
 		</section>
 		<section class="entries">
 			<Entry
 				name="termcade"
+				id="termcade"
 				tagline="A terminal arcade"
 				status="Playable now"
 				available={true}
@@ -70,6 +78,25 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 			</Entry>
 
 			<Entry
+				name="Fianchetto"
+				id="fianchetto"
+				tagline="A chess card game"
+				status="In development"
+				meta="Godot 4 · Rust rules core · private repository"
+			>
+				<p>
+					Every fight starts with your king alone on the board. Summon pieces and cast spells from a hand of cards, with
+					mana that grows by one each turn, then move each of your pieces once. Capture the enemy king to win; lose yours
+					and the fight is over. The enemy plays by the same rules, with its own deck, mana and pieces.
+				</p>
+				<p>
+					Two modes on one device: Gambit, a roguelike run of three fights where each win adds a card to your deck, and
+					Normal, where you build a twenty-card deck and face the computer opponent of your choice. The rules live in a
+					shared Rust core, laid out for a phone held upright like a chess app.
+				</p>
+			</Entry>
+
+			<Entry
 				name="Castle Drop"
 				id="castle-drop"
 				tagline="Physics-first castle defense"
@@ -88,49 +115,12 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 				</p>
 			</Entry>
 
-			<Entry
-				name="Prizm"
-				id="prizm"
-				tagline="Drag-and-drop light puzzle"
-				status="Prototype"
-				meta="Godot 4 · private repository"
-			>
-				<p>
-					Spend limited colour mana to cast prism spells into empty drawer slots, then drag those prisms onto the board
-					so beams from the transmitters bend into the receivers that need them. Rooms are authored as scenes in the
-					editor, and the beam simulation resolves each board from the pieces you have placed.
-				</p>
-				<p>
-					Deliberately mechanics-first: no avatar to move, no combat, no health, no timer and no fail state in the MVP.
-					The whole puzzle is what light does when you put something in front of it.
-				</p>
-			</Entry>
-
-			<Entry
-				name="Fields of Revik"
-				tagline="Tactics card game"
-				status="In development"
-				available={true}
-				meta="Godot 4 · browser game"
-				links={[{ href: 'https://app.revik.gg', label: 'Play in your browser' }]}
-			>
-				<p>
-					A tactics card game on a coloured tile board, with animal factions — outlaw raccoons, monastic bears, and more
-					— whose identity comes from their mana costs rather than a faction tag, so custom decks are first-class rather
-					than a mode.
-				</p>
-				<p>
-					Offline play against the machine and online play against a person run the same rules: the deterministic
-					gameplay lives in one shared Rust core used by both the Godot client and the game server, and online matches are
-					fully server-authoritative. The client never gets to decide what happened.
-				</p>
-			</Entry>
 		</section>
 
 		<section class="aside-note">
 			<p>
-				The three Godot projects run on the studio's own devtools — gdam pins the addons they share, gdlint checks the
-				GDScript.
+				Fianchetto and Castle Drop run on the studio's own devtools — gdam pins the addons they share, gdlint checks
+				the GDScript.
 			</p>
 			<a class="ghost-cta" href="/devtools">
 				See the devtools <span class="icon" set:html={icon('arrow-right', 13)} />
@@ -144,7 +134,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 		width: min(1180px, calc(100% - 40px));
 		margin: 0 auto 70px;
 		display: grid;
-		grid-template-columns: 1.2fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		gap: 20px;
 	}
 	.game-gallery > a {
@@ -155,13 +145,13 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 	}
 	.game-gallery > a > img,
 	.gallery-castle,
-	.gallery-prizm {
+	.gallery-termcade {
 		height: 320px;
 		width: 100%;
 		object-fit: cover;
-		object-position: center 60%;
+		object-position: center 40%;
 	}
-	.game-gallery span {
+	.game-gallery > a > span {
 		font: 11px var(--mono);
 		padding: 18px 0;
 	}
@@ -170,13 +160,20 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 		display: grid;
 		place-items: center;
 	}
-	.gallery-prizm {
-		background: #282c3c;
-		display: grid;
-		place-items: center;
+	.gallery-termcade {
+		background: var(--ink-deep);
+		border: 1px solid var(--line-soft);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: var(--paper);
+		font: 56px/1 var(--mono);
 	}
-	.gallery-castle img,
-	.gallery-prizm img {
+	.gallery-termcade b {
+		font-weight: 400;
+	}
+	.gallery-castle img {
 		width: 100%;
 		height: 95%;
 		object-fit: contain;
@@ -187,7 +184,7 @@ const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ 
 		}
 		.game-gallery > a > img,
 		.gallery-castle,
-		.gallery-prizm {
+		.gallery-termcade {
 			height: 350px;
 		}
 	}

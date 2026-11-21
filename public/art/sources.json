@@ -28,18 +28,11 @@
       "animation": "near",
       "frame": 0,
       "file": "hills-near.svg"
-    },
-    {
-      "game": "prizm",
-      "source": "art/crystal.py",
-      "animation": "purple",
-      "frame": 0,
-      "file": "crystal.svg"
     }
   ],
   "images": {
     "castledrop-logo.png": "castledrop/godot_client/src/assets/sprites/ui/title_logo.png",
-    "prizm-logo.png": "prizm/godot_client/src/static/assets/ui/title_logo.png",
-    "revik-title.png": "fieldsofrevik/godot_client/src/assets/ui/title/title-concept-2.png"
+    "fianchetto-black-queen.webp": "fianchetto-be/app/src/static/assets/ui/enc_blackqueen.png",
+    "fianchetto-queen.webp": "fianchetto-be/app/src/static/assets/ui/art_queen.png"
   }
 }
